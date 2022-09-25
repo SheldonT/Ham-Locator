@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Ham-Locator/static/css/main.9b8427ac.css",
+    "main.js": "/Ham-Locator/static/js/main.94c1f959.js",
+    "index.html": "/Ham-Locator/index.html",
+    "main.9b8427ac.css.map": "/Ham-Locator/static/css/main.9b8427ac.css.map",
+    "main.94c1f959.js.map": "/Ham-Locator/static/js/main.94c1f959.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9b8427ac.css",
+    "static/js/main.94c1f959.js"
+  ]
+}
