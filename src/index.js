@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import {Map, Marker, Overlay} from "pigeon-maps";
 import useFetch from "./useFetch.js";
@@ -9,18 +9,32 @@ function CallMap({coord, selectedId}){
   return(
     <div className="map">
       <Map height={600} defaultCenter={[0, 0]} defaultZoom={3}>
-        {coord.map((mapCoord) => 
-          <Marker width={40} color={selectedId === mapCoord[2] ? "hsl(210deg 100% 50%)" : "hsl(280deg 100% 50%)" } anchor={mapCoord} id={selectedId} >
-            <span>Test</span>
-          </ Marker>
+        {coord.map((mapCoord) =>
+          <Marker width={40} anchor={mapCoord} id={selectedId}>
+            <MapPin id={selectedId} coord={mapCoord} />
+          </Marker>
         )}
       </Map>
     </div>
   );
 }
 
-//<Marker width={40} color={selectedId === mapCoord[2] ? "hsl(210deg 100% 50%)" : "hsl(280deg 100% 50%)" } anchor={mapCoord} id={selectedId} />
+function MapPin({id, coord}){
 
+    if (id === coord[2]){
+      return(
+        <>
+        <span>Mouse Hovering!</span>
+        </>
+      ); 
+    } else {
+      return(
+        <>
+        <Marker width={40}/>
+        </>
+    );
+  }
+}
 
 function TableRow({info, action}){
   

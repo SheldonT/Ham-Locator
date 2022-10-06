@@ -25,6 +25,13 @@ html{
   width: 100%;
 }
 
+.mapPin{
+  position: absolute;
+  width: 1rem;
+  border-style: solid;
+  border-width: 0.1rem;
+}
+
 .callField{
   border-style: dashed;
   border-width: 0.1rem;
