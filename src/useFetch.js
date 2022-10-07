@@ -20,7 +20,7 @@ export default function useFetch(call){
                 let rLongitude = d.lng;
             
                 setData({
-                    anchor: [parseFloat(rLatitude), parseFloat(rLongitude), i],
+                    anchor: [parseFloat(rLatitude), parseFloat(rLongitude)],
                     id: i,
                     country: rCountry,
                 });

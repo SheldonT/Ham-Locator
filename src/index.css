@@ -14,7 +14,7 @@ html{
   border-width: 0.1rem;
   border-radius: 2rem;
   overflow: hidden;
-  max-width: 120rem;
+  max-width: 100rem;
   margin: 5rem auto 2rem auto;
   font-size: 1.6rem; /*change font size to 1.6rem to equal browser default of 16px*/
 }
@@ -25,11 +25,14 @@ html{
   width: 100%;
 }
 
-.mapPin{
-  position: absolute;
-  width: 1rem;
+.markerInfo{
+  overflow: hidden;
   border-style: solid;
+  background-color: white;
   border-width: 0.1rem;
+  border-radius: 0 1rem 1rem 1rem;
+  width: 10rem;
+  margin: 4rem 0 0 2rem;
 }
 
 .callField{
@@ -39,14 +42,12 @@ html{
   margin: 0 1rem 0 0.5rem;
 }
 
-
-
 .infoBar{
   border-style: dashed;
   border-width: 0.1rem;
   height: 10rem;
   overflow-y: auto;
-  margin: 2rem auto 2rem auto;
+  margin: 2rem auto 1rem auto;
 }
 
 th {
@@ -65,13 +66,11 @@ table{
   margin: 0 2rem 0 2rem;
 }
 
-
 .bottomBar{
   display: flex;
   flex-direction: row;
   justify-content: center;
   width: 100%;
   max-width: 50rem;
-  margin: 2rem 5rem 2rem 5rem;
-  padding: 2rem 0 2rem 0;
+  margin: 0 5rem 2rem 5rem;
 }

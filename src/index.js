@@ -1,17 +1,20 @@
 import React, { useEffect, useState} from 'react';
 import ReactDOM from 'react-dom/client';
-import {Map, Marker, Overlay} from "pigeon-maps";
+import {Map, Marker} from "pigeon-maps";
 import useFetch from "./useFetch.js";
+import InfoPointer from "./countryCode.js";
 import './index.css';
 
-function CallMap({coord, selectedId}){
+function CallMap({info, selectedId}){
 
+  console.log(info.country);
+  
   return(
     <div className="map">
-      <Map height={600} defaultCenter={[0, 0]} defaultZoom={3}>
-        {coord.map((mapCoord) =>
-          <Marker width={40} anchor={mapCoord} id={selectedId}>
-            <MapPin id={selectedId} coord={mapCoord} />
+      <Map height={500} defaultCenter={[0, 0]} defaultZoom={3}>
+        {info.map((mapCoord) =>
+          <Marker width={40} anchor={mapCoord.anchor} id={selectedId}>
+            <MapPin selId={selectedId} pinId={mapCoord.id} country={mapCoord.country} />
           </Marker>
         )}
       </Map>
@@ -19,13 +22,11 @@ function CallMap({coord, selectedId}){
   );
 }
 
-function MapPin({id, coord}){
+function MapPin({selId, pinId, country}){
 
-    if (id === coord[2]){
+    if (selId === pinId){
       return(
-        <>
-        <span>Mouse Hovering!</span>
-        </>
+        <InfoPointer name={country} />
       ); 
     } else {
       return(
@@ -36,12 +37,13 @@ function MapPin({id, coord}){
   }
 }
 
+
 function TableRow({info, action}){
   
   return(
     <>
         <tr onMouseEnter={() => action(info.id) } onMouseLeave={ () => action() } id={info.id}>
-          <td>{info.anchor?.[2]}</td>
+          <td>{info.id}</td>
           <td>{info.call}</td>
           <td>{info.country}</td>
           <td>{info.anchor?.[0]}</td>
@@ -81,7 +83,6 @@ function InfoBar({info, action}){
 function Location(){
 
   const [callSign, setCallSign] = useState("");
-  const [anchorList, setAnchorList] = useState([]);
   const [infoList, setInfoList] = useState([]);
   const [activeRow, setActiveRow] = useState();
 
@@ -89,21 +90,19 @@ function Location(){
 
   useEffect( () => {
     if((jsonResp.anchor) && (callSign !== "")) {
-      setAnchorList((previousAnchors) => [...previousAnchors, jsonResp.anchor]);
       setInfoList( (previousInfo) => [...previousInfo, Object.assign({call: callSign}, jsonResp)]);
     }
 
   }, [jsonResp]);
 
-console.log(activeRow);
-
   return(
     <>
-      <CallMap coord={anchorList} selectedId={activeRow} />
+      <CallMap info={infoList} selectedId={activeRow} />
+
       <InfoBar info={infoList} action={setActiveRow}/>
       <div className="bottomBar">
         <label htmlFor="callSign" >Callsign:</label> <input className="callField" type="text" id="callSign" name="callSign" />
-        <button className="submit" onClick={() => setCallSign(document.getElementById("callSign").value)} > Submit </button>
+        <button onClick={() => setCallSign(document.getElementById("callSign").value)} > Submit </button>
       </div>
     </>
   );
