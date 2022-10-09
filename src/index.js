@@ -6,8 +6,6 @@ import InfoPointer from "./countryCode.js";
 import './index.css';
 
 function CallMap({info, selectedId}){
-
-  console.log(info.country);
   
   return(
     <div className="map">
@@ -89,11 +87,14 @@ function Location(){
   const jsonResp = useFetch(callSign);
 
   useEffect( () => {
+
     if((jsonResp.anchor) && (callSign !== "")) {
       setInfoList( (previousInfo) => [...previousInfo, Object.assign({call: callSign}, jsonResp)]);
     }
 
   }, [jsonResp]);
+
+  console.log(infoList);
 
   return(
     <>
