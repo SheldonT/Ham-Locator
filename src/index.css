@@ -1,15 +1,17 @@
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+
 html{
   font-size: 10px; /*change default font size so 1rem = 10px rather than 16*/
+}
+body{
+  font-family: "Roboto", sans-serif;
+  background-color: #62b6cb;
 }
 
 .root{
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #bee9e8;
   border-style: dashed;
   border-width: 0.1rem;
   border-radius: 2rem;
@@ -37,6 +39,7 @@ html{
 
 .callField{
   border-style: dashed;
+  background-color: #f7fff7;
   border-width: 0.1rem;
   border-radius: 0.5rem;
   margin: 0 1rem 0 0.5rem;
@@ -45,6 +48,7 @@ html{
 .infoBar{
   border-style: dashed;
   border-width: 0.1rem;
+  background-color: #f7fff7;
   height: 10rem;
   overflow-y: auto;
   margin: 2rem auto 1rem auto;

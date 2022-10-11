@@ -38,7 +38,7 @@ export default function useFetch(call){ //custom hook for retrieving station inf
     
 
     useEffect (() => {
-        const url = "dxcc_json.php?callsign=" + call;
+        const url = "xcc_json.php?callsign=" + call;
 
         if (call !== ""){
              
