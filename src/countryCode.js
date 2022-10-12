@@ -256,7 +256,7 @@ const countryCode = [
     
     return(
         <div className="markerInfo" >
-            <Flag code={code.countryCode} />
+              <Flag code={code.countryCode} />
         </div>
     );
   }

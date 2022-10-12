@@ -7,22 +7,32 @@ body{
   background-color: #62b6cb;
 }
 
+.title{
+  max-width: 100rem;
+  margin: 0 auto 0 auto;
+}
+
+.titleText{
+  font-weight: bold;
+  margin: 2rem auto 0.5rem 10rem;
+}
+
 .root{
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #bee9e8;
   border-style: dashed;
+  background-color: #bee9e8;
   border-width: 0.1rem;
   border-radius: 2rem;
   overflow: hidden;
   max-width: 100rem;
-  margin: 5rem auto 2rem auto;
+  margin: 0 auto 2rem auto;
   font-size: 1.6rem; /*change font size to 1.6rem to equal browser default of 16px*/
 }
 
 .map{
-  border-style: none none dashed none;
   border-width: 0.1rem;
   width: 100%;
 }
@@ -34,7 +44,9 @@ body{
   border-width: 0.1rem;
   border-radius: 0 1rem 1rem 1rem;
   width: 10rem;
-  margin: 4rem 0 0 2rem;
+  /*margin: 4rem 0 0 2rem;*/
+  margin: 0;
+  padding: 0;
 }
 
 .callField{
@@ -48,6 +60,7 @@ body{
 .infoBar{
   border-style: dashed;
   border-width: 0.1rem;
+  border-radius: 0.5rem;
   background-color: #f7fff7;
   height: 10rem;
   overflow-y: auto;
