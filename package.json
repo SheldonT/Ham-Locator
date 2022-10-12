@@ -3,17 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "https://www.hamqth.com/",
-  "homepage": "https://sheldontower.ca",
+  "homepage": "https://sheldont.github.io/Ham-Locator",
   "dependencies": {
+    "-": "^0.0.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "callsign": "^1.0.4",
+    "gh-pages": "^4.0.0",
     "pigeon-maps": "^0.21.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "react-world-flags": "^1.5.1",
+    "save-dev": "^0.0.1-security",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
