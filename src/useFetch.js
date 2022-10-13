@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import callsign from "callsign";
-import {canPrefix, gps} from "./constants.js";
-import areaCode from "./usPrefix";
+import {canPrefix, gps, areaCode} from "./constants.js";
 
 let i = 0;
 
@@ -47,7 +46,9 @@ export default function useFetch(call){ //custom hook for retrieving station inf
                 let rCountry = d.name;
                 let rLatitude = d.lat;
                 let rLongitude = d.lng;
-            
+                
+                console.log("Using hamQTH.com");
+
                 setData({
                     anchor: [parseFloat(rLatitude), parseFloat(rLongitude)],
                     id: i,
@@ -55,7 +56,7 @@ export default function useFetch(call){ //custom hook for retrieving station inf
                 });
         
             }).catch(() => {
-
+                console.log("Using Alternative API")
                 callsign.asyncGetAmateurRadioDetailedByCallsign(call)
                     .then((res) => {
 
