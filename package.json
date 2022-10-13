@@ -2,7 +2,7 @@
   "name": "ham-locator",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://www.hamqth.com/",
+  "proxy": "",
   "homepage": "https://sheldont.github.io/Ham-Locator",
   "dependencies": {
     "-": "^0.0.1",
