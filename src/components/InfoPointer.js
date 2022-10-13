@@ -249,7 +249,6 @@ const countryCode = [
     { name: 'Zimbabwe', countryCode: 'zw' },
   ];
 
-
   export default function InfoPointer({name}) {
 
     const code = countryCode.find( (c) => c.name === name );

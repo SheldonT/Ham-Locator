@@ -38,14 +38,15 @@ body{
 }
 
 .markerInfo{
+  position: absolute;
   overflow: hidden;
   border-style: solid;
   background-color: white;
   border-width: 0.1rem;
   border-radius: 0 1rem 1rem 1rem;
   width: 10rem;
-  /*margin: 4rem 0 0 2rem;*/
-  margin: 0;
+  left: 2rem;
+  margin: 4rem 0 0 0;
   padding: 0;
 }
 

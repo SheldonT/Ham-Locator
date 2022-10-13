@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import callsign from "callsign";
-import gps from "./countryGPS.js";
-import canPrefix from "./canPrefix.js";
+import {canPrefix, gps} from "./constants.js";
 import areaCode from "./usPrefix";
 
 let i = 0;
@@ -38,7 +37,7 @@ export default function useFetch(call){ //custom hook for retrieving station inf
     
 
     useEffect (() => {
-        const url = "xcc_json.php?callsign=" + call;
+        const url = "dxcc_json.php?callsign=" + call;
 
         if (call !== ""){
              
