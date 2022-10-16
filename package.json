@@ -16,6 +16,7 @@
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "react-world-flags": "^1.5.1",
+    "react-xml-parser": "^1.1.8",
     "save-dev": "^0.0.1-security",
     "web-vitals": "^2.1.4"
   },
