@@ -1,23 +1,23 @@
 import TableRow from "./TableRow";
 
-function InfoBar({info, action}){
+function InfoBar({info, action, click}){
     //create the table for searched callsigns containing station location information.
   return(
     <>
     <div className="infoBar">
-      <table id="callList">
+      <table className="callList" id="callList">
         <thead>
         <tr>
-          <th> # </th>
-          <th> Call Sign </th>
-          <th> Country </th>
-          <th> Latitude </th>
-          <th> Longitude </th>
+          <th className="infoHead" > # </th>
+          <th className="infoHead"> Call Sign </th>
+          <th className="infoHead"> Country </th>
+          <th className="infoHead"> Latitude </th>
+          <th className="infoHead"> Longitude </th>
         </tr>
         </thead>
         <tbody>
           {/* create a row for each callsign searched (<TableRow>) */}
-        {info.map( (callData) => <TableRow info={callData} action={action} />)}
+        {info.map( (callData) => <TableRow info={callData} action={action} click={click} />)}
       </tbody>
     </table>
   </div>

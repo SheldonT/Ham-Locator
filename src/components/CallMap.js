@@ -1,10 +1,12 @@
 import {Map, Marker} from "pigeon-maps";
-import MapPin from "./MapPin.js";
 
 
 function CallMap({info, selectedId, size}){
     //draw the world map with markers for every searched callsign.
     //https://pigeon-maps.js.org/
+
+    const active = "hsl(0, 100%, 45%)";
+    const inActive = "hsl(204, 76%, 67%)";
   
     let mapCenter = [0, 0];
   
@@ -20,9 +22,7 @@ function CallMap({info, selectedId, size}){
       <div className="map">
         <Map height={size} defaultCenter={[0, 0]} center={mapCenter} defaultZoom={3}>
           {info.map((mapCoord) =>
-            <Marker width={40} anchor={mapCoord.anchor} id={selectedId}>
-              <MapPin selId={selectedId} pinId={mapCoord.id} country={mapCoord.country} />
-            </Marker>
+            <Marker width={(mapCoord.id === selectedId) ? 50 : 40} color={(mapCoord.id === selectedId) ? active : inActive} anchor={mapCoord.anchor} id={selectedId} />
           )}
         </Map>
       </div>
@@ -30,3 +30,6 @@ function CallMap({info, selectedId, size}){
   }
 
   export default CallMap;
+
+  //<MapPin selId={selectedId} pinId={mapCoord.id} country={mapCoord.country} />
+  //</Marker>

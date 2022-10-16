@@ -51,7 +51,7 @@ export default function useFetch(call){ //custom hook for retrieving station inf
 
     useEffect (() => {
         //const url = "https://www.hamqth.com/dxcc_json.php?callsign=" + call;
-        const url = " https://www.hamqth.com/dxcc.php?callsign=" + call;
+        const url = "https://www.hamqth.com/dxcc.php?callsign=" + call;
 
         if (call !== ""){
              
@@ -65,13 +65,19 @@ export default function useFetch(call){ //custom hook for retrieving station inf
                 let rCountry = callData.getElementsByTagName("name")[0].value;
                 let rLatitude = callData.getElementsByTagName("lat")[0].value;
                 let rLongitude = callData.getElementsByTagName("lng")[0].value;
+                let rDetails = callData.getElementsByTagName("details")[0].value;
+                let rTimeZone = callData.getElementsByTagName("utc")[0].value;
+                let rITU = callData.getElementsByTagName("itu")[0].value;
                 
                 console.log("Using hamQTH.com");
 
                 setData({
                     anchor: [parseFloat(rLatitude), parseFloat(rLongitude)],
                     id: i,
-                    country: rCountry
+                    country: rCountry,
+                    details: rDetails,
+                    time: rTimeZone,
+                    itu: rITU
                 });
         
             }).catch(() => {
@@ -79,17 +85,33 @@ export default function useFetch(call){ //custom hook for retrieving station inf
                 callsign.asyncGetAmateurRadioDetailedByCallsign(call)
                     .then((res) => {
 
+                        console.log(res);
+
+                        let province = "";
+                        
+                        if (res.areaname === "Canada"){
+                            province = canPrefix.find((i) => i.prefix === res.prefix).name + ", ";
+                        }
+
                         let rCountry = res.areaname;
+                        let rDetails = province + res.areaname;
                         let rPrefix = res.prefix;
+                        let rTimeZone = res.timezone;
+                        let rITU = res.ituzone;
+
                         
                         let coord = countryCoord(rCountry, call, rPrefix);
+
 
                         setData({
                             anchor: coord,
                             id: i,
-                            country: rCountry
+                            country: rCountry,
+                            details: rDetails,
+                            time: rTimeZone,
+                            itu: rITU
                         });
-                    });
+                    }).catch((e) => alert(call + " location information is not available at this time. Please try again later."));
             });
         }
 
