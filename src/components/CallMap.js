@@ -1,7 +1,8 @@
 import {Map, Marker} from "pigeon-maps";
 import MapPin from "./MapPin.js";
 
-function CallMap({info, selectedId}){
+
+function CallMap({info, selectedId, size}){
     //draw the world map with markers for every searched callsign.
     //https://pigeon-maps.js.org/
   
@@ -17,7 +18,7 @@ function CallMap({info, selectedId}){
     
     return(
       <div className="map">
-        <Map height={450} defaultCenter={[0, 0]} center={mapCenter} defaultZoom={3}>
+        <Map height={size} defaultCenter={[0, 0]} center={mapCenter} defaultZoom={3}>
           {info.map((mapCoord) =>
             <Marker width={40} anchor={mapCoord.anchor} id={selectedId}>
               <MapPin selId={selectedId} pinId={mapCoord.id} country={mapCoord.country} />

@@ -18,7 +18,6 @@ body{
 }
 
 .root{
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,8 +32,36 @@ body{
 }
 
 .map{
-  border-width: 0.1rem;
   width: 100%;
+}
+
+.infoBar{
+  border-style: dashed;
+  border-width: 0.1rem;
+  border-radius: 0.5rem;
+  background-color: #f7fff7;
+  height: 10rem;
+  overflow-y: auto;
+  margin: 2rem auto 1rem auto;
+}
+
+@media screen and (max-height: 40rem){
+  .root{
+    flex-direction: row;
+    align-items: start;
+    font-size: 1rem; /*change font size to 1.6rem to equal browser default of 16px*/
+  }
+
+  .infoBar{
+    margin: 2rem 1rem 1rem 1rem;
+  }
+
+}
+
+.callInput{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .markerInfo{
@@ -58,30 +85,29 @@ body{
   margin: 0 1rem 0 0.5rem;
 }
 
-.infoBar{
-  border-style: dashed;
-  border-width: 0.1rem;
-  border-radius: 0.5rem;
-  background-color: #f7fff7;
-  height: 10rem;
-  overflow-y: auto;
-  margin: 2rem auto 1rem auto;
-}
-
 th {
   position: sticky;
   border-style: none none solid none;
+  padding: 0 1rem 0 1rem;
   top: 0;
 }
 
 td {
   text-align: left;
   padding: 0 1rem 0 1rem;
-  font-size: 1.4rem;
 }
 
 table{
-  margin: 0 2rem 0 2rem;
+  border-collapse: collapse;
+  margin: auto 1rem auto 1rem;
+}
+
+@media screen and (max-width: 30rem){
+  table{
+    font-size: 1.2rem;
+    border-collapse: collapse;
+    margin: auto 1rem auto 1rem;
+  }
 }
 
 .bottomBar{
