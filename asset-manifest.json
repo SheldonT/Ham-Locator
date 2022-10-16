@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Ham-Locator/static/css/main.4a2944c8.css",
-    "main.js": "/Ham-Locator/static/js/main.b112dffa.js",
+    "main.js": "/Ham-Locator/static/js/main.9c4f23a1.js",
     "index.html": "/Ham-Locator/index.html",
     "main.4a2944c8.css.map": "/Ham-Locator/static/css/main.4a2944c8.css.map",
-    "main.b112dffa.js.map": "/Ham-Locator/static/js/main.b112dffa.js.map"
+    "main.9c4f23a1.js.map": "/Ham-Locator/static/js/main.9c4f23a1.js.map"
   },
   "entrypoints": [
     "static/css/main.4a2944c8.css",
-    "static/js/main.b112dffa.js"
+    "static/js/main.9c4f23a1.js"
   ]
 }
