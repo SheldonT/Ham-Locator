@@ -108,7 +108,7 @@ body{
 
 .infoHead {
   position: sticky;
-  background-color: grey;
+  background-color: #dddddd;
   border-style: none none solid none;
   padding: 0 1rem 0 1rem;
   top: 0;

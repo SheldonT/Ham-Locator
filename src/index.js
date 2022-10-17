@@ -96,9 +96,9 @@ function Location(){
         </div>
       </div>
     </div>
-    <div class="footer">
-        Version 1.1 made by <a href="https://twitter.com/Steegan" target="_blank">SheldonT</a> (on <a href="https://github.com/SheldonT/Ham-Locator" target="_blank">GitHub</a>), <br/>
-        DXCC search powered by <a href="https://www.hamqth.com/" target="_blank">Ham QTH</a>
+    <div className="footer">
+        Version 1.1 made by <a href="https://twitter.com/Steegan" target="_blank">SheldonT</a> (on <a href="https://github.com/SheldonT/Ham-Locator" target="_blank">GitHub</a>). <br/>
+        DXCC search powered by <a href="https://www.hamqth.com/" target="_blank">HamQTH.com</a>. <br />
     </div>
     </>
   );
