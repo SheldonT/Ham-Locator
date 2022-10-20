@@ -81,14 +81,14 @@ function Location(){
 
             <input className="callField" type="text" id="callSign" placeholder="Enter a Callsign" value={callSignValue} onChange={(e) => setCallSignValue(e.target.value)} onKeyPress={(e) => {
             if (e.key === "Enter"){
-              setCallSign(e.target.value);
+              setCallSign(e.target.value.toUpperCase());
               setCallSignValue("");
               setActiveRow();
             }
           }} name="callSign" />
 
             <button onClick={() => {
-             setCallSign(callSignValue);
+             setCallSign(callSignValue.toUpperCase());
              setCallSignValue("");
              setActiveRow();
               }} > Submit </button>

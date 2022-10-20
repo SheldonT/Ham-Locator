@@ -13,7 +13,7 @@ body{
 }
 
 .logo{
-  height: 4rem;
+  height: 6vh;
   margin: 1rem 0 2rem 2rem;
 }
 
@@ -38,7 +38,7 @@ body{
 
   border-radius: 0.5rem;
   background-color: #f7fff7;
-  height: 10rem;
+  height: 15vh; /*10rem*/
   overflow-y: auto;
   margin: 2rem auto 1rem auto;
 }
@@ -160,7 +160,7 @@ body{
   }
   .infoBar{
     margin: 0rem 1rem 1rem 1rem;
-    height: 6rem;
+    height: 12vh; /*6rem*/
   }
 
   .extraInfo{
@@ -171,7 +171,7 @@ body{
   }
 }
 
-@media screen and (max-height: 40rem){
+@media screen and (max-height: 40rem){ /*portrat*/
   .main{
     flex-direction: row;
     align-items: start;
@@ -180,7 +180,7 @@ body{
 
   .infoBar{
     margin: 0 1rem 1rem 1rem;
-    height: 6rem;
+    height: 18vh; /*6rem*/
   }
 
   .stationInfo{
@@ -201,8 +201,7 @@ body{
   }
   
   .logo{
-    height: 3rem;
-    margin: 1rem 0 1rem 2rem;
+    margin: 0rem 0 1rem 2rem;
   }
 
 }

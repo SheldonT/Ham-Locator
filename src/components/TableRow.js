@@ -1,5 +1,6 @@
 function TableRow({info, action, click}){
     // create rows in the callsign information table
+
     return(
       <>
           <tr className="activeRow" onClick={ () => {click(info); action(info.id); }} >
