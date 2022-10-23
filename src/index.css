@@ -1,10 +1,19 @@
+:root{
+  --pageBg: #1d3557;/*#62b6cb;*/
+  --mainContainerBg: #edf6f9; /*#bee9e8;*/
+  --infoBarColor: white;
+  --infoHeaderColor: #dddddd;
+  --activeRow: #22577a;
+}
+
 
 html{
   font-size: 10px; /*change default font size so 1rem = 10px rather than 16*/
 }
+
 body{
   font-family: "Roboto", sans-serif;
-  background-color: #62b6cb;
+  background-color: var(--pageBg);
 }
 
 .title{
@@ -22,42 +31,29 @@ body{
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #bee9e8;
+  background-color: var(--mainContainerBg);
   border-radius: 2rem;
   overflow: hidden;
   max-width: 100rem;
+  height: 80vh;
   margin: 0 auto 0.5rem auto;
   font-size: 1.6rem; /*change font size to 1.6rem to equal browser default of 16px*/
 }
 
-.map{
+.stationInfo{
   width: 100%;
+  height: 40%;
 }
-
 .infoBar{
-
+  position: relative;
   border-radius: 0.5rem;
-  background-color: #f7fff7;
-  height: 15vh; /*10rem*/
+  border-style: solid;
+  border-width: 0.1rem;
+  background-color: var(--infoBarColor);
+  width: 90%;
+  height: 25vh;
   overflow-y: auto;
   margin: 2rem auto 1rem auto;
-}
-
-.stationInfo{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-}
-
-.extraInfo{
-  display: flex;
-  flex-direction: column;
-  border-radius: 0.5rem;
-  background-color: #f7fff7;
-  width: 40%;
-  padding: 2rem;
-  margin: 2rem;
 }
 
 .extraHeader{
@@ -66,12 +62,15 @@ body{
   justify-content: start;
   margin: 0 0 1rem 0;
   font-weight: bold;
+  font-size: 2rem;
 }
 
 .extraRow{
   display: flex;
   flex-direction: row;
   justify-content: start;
+  align-items: center;
+  font-size: 1.2rem;
   margin: 0 0 0.5rem 0;
 }
 
@@ -83,40 +82,45 @@ body{
   text-align: left;
 }
 
+.map{
+  position: relative;
+  width: 100%;
+  height: 60%; /*10rem*/
+}
+
 .callInput{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 100%;
 }
 
 .markerInfo{
   position: absolute;
   overflow: hidden;
-  background-color: white;
-  border-radius: 0 1rem 1rem 1rem;
-  width: 10rem;
+  background-color: var(--infoBarColor);
+  border-radius: 0 1.5rem 1.5rem 1.5rem;
+  width: 15vw;
   left: 2rem;
   margin: 4rem 0 0 0;
-  padding: 0;
+  padding: 1rem;
 }
 
 .callField{
-  background-color: #f7fff7;
+  background-color: var(--infoBarColor);
   border-radius: 0.5rem;
   margin: 0 1rem 0 0.5rem;
 }
 
 .infoHead {
   position: sticky;
-  background-color: #dddddd;
+  background-color: var(--infoHeaderColor);
   border-style: none none solid none;
-  padding: 0 1rem 0 1rem;
+  text-align: left;
+  padding: 1rem 1rem 1rem 4rem;
   top: 0;
 }
 
 .infoCells {
   text-align: left;
-  padding: 0 1rem 0 1rem;
+  padding: 1rem 1rem 1rem 4rem;
 }
 
 .activeRow{
@@ -126,82 +130,36 @@ body{
 
 .activeRow:hover{
   text-decoration: underline;
-  color: #22577a;
+  color: var(--activeRow);
 }
 
 .callList{
   border-collapse: collapse;
+  width: 100%;
   margin: 0 0 0 0;
 }
 
 .bottomBar{
+  position: absolute;
   display: flex;
   flex-direction: row;
   justify-content: center;
   width: 100%;
-  max-width: 50rem;
-  margin: 0 5rem 2rem 5rem;
+  bottom: 0;
+  padding-bottom: 2rem;
 }
 
 .footer{
   text-align: center;
   max-width: 100rem;
   margin: 0 auto 0 auto;
+  color: white;
 }
 
-@media screen and (max-width: 30rem){
-  .callList{
-    font-size: 1.2rem;
-  }
-
-  .stationInfo{
-    flex-direction: column;
-    align-items: center;
-  }
-  .infoBar{
-    margin: 0rem 1rem 1rem 1rem;
-    height: 12vh; /*6rem*/
-  }
-
-  .extraInfo{
-    font-size: 1.2rem;
-    width: 80%;
-    min-height: 8rem;
-    padding: 0;
-  }
+a:link{
+  color: #ffba08;
 }
 
-@media screen and (max-height: 40rem){ /*portrat*/
-  .main{
-    flex-direction: row;
-    align-items: start;
-    font-size: 1rem; /*change font size to 1.6rem to equal browser default of 16px*/
-  }
-
-  .infoBar{
-    margin: 0 1rem 1rem 1rem;
-    height: 18vh; /*6rem*/
-  }
-
-  .stationInfo{
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .extraInfo{
-    font-size: 1.2rem;
-    width: 80%;
-    min-height: 8rem;
-    padding: 0;
-  }
-
-  .title{
-    max-width: 100rem;
-    margin: 0 auto 0 auto;
-  }
-  
-  .logo{
-    margin: 0rem 0 1rem 2rem;
-  }
-
+a:visited {
+  color: #f48c06;
 }

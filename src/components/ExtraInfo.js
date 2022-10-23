@@ -16,18 +16,18 @@ function ExtraInfo({info}) {
         callSign = info.call;
         time = <tr> <td className="extraCells">Time Zone:</td> <td className="extraCells"> {info.time} UTC</td> </tr>
         itu = <tr> <td className="extraCells">ITU Zone:</td> <td className="extraCells"> {info.itu}</td> </tr>
-
     }
 
     return(
-        <div className="extraInfo">
+        <div className="markerInfo">
             <div className="extraHeader">{callSign}</div>
             <div className="extraRow">
                 <div className="flagIcon">
                     <Flag code={code} height={20}/>
                 </div>
-                <span>{locDetails}</span>
+                <div>{locDetails}</div>
             </div>
+            
             <div className="extraRow">
                 <table>
                     {time}

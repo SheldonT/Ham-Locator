@@ -1,7 +1,8 @@
 import TableRow from "./TableRow";
 
-function InfoBar({info, action, click}){
+function InfoBar({info, click}){
     //create the table for searched callsigns containing station location information.
+
   return(
     <>
     <div className="infoBar">
@@ -17,7 +18,7 @@ function InfoBar({info, action, click}){
         </thead>
         <tbody>
           {/* create a row for each callsign searched (<TableRow>) */}
-        {info.map( (callData) => <TableRow info={callData} action={action} click={click} />)}
+        {info.map( (callData) => <TableRow info={callData} click={click} key={callData.id}/>)}
       </tbody>
     </table>
   </div>

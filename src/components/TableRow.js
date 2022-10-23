@@ -1,9 +1,29 @@
-function TableRow({info, action, click}){
+
+
+
+function TableRow({info, click}){
     // create rows in the callsign information table
+
+    let isActive = false;
+
+    const makeActive = () => {
+
+      if (!isActive) {
+
+        click(info);
+        isActive = true;
+
+      } else {
+
+        click();
+        isActive = false;
+
+      } 
+    }
 
     return(
       <>
-          <tr className="activeRow" onClick={ () => {click(info); action(info.id); }} >
+          <tr className="activeRow" onClick={ () => makeActive() } >
             {/*Cells containing...*/}
             <td className="infoCells">{info.id /* ID # for the table row*/}</td>
             <td className="infoCells">{info.call /* station callsign*/}</td>

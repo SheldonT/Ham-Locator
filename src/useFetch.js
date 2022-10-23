@@ -85,8 +85,6 @@ export default function useFetch(call){ //custom hook for retrieving station inf
                 callsign.asyncGetAmateurRadioDetailedByCallsign(call)
                     .then((res) => {
 
-                        console.log(res);
-
                         let province = "";
                         
                         if (res.areaname === "Canada"){
