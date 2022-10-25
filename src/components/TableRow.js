@@ -1,29 +1,28 @@
-
-
+import React, { useState } from 'react';
 
 function TableRow({info, click}){
     // create rows in the callsign information table
 
-    let isActive = false;
+    const [isActive, setIsActive] = useState(false);
 
     const makeActive = () => {
 
       if (!isActive) {
 
         click(info);
-        isActive = true;
+        setIsActive(true);
 
       } else {
 
         click();
-        isActive = false;
+        setIsActive(false);
 
       } 
     }
 
     return(
       <>
-          <tr className="activeRow" onClick={ () => makeActive() } >
+          <tr className="activeRow" onClick={ makeActive } >
             {/*Cells containing...*/}
             <td className="infoCells">{info.id /* ID # for the table row*/}</td>
             <td className="infoCells">{info.call /* station callsign*/}</td>

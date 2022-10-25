@@ -9,11 +9,11 @@ function InfoBar({info, click}){
       <table className="callList" id="callList">
         <thead>
         <tr>
-          <th className="infoHead" > # </th>
-          <th className="infoHead"> Call Sign </th>
-          <th className="infoHead"> Country </th>
-          <th className="infoHead"> Latitude </th>
-          <th className="infoHead"> Longitude </th>
+          <th className="infoHead" >#</th>
+          <th className="infoHead">Call Sign</th>
+          <th className="infoHead">Country</th>
+          <th className="infoHead">Latitude</th>
+          <th className="infoHead">Longitude</th>
         </tr>
         </thead>
         <tbody>

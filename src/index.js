@@ -34,13 +34,27 @@ function Location(){
     } else {
       // add new retrieved station info to an array of previously retrieived data
       if((jsonResp.anchor) && (callSign !== "")) {
+       setInfoList( (previousInfo) => {
 
-       setInfoList(infoList.reverse());
-       setInfoList( (previousInfo) => [...previousInfo, Object.assign({call: callSign}, jsonResp)].reverse() );
+        let newData = [Object.assign({call: callSign}, jsonResp), ...previousInfo];
+
+        localStorage.setItem("list", JSON.stringify(newData));
+
+        return newData;
+       } );
+
+
       }
     }
 
   }, [jsonResp]); //call useEffect() if jsonResp changes (station info is retrieved)
+
+
+  useEffect(() => {
+    
+    setInfoList(JSON.parse(localStorage.getItem("list") || "[]" ));
+
+  },[]);
 
 
   return(

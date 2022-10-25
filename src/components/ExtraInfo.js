@@ -14,8 +14,8 @@ function ExtraInfo({info}) {
         code = countryCode.find( (c) => c.name === info.country).countryCode;
         locDetails = info.details;
         callSign = info.call;
-        time = <tr> <td className="extraCells">Time Zone:</td> <td className="extraCells"> {info.time} UTC</td> </tr>
-        itu = <tr> <td className="extraCells">ITU Zone:</td> <td className="extraCells"> {info.itu}</td> </tr>
+        time = <tr><td className="extraCells">Time Zone:</td><td className="extraCells"> {info.time} UTC</td></tr>
+        itu = <tr><td className="extraCells">ITU Zone:</td><td className="extraCells"> {info.itu}</td></tr>
     }
 
     return(
@@ -32,8 +32,10 @@ function ExtraInfo({info}) {
             
             <div className="extraRow">
                 <table>
-                    {time}
-                    {itu}
+                    <tbody>
+                        {time}
+                        {itu}
+                    </tbody>
                 </table>
             </div>
             
