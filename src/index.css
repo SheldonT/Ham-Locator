@@ -60,9 +60,9 @@ body{
   display: flex;
   flex-direction: row;
   justify-content: start;
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.5rem 0;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .extraRow{
@@ -75,7 +75,7 @@ body{
 }
 
 .flagIcon{
-  margin: 0 1rem 0 0;
+  margin: 0 1rem 0 0.5rem;
 }
 
 .extraCells{
@@ -162,4 +162,32 @@ a:link{
 
 a:visited {
   color: #f48c06;
+}
+
+@media (max-width: 42rem){
+
+  .logo{
+    height: 4vh;
+  }
+
+  .infoHead {
+    font-size: 1.3rem;
+    padding: 1rem 1rem 1rem 1rem;
+
+  }
+
+  .infoCells {
+    font-size: 1.2rem;
+    padding: 1rem 1rem 1rem 1rem;
+  }
+
+  .markerInfo{
+
+    width: 45vw;
+    left: 2rem;
+    margin: 4rem 0 0 0;
+    padding: 1rem;
+  }
+
+
 }

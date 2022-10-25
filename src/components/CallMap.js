@@ -7,6 +7,8 @@ function CallMap({info, selectedInfo, click}){
 
     const [anchorSelect, setAnchorSelect] = useState();
 
+    const VPWidth = window.innerWidth;
+
     //copy selectedInfo to showInfo, and only use showInfo for component rendering.
     //endures click() and setAnchorSelect() are manipulating the same object.
 
@@ -18,11 +20,17 @@ function CallMap({info, selectedInfo, click}){
     let mapCenter = [0, 0];
   
     //change the center of the map when a new callsign is entered
-    if(info.length > 0) mapCenter = info[info.length - 1].anchor;
+    //use anchor to first array element because array was reveresed in index.js.
+    if(info.length > 0) {
+        mapCenter = info[0].anchor;
+    }
   
     //find map center based on the selected item from table.
     if(selectedInfo !== undefined) {
+
       mapCenter = info.find((a) => a.id === selectedInfo.id).anchor;
+
+      if (VPWidth < 420) mapCenter = [mapCenter[0] - 10, mapCenter[1] + 20]
     }
 
     //called when a map marker is clicked

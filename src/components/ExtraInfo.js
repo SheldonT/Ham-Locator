@@ -20,11 +20,13 @@ function ExtraInfo({info}) {
 
     return(
         <div className="markerInfo">
-            <div className="extraHeader">{callSign}</div>
-            <div className="extraRow">
+            <div className="extraHeader">
+                {callSign}
                 <div className="flagIcon">
                     <Flag code={code} height={20}/>
                 </div>
+            </div>
+            <div className="extraRow">
                 <div>{locDetails}</div>
             </div>
             

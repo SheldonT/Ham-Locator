@@ -8,14 +8,12 @@ function Anchor({info, selectedInfo, action}) {
     const inActive = "hsl(204, 76%, 67%)";
 
     if ((selectedInfo) && (selectedInfo.id === info.id)){
-        console.log("active");
         return(
             <>
                 <Marker height={50} color={active} onClick={ () => action() } />
                 <ExtraInfo info={selectedInfo} />
             </>);
     } else {
-        console.log("inactive");
         return(
             <>
                 <Marker height={40} color={inActive} onClick={ () => action(info) }/>

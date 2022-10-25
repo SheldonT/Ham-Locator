@@ -6,6 +6,15 @@ import CallMap from "./components/CallMap.js";
 import logo from "./assets/hl-logo.svg";
 import './index.css';
 
+function validateEntry(entry, currentList){
+
+  var result = false;
+
+  if (currentList.find((c) => entry.id === c.id) !== undefined) result = true;
+
+  return result;
+}
+
 
 function Location(){
                                                 // hook to change state when...
@@ -19,14 +28,20 @@ function Location(){
 
   useEffect( () => {
 
-    // add new retrieved station info to an array of previously retrieived data
-    if((jsonResp.anchor) && (callSign !== "")) {
+    //make sure an entry with jsonResp.id doesn't already exist.
+    if (validateEntry(jsonResp, infoList)) {
+      alert("An error occured. Please try again.");
+    } else {
+      // add new retrieved station info to an array of previously retrieived data
+      if((jsonResp.anchor) && (callSign !== "")) {
 
-      setInfoList(infoList.reverse());
-      setInfoList( (previousInfo) => [...previousInfo, Object.assign({call: callSign}, jsonResp)].reverse() );
+       setInfoList(infoList.reverse());
+       setInfoList( (previousInfo) => [...previousInfo, Object.assign({call: callSign}, jsonResp)].reverse() );
+      }
     }
 
   }, [jsonResp]); //call useEffect() if jsonResp changes (station info is retrieved)
+
 
   return(
     <>
