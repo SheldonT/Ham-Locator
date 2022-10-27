@@ -11,11 +11,18 @@ function ExtraInfo({info}) {
     let itu;
 
     if (info) {
-        code = countryCode.find( (c) => c.name === info.country).countryCode;
+        const countryInfo = countryCode.find( (c) => c.name === info.country);
+
+        console.log(countryInfo);
+
+        if (countryInfo) code = countryInfo.countryCode;
+        //^^^^^^^^
+        //add else statement to determine what happens if countryInfo is undefined.
+
         locDetails = info.details;
         callSign = info.call;
-        time = <tr><td className="extraCells">Time Zone:</td><td className="extraCells"> {info.time} UTC</td></tr>
-        itu = <tr><td className="extraCells">ITU Zone:</td><td className="extraCells"> {info.itu}</td></tr>
+        time = <div>Time Zone: {info.time} UTC </div>
+        itu = <div> ITU Zone: {info.itu}</div>
     }
 
     return(
@@ -31,16 +38,15 @@ function ExtraInfo({info}) {
             </div>
             
             <div className="extraRow">
-                <table>
-                    <tbody>
-                        {time}
-                        {itu}
-                    </tbody>
-                </table>
+                {time}
+            </div>
+
+            <div className="extraRow">
+                {itu}
             </div>
             
         </div>
-    )
+    );
 }
 
 export default ExtraInfo;

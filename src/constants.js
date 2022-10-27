@@ -1,4 +1,5 @@
 export const countryCode = [
+  { name: 'Alaska', countryCode: 'us' },
   { name: 'Afghanistan', countryCode: 'af' },
   { name: 'Aland Islands', countryCode: 'ax' },
   { name: 'Albania', countryCode: 'al' },

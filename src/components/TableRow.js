@@ -1,37 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function TableRow({info, click}){
     // create rows in the callsign information table
 
-    const [isActive, setIsActive] = useState(false);
+      const [isActive, setIsActive] = useState(false);
 
-    const makeActive = () => {
+      useEffect( () => {
 
-      if (!isActive) {
+        if (isActive) {
+          click(info);
+        } else {
+          click();
+        }
 
-        click(info);
-        setIsActive(true);
+      }, [isActive] );
+      //^^^^^^^^^^^^
+      //make changes to extraInfo from index.js call the useEffect, rather than a useState here
 
-      } else {
-
-        click();
-        setIsActive(false);
-
-      } 
-    }
-
-    return(
-      <>
-          <tr className="activeRow" onClick={ makeActive } >
-            {/*Cells containing...*/}
-            <td className="infoCells">{info.id /* ID # for the table row*/}</td>
-            <td className="infoCells">{info.call /* station callsign*/}</td>
-            <td className="infoCells">{info.country /* station country */}</td>
-            <td className="infoCells">{info.anchor?.[0] /* station latitude */ }</td>
-            <td className="infoCells">{info.anchor?.[1] /* station longitude */}</td>
-          </tr>
-      </>
-    );
+      return(
+        <>
+            <tr className="activeRow" onClick={() => {!isActive ? setIsActive(true) : setIsActive(false) } } >
+              {/*Cells containing...*/}
+              <td className="infoCells">{info.id /* ID # for the table row*/}</td>
+              <td className="infoCells">{info.call /* station callsign*/}</td>
+              <td className="infoCells">{info.country /* station country */}</td>
+              <td className="infoCells">{info.anchor?.[0] /* station latitude */ }</td>
+              <td className="infoCells">{info.anchor?.[1] /* station longitude */}</td>
+            </tr>
+        </>
+      );
   }
 
   export default TableRow;

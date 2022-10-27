@@ -8,7 +8,7 @@ import './index.css';
 
 function validateEntry(entry, currentList){
 
-  var result = false;
+  let result = false;
 
   if (currentList.find((c) => entry.id === c.id) !== undefined) result = true;
 
@@ -20,8 +20,10 @@ function Location(){
                                                 // hook to change state when...
   const [callSign, setCallSign] = useState(""); // a callsign is entered
   const [infoList, setInfoList] = useState([]); // station information is retrieved
-  const [callSignValue, setCallSignValue] = useState("");
-  const [extraInfo, setExtraInfo] = useState();
+  const [callSignValue, setCallSignValue] = useState(""); //sets the value in the callsign field
+  const [extraInfo, setExtraInfo] = useState(); //handles the information from useFetch() for the ExtraInfo component
+
+  const [id, setId] = useState(1); //assigns an id number to the latest entered callsign (id will be infoList - 1)
 
   const jsonResp = useFetch(callSign); //fetch station information from callsign
 
@@ -34,15 +36,18 @@ function Location(){
     } else {
       // add new retrieved station info to an array of previously retrieived data
       if((jsonResp.anchor) && (callSign !== "")) {
-       setInfoList( (previousInfo) => {
 
-        let newData = [Object.assign({call: callSign}, jsonResp), ...previousInfo];
+        //increment id by 1 for next entry.
+        setId(id + 1);
+        
+        setInfoList( (previousInfo) => {
+
+        let newData = [Object.assign({call: callSign, id: id},  jsonResp), ...previousInfo];
 
         localStorage.setItem("list", JSON.stringify(newData));
 
         return newData;
        } );
-
 
       }
     }
@@ -51,8 +56,15 @@ function Location(){
 
 
   useEffect(() => {
+
+    const storedData = JSON.parse(localStorage.getItem("list") || "[]" );
+
+    if (storedData.length != 0){
+
+      setId(storedData.length + 1);
+      setInfoList(storedData);
+    }
     
-    setInfoList(JSON.parse(localStorage.getItem("list") || "[]" ));
 
   },[]);
 

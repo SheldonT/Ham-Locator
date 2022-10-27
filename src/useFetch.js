@@ -46,7 +46,7 @@ function countryCoord(country, call, prefix) {
 
 export default function useFetch(call){ //custom hook for retrieving station information from hamqth.com
 
-    const [data, setData] = useState(null);
+    const [data, setData] = useState(null); 
     
 
     useEffect (() => {
@@ -55,7 +55,7 @@ export default function useFetch(call){ //custom hook for retrieving station inf
 
         if (call !== ""){
              
-            i = i + 1;
+            //i = i + 1;
 
             //fetch(url).then((res) => res.json()).then((d) => {
             fetch(url).then((res) => res.text()).then((d) => {
@@ -73,7 +73,7 @@ export default function useFetch(call){ //custom hook for retrieving station inf
 
                 setData({
                     anchor: [parseFloat(rLatitude), parseFloat(rLongitude)],
-                    id: i,
+                    //id: i,
                     country: rCountry,
                     details: rDetails,
                     time: rTimeZone,
@@ -103,7 +103,7 @@ export default function useFetch(call){ //custom hook for retrieving station inf
 
                         setData({
                             anchor: coord,
-                            id: i,
+                            //id: i,
                             country: rCountry,
                             details: rDetails,
                             time: rTimeZone,
