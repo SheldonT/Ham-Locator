@@ -102,7 +102,7 @@ function Location(){
       <div className = "stationInfo">
 
         <div className="callInput">
-          <InfoBar info={infoList} click={setExtraInfo} />
+          <InfoBar info={infoList} selectedInfo={extraInfo} click={setExtraInfo} />
 
           {/* Callsign input field with a submit button, and passes the entered value to setCallSign() */}
 

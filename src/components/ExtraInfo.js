@@ -13,8 +13,6 @@ function ExtraInfo({info}) {
     if (info) {
         const countryInfo = countryCode.find( (c) => c.name === info.country);
 
-        console.log(countryInfo);
-
         if (countryInfo) code = countryInfo.countryCode;
         //^^^^^^^^
         //add else statement to determine what happens if countryInfo is undefined.
