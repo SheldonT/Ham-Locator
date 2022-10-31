@@ -93,12 +93,12 @@ body{
 }
 
 .markerInfo{
-  
+  position: absolute;
   overflow: hidden;
   background-color: var(--infoBarColor);
   border-radius: 0 1.5rem 1.5rem 1.5rem;
-  width: 15vw;
-  /*left: 2rem;*/
+  width: 10vw;
+  left: 2rem;
   margin: 4rem 0 0 0;
   padding: 1rem;
 }
