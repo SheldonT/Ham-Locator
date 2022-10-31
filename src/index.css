@@ -93,12 +93,12 @@ body{
 }
 
 .markerInfo{
-  position: absolute;
+  
   overflow: hidden;
   background-color: var(--infoBarColor);
   border-radius: 0 1.5rem 1.5rem 1.5rem;
   width: 15vw;
-  left: 2rem;
+  /*left: 2rem;*/
   margin: 4rem 0 0 0;
   padding: 1rem;
 }
@@ -154,6 +154,36 @@ body{
   max-width: 100rem;
   margin: 0 auto 0 auto;
   color: white;
+}
+
+.clearTable{
+  position: relative;
+  margin: 0 auto 1rem auto;
+}
+
+.popUp{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  border-width: 0.1rem;
+  border-radius: 1rem 1rem 1rem 0;
+  background-color: var(--infoBarColor);
+  padding: 0.5rem;
+  width: 20vw;
+  bottom: 100%;
+  left: 100%;
+}
+
+.popUpButtons{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 1rem auto 0.5rem auto;
+}
+
+.options{
+  margin: 0 0.5rem 0 0.5rem;
 }
 
 a:link{

@@ -24,7 +24,7 @@ function ExtraInfo({info}) {
     }
 
     return(
-        <div className="markerInfo">
+        <div className="markerInfo" >
             <div className="extraHeader">
                 {callSign}
                 <div className="flagIcon">

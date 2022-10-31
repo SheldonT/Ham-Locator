@@ -3,8 +3,6 @@ import XMLParser from "react-xml-parser";
 import callsign from "callsign";
 import {canPrefix, gps, areaCode} from "./constants.js";
 
-let i = 0;
-
 function countryCoord(country, call, prefix) {
 
     const numberReg = /\d/;
@@ -54,8 +52,6 @@ export default function useFetch(call){ //custom hook for retrieving station inf
         const url = "https://www.hamqth.com/dxcc.php?callsign=" + call;
 
         if (call !== ""){
-             
-            //i = i + 1;
 
             //fetch(url).then((res) => res.json()).then((d) => {
             fetch(url).then((res) => res.text()).then((d) => {

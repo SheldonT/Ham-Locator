@@ -1,26 +1,30 @@
-
-import {Marker} from "pigeon-maps";
+import {Marker, Overlay} from "pigeon-maps";
 import ExtraInfo from "./ExtraInfo.js";
+
 
 function Anchor({info, selectedInfo, action}) {
 
     const active = "hsl(0, 100%, 45%)";
     const inActive = "hsl(204, 76%, 67%)";
 
+    
 
     if((selectedInfo) && (selectedInfo.id === info.id)) {
-
+        
         return(
             <>
-                <Marker height={50} color={active} onClick={ () => action() } />
-                <ExtraInfo info={selectedInfo} />
+                <Marker height={50} color={active} onClick={ () => action() }  />
+                <Overlay anchor={info.anchor} >
+                    <ExtraInfo info={selectedInfo} />
+                </Overlay>
+            </>
+        );
 
-            </>);
     } else {
 
         return(
             <>
-                <Marker height={40} color={inActive} onClick={ () => action(info) }/>
+                <Marker height={40} color={inActive} onClick={ () => action(info) } />
             </>
         );
     }
@@ -28,3 +32,7 @@ function Anchor({info, selectedInfo, action}) {
 }
 
 export default Anchor;
+
+//<Marker height={50} color={active} onClick={ () => action() } />
+
+//<Marker height={40} color={inActive} onClick={ () => action(info) }/>
