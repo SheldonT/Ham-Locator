@@ -4,6 +4,7 @@
   --infoBarColor: white;
   --infoHeaderColor: #dddddd;
   --activeRow: #22577a;
+  --shadowColor: #a6a6a6;
 }
 
 
@@ -47,8 +48,7 @@ body{
 .infoBar{
   position: relative;
   border-radius: 0.5rem;
-  border-style: solid;
-  border-width: 0.1rem;
+  box-shadow: 0.2rem 0.2rem 0.5rem var(--shadowColor);
   background-color: var(--infoBarColor);
   width: 90%;
   height: 25vh;
@@ -66,12 +66,19 @@ body{
 }
 
 .extraRow{
+  
   display: flex;
   flex-direction: row;
   justify-content: start;
   align-items: center;
   font-size: 1.2rem;
   margin: 0 0 0.5rem 0;
+}
+
+.extraDetails{
+  white-space: normal;
+  overflow-wrap: break-word;
+  width: 100%;
 }
 
 .flagIcon{
@@ -94,13 +101,14 @@ body{
 
 .markerInfo{
   position: absolute;
-  overflow: hidden;
   background-color: var(--infoBarColor);
   border-radius: 0 1.5rem 1.5rem 1.5rem;
   width: 10vw;
+  top: 0.2rem;
   left: 2rem;
   margin: 4rem 0 0 0;
   padding: 1rem;
+  box-shadow: 0.2rem 0.2rem 0.5rem var(--shadowColor);
 }
 
 .callField{
@@ -194,7 +202,54 @@ a:visited {
   color: #f48c06;
 }
 
-@media (max-width: 42rem){
+@media (min-width: 42.1rem) and (max-width: 63rem){
+
+  .logo{
+    height: 4vh;
+  }
+
+  .markerInfo{
+    width: 15vw;
+    left: 2rem;
+    margin: 4rem 0 0 0;
+    padding: 1rem;
+  }
+    
+}
+
+@media (min-width: 29.1rem) and (max-width: 42rem){
+
+  .logo{
+    height: 4vh;
+  }
+
+  .infoHead {
+    font-size: 1.5rem;
+    padding: 1rem 1rem 1rem 1rem;
+
+  }
+
+  .infoCells {
+    font-size: 1.4rem;
+    padding: 1rem 1rem 1rem 1rem;
+  }
+
+  .markerInfo{
+    width: 22vw;
+    left: 2rem;
+    margin: 4rem 0 0 0;
+    padding: 1rem;
+  }
+
+  .popUp{
+    width: 35vw;
+    bottom: 110%;
+    left: 0;
+  }
+
+}
+
+@media (min-width: 16.1rem) and (max-width: 29rem){
 
   .logo{
     height: 4vh;
@@ -212,12 +267,107 @@ a:visited {
   }
 
   .markerInfo{
-
-    width: 45vw;
+    width: 40vw;
     left: 2rem;
     margin: 4rem 0 0 0;
     padding: 1rem;
   }
 
+  .popUp{
+    width: 35vw;
+    bottom: 110%;
+    left: 0;
+  }
+
+  .callField{
+    width: 40%;
+  }
+    
+}
+
+@media (max-width: 16rem){
+
+  .logo{
+    height: 4vh;
+  }
+
+  .infoHead {
+    font-size: 1.3rem;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+
+  }
+
+  .infoCells {
+    font-size: 1.2rem;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+  }
+
+  .markerInfo{
+    width: 60vw;
+    left: 2rem;
+    margin: 4rem 0 0 0;
+    padding: 1rem;
+  }
+
+  .popUp{
+    width: 35vw;
+    bottom: 110%;
+    left: 0;
+  }
+
+  .callField{
+    width: 40%;
+  }
+    
+}
+
+@media (min-height: 27.1rem) and (max-height: 34rem){
+
+  .infoHead {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+
+  }
+
+  .infoCells {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+}
+
+@media (max-height: 27rem){
+
+  .logo{
+    height: 10vh;
+    margin: 1rem 0 2rem 2rem;
+  }
+
+  .infoHead {
+    font-size: 1.4rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+
+  }
+
+  .infoCells {
+    font-size: 1.3rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .extraHeader{
+    font-size: 1.3rem;
+  }
+
+  .extraDetails{
+    font-size: 1rem;
+  }
+
+  .markerInfo{
+    padding: 0.5rem;
+  }
 
 }

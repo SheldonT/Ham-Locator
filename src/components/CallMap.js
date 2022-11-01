@@ -6,6 +6,7 @@ import Anchor from "./Anchor.js";
 function CallMap({info, selectedInfo, click}){
 
     let VPWidth = window.innerWidth;
+    let VPHeight = window.innerHeight;
 
     //assign info[0] to selected info on first render, and everytime a new entry
     //is added tro infoList (when info.length changes). Makes ExtraInfo appear
@@ -37,6 +38,7 @@ function CallMap({info, selectedInfo, click}){
         const findCenter = info.find( (a) => a.id === selectedInfo.id ) || [];
         mapCenter = findCenter.anchor;
         if (VPWidth < 420) mapCenter = [mapCenter[0] - 10, mapCenter[1] + 20];
+        if (VPHeight < 570) mapCenter = [mapCenter[0] - 3, mapCenter[1] + 50];
     }
 
     //***************************************************************************************

@@ -19,8 +19,8 @@ function ExtraInfo({info}) {
 
         locDetails = info.details;
         callSign = info.call;
-        time = <div>Time Zone: {info.time} UTC </div>
-        itu = <div> ITU Zone: {info.itu}</div>
+        time = <div className="extraDetails">Time Zone: {info.time} UTC </div>
+        itu = <div className="extraDetails"> ITU Zone: {info.itu}</div>
     }
 
     return(
@@ -32,7 +32,7 @@ function ExtraInfo({info}) {
                 </div>
             </div>
             <div className="extraRow">
-                <div>{locDetails}</div>
+                <div className="extraDetails">{locDetails}</div>
             </div>
             
             <div className="extraRow">
