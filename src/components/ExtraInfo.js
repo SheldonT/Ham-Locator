@@ -14,8 +14,6 @@ function ExtraInfo({info}) {
         const countryInfo = countryCode.find( (c) => c.name === info.country);
 
         if (countryInfo) code = countryInfo.countryCode;
-        //^^^^^^^^
-        //add else statement to determine what happens if countryInfo is undefined.
 
         locDetails = info.details;
         callSign = info.call;

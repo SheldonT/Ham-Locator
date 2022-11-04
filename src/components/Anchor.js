@@ -32,7 +32,3 @@ function Anchor({info, selectedInfo, action}) {
 }
 
 export default Anchor;
-
-//<Marker height={50} color={active} onClick={ () => action() } />
-
-//<Marker height={40} color={inActive} onClick={ () => action(info) }/>

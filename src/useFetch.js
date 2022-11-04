@@ -111,6 +111,6 @@ export default function useFetch(call){ //custom hook for retrieving station inf
 
     }, [call]);
 
-    return data || {}; //if data is null, return an empty object.
+    return data || {};
 
 }
