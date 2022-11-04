@@ -8,7 +8,7 @@ function Layout(){
 
     <div className="title" id="title" >
 
-      <Link to="/" > <img className="logo" src={logo} alt="" /> </Link>
+      <Link to="/Ham-Locator/" > <img className="logo" src={logo} alt="" /> </Link>
       <div className="menuBar" >
         <div className="menuEl"> <Link to="instructions">Instructions</Link> </div>
         <div className="menuEl"> <Link to="about">About</Link> </div>
