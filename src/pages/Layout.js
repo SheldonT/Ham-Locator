@@ -1,7 +1,12 @@
 import { Outlet, Link } from "react-router-dom";
 import logo from "../assets/hl-logo.svg";
 
-function Layout(){
+
+function Layout({infoList}){
+
+  //const [info, setInfo] = useState([]); //moved from Location to make info available to Stats
+
+  console.log(infoList);
 
   return(
     <>
@@ -10,6 +15,7 @@ function Layout(){
 
       <Link to="/Ham-Locator/" > <img className="logo" src={logo} alt="" /> </Link>
       <div className="menuBar" >
+        <div className="menuEl"> <Link to="stats" target="_blank" state={infoList}>Log Stats</Link></div>
         <div className="menuEl"> <Link to="instructions">Instructions</Link> </div>
         <div className="menuEl"> <Link to="about">About</Link> </div>
       </div>
@@ -30,3 +36,6 @@ function Layout(){
 }
 
 export default Layout;
+
+//<div className="menuEl"> <Link to="stats" target="_blank" state={infoList}>Log Stats</Link></div>
+//<div className="menuEl" onClick={window.open("stats", "mozillaWindow", "popup")}> Log Stats </div>

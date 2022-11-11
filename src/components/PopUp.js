@@ -5,7 +5,6 @@ function PopUp({reset, count}) {
 
     const[isPopUpOpen, setIsPopUpOpen] = useState(false);
 
-
     const PopUpMenu = () => {
 
         return(

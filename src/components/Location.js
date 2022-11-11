@@ -15,10 +15,10 @@ function validateEntry(entry, currentList){
 }
 
 
-function Location(){
+function Location({infoList, setInfoList}){
   
   const [callSign, setCallSign] = useState("");
-  const [infoList, setInfoList] = useState([]);
+  //const [infoList, setInfoList] = useState([]); moved to index.js to make available to stats
   const [callSignValue, setCallSignValue] = useState("");
   const [extraInfo, setExtraInfo] = useState();
   const [id, setId] = useState(1);
@@ -36,14 +36,23 @@ function Location(){
     if (validateEntry(jsonResp, infoList)) {
       alert("An error occured. Please try again.");
     } else {
+
+
     
         if((jsonResp.anchor) && (callSign !== "")) {
+
+        const currDate = new Date();
+        const date = currDate.getUTCFullYear() + "-" + currDate.getUTCMonth() + "-" + currDate.getUTCDate();
+        const time = currDate.getUTCHours() + ":" + currDate.getUTCMinutes();
+
+        console.log("Date: " + date);
+        console.log ("Time: " + time);
 
         setId(id + 1);
         
         setInfoList( (previousInfo) => {
 
-          let newData = [Object.assign({call: callSign, id: id},  jsonResp), ...previousInfo];
+          let newData = [Object.assign({id: id, call: callSign, date: date, time: time},  jsonResp), ...previousInfo];
 
           localStorage.setItem("list", JSON.stringify(newData));
 
@@ -101,7 +110,7 @@ function Location(){
       
       <InfoBar info={infoList} selectedInfo={extraInfo} click={setExtraInfo} />
       
-      <PopUp reset={resetTable} count={infoList.length} />
+      <PopUp reset={resetTable} count={infoList ? infoList.length : 0} />
     </>
   );
 }

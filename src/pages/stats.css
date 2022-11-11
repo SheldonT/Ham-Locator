@@ -1,0 +1,38 @@
+.flagStatImg{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0.5rem 0 0.5rem 0;
+  }
+  .pageRow{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .statCont{
+    position: relative;
+    border-radius: 0.5rem;
+    box-shadow: 0.2rem 0.2rem 0.5rem var(--shadowColor);
+    background-color: var(--infoBarColor);
+    overflow-y: auto;
+    margin: 2rem 2rem 2rem 2rem;
+  }
+
+  .statTable{
+    border-collapse: collapse;
+    margin: 0 0 0 0;
+  }
+
+  .statHead {
+    background-color: var(--infoHeaderColor);
+    text-align: center;
+    padding: 1rem 1rem 1rem 1rem;
+    
+  }
+  
+  .statCells {
+    text-align: center;
+    padding: 1rem 2rem 1rem 2rem;
+  }
+  

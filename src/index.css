@@ -47,6 +47,7 @@ body{
   width: 100%;
   height: 40%;
 }
+
 .infoBar{
   position: relative;
   border-radius: 0.5rem;
@@ -68,7 +69,6 @@ body{
 }
 
 .extraRow{
-  
   display: flex;
   flex-direction: row;
   justify-content: start;
@@ -196,7 +196,6 @@ body{
 .routeMain{
   margin: 0 5rem 0 5rem;
 }
-
 .menuBar{
   display: flex;
   flex-direction: row;

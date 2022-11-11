@@ -23,7 +23,7 @@ function CallMap({info, selectedInfo, click}){
     let mapCenter = [0, 0];
 
     
-    if (info.length > 0) {
+    if ((info.length) > 0) {
       mapCenter = info[0].anchor;
     }
 

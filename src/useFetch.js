@@ -69,11 +69,10 @@ export default function useFetch(call){ //custom hook for retrieving station inf
 
                 setData({
                     anchor: [parseFloat(rLatitude), parseFloat(rLongitude)],
-                    //id: i,
                     country: rCountry,
                     details: rDetails,
                     time: rTimeZone,
-                    itu: rITU
+                    itu: rITU,
                 });
         
             }).catch(() => {
@@ -99,7 +98,6 @@ export default function useFetch(call){ //custom hook for retrieving station inf
 
                         setData({
                             anchor: coord,
-                            //id: i,
                             country: rCountry,
                             details: rDetails,
                             time: rTimeZone,
