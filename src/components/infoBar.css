@@ -1,0 +1,72 @@
+.infoBar{
+    position: relative;
+    border-radius: 0.5rem;
+    box-shadow: 0.2rem 0.2rem 0.5rem var(--shadowColor);
+    background-color: var(--infoBarColor);
+    width: 90%;
+    height: 25vh;
+    overflow-y: auto;
+    margin: 2rem auto 1rem auto;
+  }
+
+  .callList{
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0 0 0 0;
+  }
+
+  .infoHead {
+    position: sticky;
+    background-color: var(--infoHeaderColor);
+    border-style: none none solid none;
+    text-align: left;
+    padding: 1rem 1rem 1rem 4rem;
+    top: 0;
+  }
+
+@media (min-width: 29.1rem) and (max-width: 42rem){
+
+    .infoHead {
+        font-size: 1.5rem;
+        padding: 1rem 1rem 1rem 1rem;
+    
+      }
+}
+
+@media (min-width: 16.1rem) and (max-width: 29rem){
+
+    .infoHead {
+        font-size: 1.3rem;
+        padding: 1rem 1rem 1rem 1rem;
+    
+      }
+}
+
+@media (max-width: 16rem){
+
+    .infoHead {
+        font-size: 1.3rem;
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
+    
+      }
+}
+
+@media (min-height: 27.1rem) and (max-height: 34rem){
+
+    .infoHead {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    
+      }
+}
+
+@media (max-height: 27rem){
+
+    .infoHead {
+        font-size: 1.4rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    
+      }
+}

@@ -1,0 +1,95 @@
+.extraDetails{
+    white-space: normal;
+    overflow-wrap: break-word;
+    width: 100%;
+  }
+
+  .markerInfo{
+    position: absolute;
+    background-color: var(--infoBarColor);
+    border-radius: 0 1.5rem 1.5rem 1.5rem;
+    width: 10vw;
+    top: 0.2rem;
+    left: 2rem;
+    margin: 4rem 0 0 0;
+    padding: 1rem;
+    box-shadow: 0.2rem 0.2rem 0.5rem var(--shadowColor);
+  }
+
+  .extraHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    margin: 0 0 0.5rem 0;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+
+  .extraRow{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    font-size: 1.2rem;
+    margin: 0 0 0.5rem 0;
+  }
+
+
+  @media (min-width: 42.1rem) and (max-width: 63rem){
+  
+    .markerInfo{
+      width: 15vw;
+      left: 2rem;
+      margin: 4rem 0 0 0;
+      padding: 1rem;
+    }
+      
+  }
+
+  @media (min-width: 29.1rem) and (max-width: 42rem){
+
+    .markerInfo{
+      width: 22vw;
+      left: 2rem;
+      margin: 4rem 0 0 0;
+      padding: 1rem;
+    }
+  
+  }
+
+  @media (min-width: 16.1rem) and (max-width: 29rem){
+  
+    .markerInfo{
+      width: 40vw;
+      left: 2rem;
+      margin: 4rem 0 0 0;
+      padding: 1rem;
+    }
+  }
+
+  @media (max-width: 16rem){
+  
+    .markerInfo{
+      width: 60vw;
+      left: 2rem;
+      margin: 4rem 0 0 0;
+      padding: 1rem;
+    }
+      
+  }
+
+  @media (max-height: 27rem){
+
+    .extraHeader{
+      font-size: 1.3rem;
+    }
+  
+    .extraDetails{
+      font-size: 1rem;
+    }
+
+    .markerInfo{
+        padding: 0.5rem;
+      }
+  
+  }

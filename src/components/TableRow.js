@@ -1,3 +1,5 @@
+import "./tableRow.css";
+
 
 function TableRow({info, activeInfo, click}){
 

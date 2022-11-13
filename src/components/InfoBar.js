@@ -1,4 +1,5 @@
 import TableRow from "./TableRow";
+import "./infoBar.css";
 
 function InfoBar({info, selectedInfo, click}){
 

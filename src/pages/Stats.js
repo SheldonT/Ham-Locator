@@ -1,6 +1,6 @@
 import { useEffect, useState} from 'react';
 import Flag from "react-world-flags";
-import {countryCode} from "../constants.js";
+import {countryCode, bandDef} from "../constants.js";
 import "./stats.css";
 
 function getCountry(data, currState){
@@ -34,23 +34,6 @@ function getCountry(data, currState){
 }
 
 function getBands(data){
-
-    const bandDef = [
-        {band: "2200m", low: 0.1357, high: 0.1378},
-        {band: "160m", low: 1.8, high: 2},
-        {band: "80m", low: 3.5, high: 4},
-        {band: "40m", low: 7, high: 7.3},
-        {band: "30m", low: 10.1, high: 10.15},
-        {band: "20m", low: 14, high: 14.350},
-        {band: "17m", low: 18.068, high: 18.168},
-        {band: "15m", low: 21, high: 21.450},
-        {band: "12m", low: 24.890, high: 24.990},
-        {band: "10m", low: 28, high: 29.7},
-        {band: "6m", low: 50, high: 54},
-        {band: "2m", low: 144, high: 148},
-        {band: "1.35m", low: 222, high: 225}, 
-        {band: "70cm", low: 430, high: 450}
-    ];
 
     const bandCount = [];
 

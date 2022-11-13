@@ -2,7 +2,9 @@ import { useEffect, useState} from 'react';
 import useFetch from "../useFetch.js";
 import InfoBar from "./InfoBar.js";
 import CallMap from "./CallMap.js";
+import SaveLog from "./SaveLog.js";
 import PopUp from "./PopUp.js";
+import "./location.css";
 
 
 function validateEntry(entry, currentList){
@@ -17,7 +19,6 @@ function validateEntry(entry, currentList){
 
 function Location(){
   
-  //const [callSign, setCallSign] = useState({});
   const [contactInfo, setContactInfo] = useState({});
   const [infoList, setInfoList] = useState([]);
   const [callSignValue, setCallSignValue] = useState("");
@@ -170,7 +171,10 @@ function Location(){
       
       <InfoBar info={infoList} selectedInfo={extraInfo} click={setExtraInfo} />
       
-      <PopUp reset={resetTable} count={infoList ? infoList.length : 0} />
+      <div className="controlBar">
+        <SaveLog data={infoList} />
+        <PopUp reset={resetTable} count={infoList ? infoList.length : 0} />
+      </div>
     </>
   );
 }

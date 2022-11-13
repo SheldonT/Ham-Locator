@@ -1,4 +1,6 @@
 import {useState} from 'react';
+import "./popUp.css"
+
 
 
 function PopUp({reset, count}) {

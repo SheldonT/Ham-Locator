@@ -1,5 +1,6 @@
 import {countryCode} from "../constants.js";
 import Flag from "react-world-flags";
+import "./extraInfo.css"
 
 
 function ExtraInfo({info}) {

@@ -1,0 +1,72 @@
+.map{
+    position: relative;
+    width: 100%;
+    height: 60%; /*10rem*/
+  }
+
+  .inputBar{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    bottom: 0;
+    padding-bottom: 2rem;
+  }
+
+  .callField{
+    background-color: var(--infoBarColor);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin: 0 1rem 0 0.5rem;
+  }
+  
+  .freqField{
+    background-color: var(--infoBarColor);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin: 0 1rem 0 0.5rem;
+    width: 10%;
+  }
+  
+  .modeInput{
+    background-color: var(--infoBarColor);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin: 0 1rem 0 0.5rem;
+    width: 7%;
+  }
+  
+  .sigRep{
+    background-color: var(--infoBarColor);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin: 0 1rem 0 0.5rem;
+    width: 4%;
+  }
+
+  .controlBar{
+    display: flex;
+    flex-direction: row;
+  }
+
+@media (min-width: 42.1rem) and (max-width: 63rem){}
+
+@media (min-width: 29.1rem) and (max-width: 42rem){}
+
+@media (max-width: 29rem){
+
+    .callField{
+        width: 40%;
+      }
+}
+
+/*@media (max-width: 16rem){
+    .callField{
+        width: 40%;
+      }
+}*/
+
+@media (min-height: 27.1rem) and (max-height: 34rem){}
+
+@media (max-height: 27rem){}
