@@ -44,14 +44,13 @@ function countryCoord(country, call, prefix) {
 
 export default function useFetch(call){ //custom hook for retrieving station information from hamqth.com
 
-    const [data, setData] = useState(null); 
-    
+    const [data, setData] = useState(null);
 
     useEffect (() => {
         //const url = "https://www.hamqth.com/dxcc_json.php?callsign=" + call;
         const url = "https://www.hamqth.com/dxcc.php?callsign=" + call;
 
-        if (call !== ""){
+        if (call){
 
             //fetch(url).then((res) => res.json()).then((d) => {
             fetch(url).then((res) => res.text()).then((d) => {

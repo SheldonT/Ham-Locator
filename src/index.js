@@ -10,14 +10,11 @@ import './index.css';
 
 function HamLocator(){
 
-  const [info, setInfo] = useState([]); //moved from Location to make info available to Stats
-
-  
   return(
     <BrowserRouter>
       <Routes>
-        <Route path="/Ham-Locator/" element={<Layout infoList={"test"} />}>
-          <Route index element={<Location infoList={info} setInfoList={setInfo} />} />
+        <Route path="/Ham-Locator/" element={<Layout />}>
+          <Route index element={<Location />} />
           <Route path="instructions" element={<HowTo />} />
           <Route path="about" element={<About />} />
           <Route path="stats" element={<Stats />} />

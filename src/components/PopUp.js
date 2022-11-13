@@ -25,7 +25,7 @@ function PopUp({reset, count}) {
     return(
         <div className="clearTable">
 
-            <button onClick={() => setIsPopUpOpen(!isPopUpOpen)} disabled={ count === 0 } >Clear Table</button>
+            <button className="options" onClick={() => setIsPopUpOpen(!isPopUpOpen)} disabled={ count === 0 } >Clear Table</button>
             {isPopUpOpen ? <PopUpMenu /> : null}
             
         </div>
