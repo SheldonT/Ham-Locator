@@ -16,6 +16,22 @@ function validateEntry(entry, currentList){
   return result;
 }
 
+export const utcHrs = (date) => {
+  if (date.getUTCHours() < 10){
+    return "0" + date.getUTCHours();
+  } else {
+    return date.getUTCHours();
+  }
+}
+
+export const utcMins =  (date) => {
+  if (date.getUTCMinutes() < 10 ){
+    return "0" + date.getUTCMinutes();
+  } else {
+    return date.getUTCMinutes();
+  }
+}
+
 
 function Location(){
   
@@ -45,17 +61,9 @@ function Location(){
         if((jsonResp.anchor) && (contactInfo)) {
 
         const currDate = new Date();
-        const utcDate = currDate.getUTCFullYear() + "-" + currDate.getUTCMonth() + "-" + currDate.getUTCDate();
+        const utcDate = currDate.getUTCFullYear() + "-" + parseInt(currDate.getUTCMonth() + 1) + "-" + currDate.getUTCDate();
 
-        const utcMins =  () => {
-          if (currDate.getUTCMinutes() < 10 ){
-            return "0" + currDate.getUTCMinutes();
-          } else {
-            return currDate.getUTCMinutes();
-          }
-        }
-
-        const utcTime = currDate.getUTCHours() + ":" + utcMins();
+        const utcTime = utcHrs(currDate) + ":" + utcMins(currDate);
 
         setId(id + 1);
         

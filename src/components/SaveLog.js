@@ -1,11 +1,41 @@
 import {useState} from 'react';
 import {saveAs} from "file-saver";
 import {bandDef} from "../constants.js";
+import {utcHrs, utcMins} from "./Location.js";
 import "./popUp.css";
 import "./saveLog.css";
 
 function toADIF(d){
-    let dataStr = "";
+
+    const currDate = new Date();
+
+    const timeStamp = currDate.getUTCFullYear() + parseInt(currDate.getUTCMonth() + 1) + currDate.getUTCDate() + " " +
+    utcHrs(currDate) + utcMins(currDate);
+
+    let dataStr = "Exported by Ham-Locator\r" +
+        "https://sheldont.github.io/Ham-Locator\r" +
+        "<ADIF_VER:5>3.1.0\r" +
+        "<CREATED_TIMESTAMP:" + timeStamp.length + ">" + timeStamp + "\r" +
+        "<PROGRAMID:11>Ham-Locator\r" +
+        "<PROGRAMVERSION:3>1.1\r" +
+        "<eoh>\r";
+
+    for (let i = 0; i <d.length; i++){
+
+        const band = bandDef.find((defs) => ((d[i].freq >= defs.low) && (d[i].freq <= defs.high)) ).band;
+        const qsoDate = d[i].contactDate.replaceAll('-', '');
+        const qsoTime = d[i].contactTime.replaceAll(':', '');
+
+        dataStr = dataStr + "<qso_date:" + qsoDate.length + ">" + qsoDate + "<time_on:" + qsoTime.length + ">" + qsoTime +
+            "<call:" + d[i].call.length + ">" + d[i].call + "<band:" + band.length + ">" + band + "<freq:" + d[i].freq.length + ">" + d[i].freq +
+            "<mode:" + d[i].mode.length + ">" + d[i].mode +"<rst_sent:" + d[i].sRep.length + ">" + d[i].sRep + "<rst_rcvd:" + d[i].rRep.length + ">" + d[i].rRep + " <eor>\r";
+    }
+
+    return dataStr.toUpperCase() + "\r";
+}
+
+function toCSV(d){
+    let dataStr = "call,band,freq,mode,qso_date,time_on,rst_sent,rst_rcvd\r";
 
     for (let i = 0; i < d.length; i++){
 
@@ -13,25 +43,32 @@ function toADIF(d){
         const qsoDate = d[i].contactDate.replaceAll('-', '');
         const qsoTime = d[i].contactTime.replaceAll(':', '');
 
-        dataStr += "<call:6>" + d[i].call + "<band:3>" + band + "<freq:7>" + d[i].freq + "<mode:6>" + d[i].mode +
-            "<qso_date:8>" + qsoDate + "<time_on:4>" + qsoTime + "<rst_sent:3>" + d[i].sRep + "<rst_rvcd:3>" + d[i].rRep + "<eor>\r";
+        dataStr = dataStr + d[i].call + "," + band + "," + d[i].freq + "," + d[i].mode + "," + qsoDate + "," + qsoTime + "," + d[i].sRep + "," + d[i].rRep + "\r";
     }
 
-    return dataStr;
+    return dataStr.toUpperCase();
 }
 
 
 function SaveLog({data}) {
 
     const [isPopUpOpen, setIsPopUpOpen] = useState(false);
+    const [fileType, setFileType] = useState("adi");
     const [fileName, setFileName] = useState("");
-    const blob = new Blob([toADIF(data)]);
+
+    let blob;
 
     const PopUpMenu = () => {
 
         return(
         <div className="popUp">
             <span>Save File...</span>
+
+            <div className="fileNameInput">
+                <input type="radio" name="fileType" id="adif" value="adi" checked={fileType === "adi"} onChange={(e) => setFileType(e.target.value)} /><label htmlFor="adif">ADIF</label>
+                <input style={{marginLeft: "1rem"}} type="radio" name="fileType" id="csv" value="csv" checked={fileType === "csv"} onChange={(e) => setFileType(e.target.value)}/><label htmlFor="csv">CSV</label>
+            </div>
+
             <div className="fileNameInput">
                 <input autoFocus className="fileName" id="fileName" type="text" placeholder="File Name" value={fileName}
 
@@ -41,17 +78,19 @@ function SaveLog({data}) {
 
                 onKeyPress={(e) => {
                     if(e.key === "Enter"){
-                        saveAs(blob, fileName + ".adif");
+                        blob = new Blob([ (fileType === "adi") ? toADIF(data || []) : toCSV(data || [])], {type: "text/plain"});
+                        saveAs(blob, fileName + "." + fileType);
                         setIsPopUpOpen(false);
                     }
                 
-                }} /><span>.adif</span>
+                }} /><span>.{fileType}</span>
 
             </div>
             <div className="popUpButtons">
                 <button className="options" onClick={ () => {
                     setFileName(document.getElementById("fileName").value);
-                    saveAs(blob, fileName + ".adif");
+                    blob = new Blob([ (fileType === "adi") ? toADIF(data || []) : toCSV(data || [])], {type: "text/plain"});
+                    saveAs(blob, fileName + ".adi");
                     setIsPopUpOpen(false);
                 }}>Save</button>
                 <button className="options" onClick={ () => setIsPopUpOpen(false) } >Cancel</button>
