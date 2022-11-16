@@ -17,7 +17,7 @@ function HamLocator(){
           <Route index element={<Location />} />
           <Route path="instructions" element={<HowTo />} />
           <Route path="about" element={<About />} />
-          <Route path="stats" element={<Stats />} />
+          <Route path="/Ham-Locator/stats" element={<Stats />} />
         </Route>
       </Routes>
     </BrowserRouter>
