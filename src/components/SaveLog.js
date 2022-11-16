@@ -88,9 +88,8 @@ function SaveLog({data}) {
             </div>
             <div className="popUpButtons">
                 <button className="options" onClick={ () => {
-                    setFileName(document.getElementById("fileName").value);
                     blob = new Blob([ (fileType === "adi") ? toADIF(data || []) : toCSV(data || [])], {type: "text/plain"});
-                    saveAs(blob, fileName + ".adi");
+                    saveAs(blob, fileName + "." + fileType);
                     setIsPopUpOpen(false);
                 }}>Save</button>
                 <button className="options" onClick={ () => setIsPopUpOpen(false) } >Cancel</button>

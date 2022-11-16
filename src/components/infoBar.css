@@ -24,7 +24,7 @@
     top: 0;
   }
 
-@media (min-width: 29.1rem) and (max-width: 42rem){
+@media (min-width: 32.1rem) and (max-width: 50rem){
 
     .infoHead {
         font-size: 1.5rem;
@@ -33,7 +33,7 @@
       }
 }
 
-@media (min-width: 16.1rem) and (max-width: 29rem){
+@media (min-width: 29.1rem) and (max-width: 32rem){
 
     .infoHead {
         font-size: 1.3rem;
@@ -42,10 +42,28 @@
       }
 }
 
+@media (min-width: 22.1rem) and (max-width: 29rem){
+
+  .infoHead {
+      font-size: 1.2rem;
+      padding: 1rem 0.5rem 1rem 0.5rem;
+  
+    }
+}
+
+@media (min-width: 16.1rem) and (max-width: 22rem){
+
+  .infoHead {
+      font-size: 1.2rem;
+      padding: 1rem 0.3rem 1rem 0.3rem;
+  
+    }
+}
+
 @media (max-width: 16rem){
 
     .infoHead {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
         padding-left: 0.3rem;
         padding-right: 0.3rem;
     

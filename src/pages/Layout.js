@@ -1,5 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 import logo from "../assets/hl-logo.svg";
+import Menu from "../components/Menu.js";
 
 
 function Layout(){
@@ -10,11 +11,7 @@ function Layout(){
     <div className="title" id="title" >
 
       <Link to="/Ham-Locator/" > <img className="logo" src={logo} alt="" /> </Link>
-      <div className="menuBar" >
-        <div className="menuEl"> <Link to="stats" target="_blank" >Log Stats</Link></div>
-        <div className="menuEl"> <Link to="instructions">Instructions</Link> </div>
-        <div className="menuEl"> <Link to="about">About</Link> </div>
-      </div>
+      <Menu />
       
     </div>
 

@@ -11,7 +11,7 @@ function InfoBar({info, selectedInfo, click}){
         <tr>
           <th className="infoHead" >#</th>
           <th className="infoHead">Call Sign</th>
-          <th className="infoHead">Frequency</th>
+          <th className="infoHead">Freq.</th>
           <th className="infoHead">Mode</th>
           <th className="infoHead">RSTs</th>
           <th className="infoHead">RSTr</th>

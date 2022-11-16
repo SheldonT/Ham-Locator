@@ -7,6 +7,7 @@
   .inputBar{
     position: absolute;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
     width: 100%;
@@ -18,31 +19,37 @@
     background-color: var(--infoBarColor);
     border-radius: 0.5rem;
     padding: 0.5rem;
-    margin: 0 1rem 0 0.5rem;
+    margin: 0.5rem 1rem 0 0.5rem;
+    width: 15%
   }
   
   .freqField{
     background-color: var(--infoBarColor);
     border-radius: 0.5rem;
     padding: 0.5rem;
-    margin: 0 1rem 0 0.5rem;
-    width: 10%;
+    margin: 0.5rem 1rem 0 0.5rem;
+    width: 8rem;
   }
   
   .modeInput{
     background-color: var(--infoBarColor);
     border-radius: 0.5rem;
     padding: 0.5rem;
-    margin: 0 1rem 0 0.5rem;
-    width: 7%;
+    margin: 0.5rem 1rem 0 0.5rem;
+    width: 8rem;
   }
   
   .sigRep{
     background-color: var(--infoBarColor);
     border-radius: 0.5rem;
     padding: 0.5rem;
-    margin: 0 1rem 0 0.5rem;
-    width: 4%;
+    margin: 0.5rem 1rem 0 0.5rem;
+    width: 4rem;
+  }
+
+  .submitButton{
+    padding: 0.5rem;
+    margin: 0.5rem 1rem 0 0.5rem;
   }
 
   .controlBar{
@@ -57,7 +64,7 @@
 @media (max-width: 29rem){
 
     .callField{
-        width: 40%;
+        width: 30%;
       }
 }
 

@@ -1,0 +1,60 @@
+.menuBar{
+    display: flex;
+    flex-direction: row;
+    margin: auto 0 2rem auto;
+  }
+  
+  .menuEl{
+    margin: auto 2rem 0 2rem;
+    font-size: 1.6rem;
+  }
+
+  .hMenuEl{
+    margin: 1rem 2rem 1rem 2rem;
+    font-size: 1.6rem;
+  }
+
+  .hamburger{
+    position: relative;
+    display: none;
+    flex-direction: column;
+    margin: auto 2rem auto auto;
+    width: 3rem;
+    height: 3rem;
+  }
+  
+  .hBar{
+    background-color: black;
+    border-style: solid;
+    border-width: 0.2rem;
+    border-radius: 1rem;
+    margin: auto 0.2rem 0 auto;
+    width: 100%;
+  }
+
+  .popUpMenu{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    border-width: 0.1rem;
+    border-radius: 1rem 0 1rem 1rem;
+    background-color: var(--infoBarColor);
+    padding: 0.5rem;
+    
+    top: 100%;
+    right: 100%;
+    z-index: 1;
+  }
+
+
+  @media (max-width: 32rem){
+    .hamburger{
+        display: flex;
+    }
+
+    .menuEl{
+        display: none;
+    }
+    
+  }

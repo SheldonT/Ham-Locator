@@ -27,8 +27,10 @@ function CallMap({info, selectedInfo, click}){
       mapCenter = info[0].anchor;
     }
 
-    if ((selectedInfo)) {
+    if ((selectedInfo) && (info.length !== 0)){
+
         const findCenter = info.find( (a) => a.id === selectedInfo.id ) || [];
+        
         mapCenter = findCenter.anchor;
         if (VPWidth < 420) mapCenter = [mapCenter[0] - 10, mapCenter[1] + 20];
         if (VPHeight < 570) mapCenter = [mapCenter[0] - 3, mapCenter[1] + 50];

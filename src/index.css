@@ -68,6 +68,7 @@ body{
 .routeMain{
   margin: 0 5rem 0 5rem;
 }
+
 .menuBar{
   display: flex;
   flex-direction: row;

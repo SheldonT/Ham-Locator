@@ -143,6 +143,8 @@ function Location(){
           <select className="modeInput" id="mode" name="mode">
             <option value="ssb">SSB</option>
             <option value="cw">CW</option>
+            <option value="am">AM</option>
+            <option value="fm">FM</option>
             <option value="psk">PSK</option>
             <option value="rtty">RTTY</option>
             <option value="ft8">FT8</option>
@@ -156,7 +158,7 @@ function Location(){
             setRecRep(e.target.value.replace(/[^\d]/g, ""));
           }}/>
 
-          <button onClick={() => {
+          <button className="submitButton" onClick={() => {
 
           const ci = {
             call: callSignValue.toUpperCase(),
