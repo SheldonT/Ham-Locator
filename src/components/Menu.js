@@ -8,6 +8,7 @@ function Menu () {
     const MenuContent = () => {
         return(
             <div className="popUpMenu">
+                <div className="hMenuEl"> <Link to="/Ham-Locator/" >Home</Link> </div>
                 <div className="hMenuEl"> <Link to="stats" >Log Stats</Link ></div> {/* target="_blank" causes a 404 issue */}
                 <div className="hMenuEl"> <Link to="instructions">Instructions</Link> </div>
                 <div className="hMenuEl"> <Link to="about">About</Link> </div>
@@ -17,6 +18,7 @@ function Menu () {
     
     return (
     <div className="menuBar" >
+        <div className="menuEl"> <Link to="/Ham-Locator/" >Home</Link> </div>
         <div className="menuEl"> <Link to="stats" >Log Stats</Link> </div>
         <div className="menuEl"> <Link to="instructions">Instructions</Link> </div>
         <div className="menuEl"> <Link to="about">About</Link> </div>
