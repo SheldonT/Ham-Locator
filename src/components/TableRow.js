@@ -1,14 +1,14 @@
 import "./tableRow.css";
 
 
-function TableRow({info, activeInfo, click}){
+function TableRow({info, click}){
 
     
-    if ( (activeInfo) && (activeInfo.id === info.id) ) { 
+    /*if ( (activeInfo) && (activeInfo.id === info.id) ) { 
       return(
         <>
             <tr className="activeRow" onClick={ () => {
-              click();
+              click(info);
               }
             } >
               <td className="infoCells">{info.id}</td>
@@ -23,7 +23,7 @@ function TableRow({info, activeInfo, click}){
             </tr>
         </>
       );
-    } else {
+    } else {*/
 
       return(
         <>
@@ -42,8 +42,6 @@ function TableRow({info, activeInfo, click}){
             </tr>
         </>
       );
-
-    }
     
   }
 

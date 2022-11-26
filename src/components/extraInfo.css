@@ -9,11 +9,12 @@
     background-color: var(--infoBarColor);
     border-radius: 0 1.5rem 1.5rem 1.5rem;
     width: 10vw;
-    top: 0.2rem;
-    left: 2rem;
+    top: 0;
+    left: 0;
     margin: 4rem 0 0 0;
     padding: 1rem;
     box-shadow: 0.2rem 0.2rem 0.5rem var(--shadowColor);
+    z-index: 401;
   }
 
   .extraHeader{

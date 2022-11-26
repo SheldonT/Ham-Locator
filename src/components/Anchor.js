@@ -1,33 +1,35 @@
-import {Marker, Overlay} from "pigeon-maps";
-import ExtraInfo from "./ExtraInfo.js";
+
+import {Marker, useMap, useMapEvents} from 'react-leaflet';
+//import {Icon} from "leaflet";
 
 
-function Anchor({info, selectedInfo, action}) {
+function Anchor({info, selectedInfo, action, isOpen, setIsOpen}) {
 
-    const active = "hsl(0, 100%, 45%)";
-    const inActive = "hsl(204, 76%, 67%)";
+    const map = useMap();
 
-    
+    const mapEvent = useMapEvents({
+        click(){
+            setIsOpen(false);
+        }
+    });
 
-    if((selectedInfo) && (selectedInfo.id === info.id)) {
-        
-        return(
-            <>
-                <Marker height={50} color={active} onClick={ () => action() }  />
-                <Overlay anchor={info.anchor} >
-                    <ExtraInfo info={selectedInfo} />
-                </Overlay>
-            </>
-        );
-
-    } else {
-
-        return(
-            <>
-                <Marker height={40} color={inActive} onClick={ () => action(info) } />
-            </>
-        );
+    if (selectedInfo){
+        map.flyTo([selectedInfo.anchor[0] - 5, selectedInfo.anchor[1]], 3);
     }
+
+    return(
+        <>
+            <Marker position={info.anchor}
+                eventHandlers={{
+                    click: () => {
+                        map.flyTo([info.anchor[0] - 5, info.anchor[1]]);
+                        action(info);
+                        setIsOpen(true);
+                    },
+                }}>
+            </Marker>
+        </>
+    );
 
 }
 
