@@ -21,7 +21,11 @@ function CallMap({info, selectedInfo, click}){
     useEffect(() => {
 
       click(info[0]);
-      setIsOpen(true);
+      if (info.length === 0) {
+        setIsOpen(false);
+      } else {
+        setIsOpen(true);
+      }
 
     }, [info.length]);
   
