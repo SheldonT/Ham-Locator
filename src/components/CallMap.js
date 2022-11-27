@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import { MapContainer, TileLayer, Popup} from 'react-leaflet';
-import { Icon } from "leaflet";
+import { NightRegion } from "react-leaflet-night-region";
 import ExtraInfo from "./ExtraInfo.js";
 
 import Anchor from "./Anchor.js";
@@ -21,18 +21,22 @@ function CallMap({info, selectedInfo, click}){
     useEffect(() => {
 
       click(info[0]);
+      
+    }, [info.length]);
+
+
+    useEffect(() => {
       if (info.length === 0) {
         setIsOpen(false);
       } else {
         setIsOpen(true);
       }
+    }, []);
 
-    }, [info.length]);
   
     let mapCenter = [0, 0];
 
     let popUp = <></>;
-
     
     if ((info.length) > 0) {
       mapCenter = info[0].anchor;
@@ -54,15 +58,17 @@ function CallMap({info, selectedInfo, click}){
       popUp = <></>
     }
 
-
-
     return(
       <MapContainer center={mapCenter} zoom={3} scrollWheelZoom={true}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       />
-
+      <NightRegion
+        fillColor='#00345c'
+        color='#001a2e'
+        stroke={false}
+      />
       {info.map((mapCoord) =>
               
         <Anchor info={mapCoord} selectedInfo={selectedInfo} action={click} isOpen={isOpen} setIsOpen={setIsOpen} key={mapCoord.id} />

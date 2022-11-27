@@ -6,16 +6,19 @@
   "homepage": "https://sheldont.github.io/Ham-Locator/",
   "dependencies": {
     "-": "^0.0.1",
+    "@joergdietrich/leaflet.terminator": "^1.1.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "callsign": "^1.0.4",
     "file-saver": "^2.0.5",
     "gh-pages": "^4.0.0",
+    "leaflet": "^1.9.3",
     "pigeon-maps": "^0.21.2",
     "react": "^18.2.0",
     "react-burger-menu": "^3.0.8",
     "react-dom": "^18.2.0",
+    "react-leaflet": "^4.1.0",
     "react-scripts": "5.0.1",
     "react-world-flags": "^1.5.1",
     "react-xml-parser": "^1.1.8",
@@ -49,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "react-leaflet-night-region": "^1.1.0",
     "react-router-dom": "^6.4.3"
   }
 }
