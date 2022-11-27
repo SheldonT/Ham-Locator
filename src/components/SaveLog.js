@@ -12,13 +12,22 @@ function toADIF(d){
     const timeStamp = currDate.getUTCFullYear() + parseInt(currDate.getUTCMonth() + 1) + currDate.getUTCDate() + " " +
     utcHrs(currDate) + utcMins(currDate);
 
-    let dataStr = "Exported by Ham-Locator\r" +
+    /*let dataStr = "Exported by Ham-Locator\r" +
         "https://sheldont.github.io/Ham-Locator\r" +
         "<ADIF_VER:5>3.1.0\r" +
         "<CREATED_TIMESTAMP:" + timeStamp.length + ">" + timeStamp + "\r" +
         "<PROGRAMID:11>Ham-Locator\r" +
         "<PROGRAMVERSION:3>1.1\r" +
-        "<eoh>\r";
+        "<eoh>\r";*/
+
+    let dataStr = 
+`Exported by Ham-Locator
+https://sheldont.github.io/Ham-Locator
+<ADIF_VER:5>3.1.0
+<CREATED_TIMESTAMP:${timeStamp.length}> ${timeStamp}
+<PROGRAMID:11>Ham-Locator
+<PROGRAMVERSION:3>1.1
+<eoh>`;
 
     for (let i = 0; i <d.length; i++){
 
@@ -26,16 +35,28 @@ function toADIF(d){
         const qsoDate = d[i].contactDate.replaceAll('-', '');
         const qsoTime = d[i].contactTime.replaceAll(':', '');
 
-        dataStr = dataStr + "<qso_date:" + qsoDate.length + ">" + qsoDate + "<time_on:" + qsoTime.length + ">" + qsoTime +
-            "<call:" + d[i].call.length + ">" + d[i].call + "<band:" + band.length + ">" + band + "<freq:" + d[i].freq.length + ">" + d[i].freq +
-            "<mode:" + d[i].mode.length + ">" + d[i].mode +"<rst_sent:" + d[i].sRep.length + ">" + d[i].sRep + "<rst_rcvd:" + d[i].rRep.length + ">" + d[i].rRep + " <eor>\r";
-    }
+       
+        dataStr =
+`${dataStr}
+<qso_date:${qsoDate.length}>${qsoDate}\
+<time_on:${qsoTime.length}>${qsoTime}\
+<call:${d[i].call.length}>${d[i].call}\
+<band:${band.length}>${band}\
+<freq:${d[i].freq.length}>${d[i].freq}\
+<mode:${d[i].mode.length}>${d[i].mode}\
+<rst_sent:${d[i].sRep.length}>${d[i].sRep}\
+<rst_rcvd:${d[i].rRep.length}>${d[i].rRep}<eor>
+`;
+    }  
+    
 
-    return dataStr.toUpperCase() + "\r";
+    return dataStr.toUpperCase();
 }
 
 function toCSV(d){
-    let dataStr = "call,band,freq,mode,qso_date,time_on,rst_sent,rst_rcvd\r";
+    let dataStr = 
+`call,band,freq,mode,qso_date,time_on,rst_sent,rst_rcvd
+`;
 
     for (let i = 0; i < d.length; i++){
 
@@ -43,7 +64,9 @@ function toCSV(d){
         const qsoDate = d[i].contactDate.replaceAll('-', '');
         const qsoTime = d[i].contactTime.replaceAll(':', '');
 
-        dataStr = dataStr + d[i].call + "," + band + "," + d[i].freq + "," + d[i].mode + "," + qsoDate + "," + qsoTime + "," + d[i].sRep + "," + d[i].rRep + "\r";
+        dataStr = 
+`${dataStr}${d[i].call},${band},${d[i].freq},${d[i].mode},${qsoDate},${qsoTime},${d[i].sRep},${d[i].rRep}
+`;
     }
 
     return dataStr.toUpperCase();

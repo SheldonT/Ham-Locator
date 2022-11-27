@@ -36,7 +36,7 @@ body{
   border-radius: 2rem;
   overflow: hidden;
   max-width: 100rem;
-  height: 80vh;
+  min-height: 75vh;
   margin: 0 auto 0.5rem auto;
   font-size: 1.6rem; /*change font size to 1.6rem to equal browser default of 16px*/
 }

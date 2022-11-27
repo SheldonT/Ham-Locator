@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react';
 import { MapContainer, TileLayer, Popup} from 'react-leaflet';
-import { NightRegion } from "react-leaflet-night-region";
+import { NightRegion } from "react-leaflet-night-region"; //installed with --legacy-peer-deps
 import ExtraInfo from "./ExtraInfo.js";
 
 import Anchor from "./Anchor.js";
@@ -21,17 +21,13 @@ function CallMap({info, selectedInfo, click}){
     useEffect(() => {
 
       click(info[0]);
-      
-    }, [info.length]);
-
-
-    useEffect(() => {
       if (info.length === 0) {
         setIsOpen(false);
       } else {
         setIsOpen(true);
       }
-    }, []);
+      
+    }, [info.length]);
 
   
     let mapCenter = [0, 0];

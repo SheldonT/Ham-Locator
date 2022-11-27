@@ -36,17 +36,14 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    border-style: solid;
-    border-width: 0.1rem;
     border-radius: 1rem 0 1rem 1rem;
     background-color: var(--infoBarColor);
+    box-shadow: 0.2rem 0.2rem 0.5rem var(--shadowColor);
     padding: 0.5rem;
-    
     top: 100%;
     right: 100%;
     z-index: 401;
   }
-
 
   @media (max-width: 32rem){
     .hamburger{

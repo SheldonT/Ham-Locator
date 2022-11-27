@@ -1,7 +1,7 @@
 .map{
     position: relative;
     width: 100%;
-    height: 60%; /*10rem*/
+    height: 40vh;
   }
 
   .inputBar{
@@ -12,7 +12,7 @@
     justify-content: center;
     width: 100%;
     bottom: 0;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
     z-index: 401;
   }
 
@@ -21,7 +21,7 @@
     border-radius: 0.5rem;
     padding: 0.5rem;
     margin: 0.5rem 1rem 0 0.5rem;
-    width: 15%
+    width: 8vw;
   }
   
   .freqField{
@@ -29,7 +29,7 @@
     border-radius: 0.5rem;
     padding: 0.5rem;
     margin: 0.5rem 1rem 0 0.5rem;
-    width: 8rem;
+    width: 5rem;
   }
   
   .modeInput{
@@ -65,7 +65,7 @@
 @media (max-width: 29rem){
 
     .callField{
-        width: 30%;
+        width: 30vw;
       }
 }
 

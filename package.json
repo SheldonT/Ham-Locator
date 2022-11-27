@@ -19,10 +19,12 @@
     "react-burger-menu": "^3.0.8",
     "react-dom": "^18.2.0",
     "react-leaflet": "^4.1.0",
+    "react-leaflet-night-region": "^1.1.0",
     "react-scripts": "5.0.1",
     "react-world-flags": "^1.5.1",
     "react-xml-parser": "^1.1.8",
     "save-dev": "^0.0.1-security",
+    "victory": "^36.6.8",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -52,7 +54,6 @@
     ]
   },
   "devDependencies": {
-    "react-leaflet-night-region": "^1.1.0",
     "react-router-dom": "^6.4.3"
   }
 }

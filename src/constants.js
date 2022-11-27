@@ -182,6 +182,7 @@ export const countryCode = [
   { name: 'Reunion', countryCode: 're' },
   { name: 'Romania', countryCode: 'ro' },
   { name: 'Russia', countryCode: 'ru' },
+  { name: 'Russia (Asiatic)', countryCode: 'ru' },
   { name: 'Rwanda', countryCode: 'rw' },
   { name: 'Saint Helena', countryCode: 'sh' },
   { name: 'Saint Kitts and Nevis', countryCode: 'kn' },

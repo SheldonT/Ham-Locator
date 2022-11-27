@@ -1,5 +1,6 @@
 import { useEffect, useState} from 'react';
 import Flag from "react-world-flags";
+import {VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryLabel} from "victory";
 import {countryCode, bandDef} from "../constants.js";
 import "./stats.css";
 
@@ -88,35 +89,6 @@ function Stats() {
 
     }, []);
 
-    console.log(bands);
-
-
-
-    for (let i = 0; i < countries.length; i++){
-        if (countries[i]) {
-
-            flagArr.push(
-                <div className="flagStatImg" key={i}><Flag code={countries[i].code} height={20} />
-                    <div style={{paddingLeft: "1rem"}}>
-                        {countries[i].name}: {countries[i].count}
-                    </div>
-                </div>
-            );
-        }
-    }
-
-    for (let i = 0; i < bands.length; i++){
-        if (bands[i]) {
-
-            bandTableHead.push(
-                <th className="statHead" key={i}>{bands[i].band}</th>
-            );
-            bandTable.push(
-                <td className="statCells" key={i}>{bands[i].count}</td>
-            );
-        }
-    }
-
     return(
         <>
             <h1>Log Stats</h1>
@@ -149,39 +121,55 @@ function Stats() {
                         </table>
                     </div>
 
-                    <div className="statCont">
-                        <table className="statTable">
-                            <tbody>
-                                <tr>
-                                    <th className="statHead">Contacts per Country</th>
-                                </tr>
-                                <tr>
-                                    <td className="statCells">
-                                        {flagArr}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
                 </div>
 
             <div className="pageRow">
                 <div className="statCont">
-                    <table className="statTable">
-                        <tbody>
-                            <tr>
-                                <th className="statHead" colSpan={bands.length} >Contacts per Band</th>
-                            </tr>
-                            <tr>
-                                {bandTableHead}
-                            </tr>
-                            <tr>
-                                {bandTable}
-                            </tr>
+                    <h3>Contacts per Country</h3>
+                    <VictoryChart
+                        width={450}
+                        padding={{bottom: 100, right: 40, left: 40}}
+                        domainPadding={30}
+                        theme={VictoryTheme.material}
+                    >
 
-                        </tbody>
-                    </table>
+                        <VictoryAxis
+                            
+                            tickLabelComponent={
+                                <VictoryLabel
+                                    angle={-60}
+                                    textAnchor="end"
+                                />}
+                        />
+                        <VictoryAxis dependentAxis />
+                        <VictoryBar
+                            data={countries}
+                            x="name"
+                            y="count"
+                        />
+
+                    </VictoryChart>
+                </div>
+            </div>
+
+            <div className="pageRow">
+                <div className="statCont">
+                <h3>Contacts per Band</h3>
+                    <VictoryChart
+                        width={450}
+                        domainPadding={30}
+                        theme={VictoryTheme.material}
+                    >
+
+                        <VictoryAxis />
+                        <VictoryAxis dependentAxis />
+                        <VictoryBar
+                            data={bands}
+                            x="band"
+                            y="count"
+                        />
+
+                    </VictoryChart>
                 </div>
             </div>
 
