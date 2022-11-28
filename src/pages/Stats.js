@@ -1,5 +1,4 @@
 import { useEffect, useState} from 'react';
-import Flag from "react-world-flags";
 import {VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryLabel} from "victory";
 import {countryCode, bandDef} from "../constants.js";
 import "./stats.css";
@@ -64,10 +63,6 @@ function Stats() {
     const [countries, setCountries] = useState([]);
     const [bands, setBands] = useState([]);
 
-    let flagArr = [];
-    let bandTableHead = [];
-    let bandTable = [];
-
     useEffect(() => {
 
         const checkStoreChange = () => {
@@ -85,7 +80,6 @@ function Stats() {
         window.addEventListener("storage", checkStoreChange);
 
         return () => window.removeEventListener("storage", checkStoreChange);
-
 
     }, []);
 

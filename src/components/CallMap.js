@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import {useEffect, useState} from 'react';
 import { MapContainer, TileLayer, Popup} from 'react-leaflet';
 import { NightRegion } from "react-leaflet-night-region"; //installed with --legacy-peer-deps
 import ExtraInfo from "./ExtraInfo.js";
@@ -67,7 +67,7 @@ function CallMap({info, selectedInfo, click}){
       />
       {info.map((mapCoord) =>
               
-        <Anchor info={mapCoord} selectedInfo={selectedInfo} action={click} isOpen={isOpen} setIsOpen={setIsOpen} key={mapCoord.id} />
+        <Anchor info={mapCoord} selectedInfo={selectedInfo} action={click} setIsOpen={setIsOpen} key={mapCoord.id} />
 
       )}
 

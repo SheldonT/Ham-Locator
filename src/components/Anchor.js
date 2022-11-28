@@ -1,17 +1,11 @@
 
-import {Marker, useMap, useMapEvents} from 'react-leaflet';
+import {Marker, useMap} from 'react-leaflet';
 //import {Icon} from "leaflet";
 
 
-function Anchor({info, selectedInfo, action, isOpen, setIsOpen}) {
+function Anchor({info, selectedInfo, action, setIsOpen}) {
 
     const map = useMap();
-
-    const mapEvent = useMapEvents({
-        click(){
-            setIsOpen(false);
-        }
-    });
 
     if (selectedInfo){
         map.flyTo([selectedInfo.anchor[0] - 5, selectedInfo.anchor[1]], 3);
