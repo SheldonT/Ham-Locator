@@ -12,14 +12,6 @@ function toADIF(d){
     const timeStamp = currDate.getUTCFullYear() + parseInt(currDate.getUTCMonth() + 1) + currDate.getUTCDate() + " " +
     utcHrs(currDate) + utcMins(currDate);
 
-    /*let dataStr = "Exported by Ham-Locator\r" +
-        "https://sheldont.github.io/Ham-Locator\r" +
-        "<ADIF_VER:5>3.1.0\r" +
-        "<CREATED_TIMESTAMP:" + timeStamp.length + ">" + timeStamp + "\r" +
-        "<PROGRAMID:11>Ham-Locator\r" +
-        "<PROGRAMVERSION:3>1.1\r" +
-        "<eoh>\r";*/
-
     let dataStr = 
 `Exported by Ham-Locator
 https://sheldont.github.io/Ham-Locator
