@@ -2,6 +2,7 @@ import { useEffect, useState} from 'react';
 import useFetch from "../useFetch.js";
 import InfoBar from "./InfoBar.js";
 import CallMap from "./CallMap.js";
+import InputBar from "./InputBar.js";
 import SaveLog from "./SaveLog.js";
 import PopUp from "./PopUp.js";
 import "./location.css";
@@ -33,14 +34,10 @@ export const utcMins =  (date) => {
 }
 
 
-function Location(){
+function Location({optionalFields}){
   
   const [contactInfo, setContactInfo] = useState({});
   const [infoList, setInfoList] = useState([]);
-  const [callSignValue, setCallSignValue] = useState("");
-  const [freqValue, setFreqValue] = useState("");
-  const [sentRep, setSentRep] = useState("");
-  const [recRep, setRecRep] = useState("");
   const [extraInfo, setExtraInfo] = useState();
   const [id, setId] = useState(1);
 
@@ -69,20 +66,19 @@ function Location(){
         
         setInfoList( (previousInfo) => {
 
-          let newData = [Object.assign({
+          const newData = {
             id: id,
-            call: contactInfo.call,
-            freq: contactInfo.frequency,
-            mode: contactInfo.mode,
-            sRep: contactInfo.rsts,
-            rRep: contactInfo.rstr,
             contactDate: utcDate,
-            contactTime: utcTime
-          }, jsonResp), ...previousInfo];
+            contactTime: utcTime,
+            ...contactInfo,
+            ...jsonResp
+          }
+          
+          const dataCollection = [newData, ...previousInfo];
 
-          localStorage.setItem("list", JSON.stringify(newData));
+          localStorage.setItem("list", JSON.stringify(dataCollection));
 
-          return newData;
+          return dataCollection;
         } );
       }
     }
@@ -107,74 +103,15 @@ function Location(){
     }
 
   },[]);
-  
-  const getContact = () => {
-
-    const ci = {
-      call: callSignValue.toUpperCase(),
-      frequency: freqValue,
-      mode: document.getElementById("mode").value,
-      rsts: sentRep,
-      rstr: recRep
-    };
-
-      setContactInfo(ci);
-      setCallSignValue("");
-      setSentRep("");
-      setRecRep("");
-      setExtraInfo();
-  };
 
   return(
     <>
       <div className="map" >
         <CallMap info={infoList} infoLastId={id} selectedInfo={extraInfo} click={setExtraInfo} />
 
-        <div className="inputBar"
-          onKeyPress={(e) => {
-            if (e.key === "Enter"){
-              getContact();
-            }
-          }}
-        >
+        <InputBar setInfo={setContactInfo} resetExtra={setExtraInfo} optionalFields={optionalFields} />
 
-          <input className="callField" 
-            type="text"
-            placeholder="Callsign"
-            value={callSignValue}
-            onChange={(e) => setCallSignValue(e.target.value)}
-             />
-
-          <input className="freqField" type="text" placeholder="Freq" value={freqValue} onChange={(e) => setFreqValue(e.target.value.replace(/[^\d.]/g, ""))} />
-
-
-          <select className="modeInput" id="mode">
-            <option value="SSB">SSB</option>
-            <option value="CW">CW</option>
-            <option value="AM">AM</option>
-            <option value="FM">FM</option>
-            <option value="PSK">PSK</option>
-            <option value="RTTY">RTTY</option>
-            <option value="FT8">FT8</option>
-          </select>
-
-          <input className="sigRep" type="text" placeholder="RSTs" value={sentRep} onChange={(e)=> {
-            setSentRep(e.target.value.replace(/[^\d]/g, ""));
-          }}/>
-
-          <input className="sigRep" type="text" placeholder="RSTr" value={recRep} onChange={(e)=> {
-            setRecRep(e.target.value.replace(/[^\d]/g, ""));
-          }}/>
-
-        <button className="submitButton" onClick={() => {
-            if (callSignValue !== "" ){ //ignores the mouse click if callsign value is an empty string
-              getContact();             //prevents the events from trying to gather the data twice
-            }
-          }
-        }> Submit </button>
       </div>
-
-    </div>
       
       <InfoBar info={infoList} selectedInfo={extraInfo} click={setExtraInfo} />
       

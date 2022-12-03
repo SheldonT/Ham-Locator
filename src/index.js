@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client';
-import React from 'react';
+import React, {useState} from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout.js";
 import About from "./pages/About.js";
@@ -10,11 +10,13 @@ import './index.css';
 
 function HamLocator(){
 
+  const [fields, setFields] = useState(JSON.parse(localStorage.getItem("fields" || "{}")));
+
   return(
     <BrowserRouter>
       <Routes>
-        <Route path="/Ham-Locator/" element={<Layout />}>
-          <Route index element={<Location />} />
+        <Route path="/Ham-Locator/" element={<Layout optionalFields={fields} setOptionalFields={setFields} />} >
+          <Route index element={<Location optionalFields={fields} />} />
           <Route path="instructions" element={<HowTo />} />
           <Route path="about" element={<About />} />
           <Route path="stats" element={<Stats />} />

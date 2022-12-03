@@ -1,9 +1,10 @@
 import { Outlet, Link } from "react-router-dom";
 import logo from "../assets/hl-logo.svg";
 import Menu from "../components/Menu.js";
+import Settings from "../components/Settings.js";
 
 
-function Layout(){
+function Layout({optionalFields, setOptionalFields}){
 
   return(
     <>
@@ -12,12 +13,13 @@ function Layout(){
 
       <Link to="/Ham-Locator/" > <img className="logo" src={logo} alt="" /> </Link>
       <Menu />
-      
+      <Settings optionalFields={optionalFields} setOptionalFields={setOptionalFields}/>
+
     </div>
 
     <div className="main" id="main">
 
-    <Outlet />
+      <Outlet />
 
     </div>
     <div className="footer">

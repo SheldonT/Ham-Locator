@@ -54,6 +54,7 @@ function CallMap({info, selectedInfo, click}){
       popUp = <></>
     }
 
+    
     return(
       <MapContainer center={mapCenter} zoom={3} scrollWheelZoom={true}>
       <TileLayer

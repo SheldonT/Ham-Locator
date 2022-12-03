@@ -1,6 +1,5 @@
 
 import {Marker, useMap} from 'react-leaflet';
-//import {Icon} from "leaflet";
 
 
 function Anchor({info, selectedInfo, action, setIsOpen}) {
@@ -12,7 +11,6 @@ function Anchor({info, selectedInfo, action, setIsOpen}) {
     }
 
     return(
-        <>
             <Marker position={info.anchor}
                 eventHandlers={{
                     click: () => {
@@ -22,7 +20,6 @@ function Anchor({info, selectedInfo, action, setIsOpen}) {
                     },
                 }}>
             </Marker>
-        </>
     );
 
 }

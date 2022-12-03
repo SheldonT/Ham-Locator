@@ -1,6 +1,8 @@
 import {useState} from 'react';
 import { Link } from "react-router-dom";
 import "./menu.css";
+import "./popUp.css";
+
 
 function Menu () {
     const [openMenu, setOpenMenu] = useState(false);
@@ -15,6 +17,8 @@ function Menu () {
             </div>
         );
     }
+
+
     
     return (
     <div className="menuBar" >
@@ -28,6 +32,7 @@ function Menu () {
             <div className="hBar"></div>
             {openMenu ? <MenuContent /> : null}
         </div>
+
     </div>);
 }
 

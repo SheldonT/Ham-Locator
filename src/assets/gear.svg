@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="32"
+   height="32"
+   viewBox="0 0 8.4666666 8.4666666"
+   version="1.1"
+   id="svg5952"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="Zahnrad-Icon.svg">
+  <defs
+     id="defs5946" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="16"
+     inkscape:cx="13.74183"
+     inkscape:cy="19.38234"
+     inkscape:document-units="mm"
+     inkscape:current-layer="g1115"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="986"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     units="px"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-paths="true"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-bbox-edge-midpoints="true"
+     inkscape:snap-bbox-midpoints="true" />
+  <metadata
+     id="metadata5949">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/by/4.0/" />
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by/4.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Notice" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Attribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-288.53333)">
+    <g
+       transform="matrix(2.0146614,0,0,2.0146614,-162.15087,88.473179)"
+       id="g5146"
+       style="stroke-width:0.49636132">
+      <g
+         id="g5091-3"
+         transform="translate(272.02713,-282.01091)"
+         style="stroke-width:0.49636132">
+        <g
+           id="g5168"
+           transform="matrix(0.24402839,0,0,0.24402839,-127.4284,338.86795)"
+           style="stroke-width:2.03403091">
+          <g
+             id="g842"
+             transform="rotate(-90,-253.91138,182.81462)">
+            <g
+               id="g1020"
+               transform="rotate(45.130962,-253.91137,182.81461)">
+              <g
+                 id="g1115"
+                 transform="rotate(45.975643,-254.54133,182.70149)">
+                <path
+                   style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.50850779;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+                   d="m -252.68206,175.60252 -0.001,0.001 c -0.19093,-0.001 -0.35631,0.0794 -0.46567,0.32965 l -0.34044,0.71726 c -0.11578,0.24358 -0.22341,0.49107 -0.51185,0.49664 l -0.93742,0.0181 c -0.28843,0.006 -0.40339,-0.23819 -0.5296,-0.47652 l -0.42331,-0.79713 c -0.15668,-0.35707 -0.55158,-0.17819 -0.82987,-0.0744 l -0.37205,0.16908 0.004,0.002 c -0.4019,0.19962 -0.84488,0.33415 -0.64083,0.84082 l 0.27405,0.74429 c 0.0927,0.25323 0.19486,0.50413 -0.003,0.7139 l -0.64492,0.68319 c -0.19717,0.21063 -0.45346,0.11905 -0.71198,0.0421 l -0.8649,-0.25559 c -0.18788,-0.0713 -0.31896,2.7e-4 -0.4181,0.12583 l 2e-5,10e-4 c -0.068,0.0856 -0.11815,0.19128 -0.1646,0.29544 l -0.2535,0.6462 c -0.0407,0.13973 -0.0897,0.31301 -0.0856,0.46843 0.004,0.16128 0.0656,0.30208 0.25421,0.37041 l 0.82403,0.37097 c 0.24604,0.11039 0.49676,0.2081 0.50898,0.4969 l 0.0444,0.93586 c 0.0129,0.2882 -0.22816,0.41362 -0.46362,0.54512 l -0.69169,0.38447 c -0.45128,0.23356 -0.30059,0.58336 -0.13698,0.96355 l 0.11204,0.2491 c 0.002,0.005 0.004,0.009 0.008,0.0135 0.0963,0.19743 0.18838,0.40189 0.31731,0.53424 0.13207,0.13455 0.30225,0.19387 0.55584,0.0933 l 0.74756,-0.2678 c 0.25379,-0.0914 0.50427,-0.19192 0.71293,0.007 l 0.67697,0.64925 c 0.20917,0.19869 0.1208,0.45284 0.0421,0.71093 l -0.26298,0.86295 c -0.14051,0.3643 0.2624,0.52297 0.53287,0.64572 l 0.61338,0.24152 c 0.1413,0.0397 0.31407,0.0941 0.47068,0.0929 l 0.001,-2e-5 c 0.16026,-0.001 0.30091,-0.0593 0.36735,-0.24889 l 0.35931,-0.82907 c 0.10767,-0.24724 0.2045,-0.49828 0.49259,-0.51414 l 0.93671,-0.0549 c 0.28802,-0.0165 0.41306,0.22323 0.5471,0.45726 l 0.39495,0.68939 c 0.19129,0.36002 0.4543,0.31929 0.74611,0.20111 l 0.54399,-0.2481 c 0.12031,-0.0622 0.25702,-0.13121 0.3584,-0.22245 0.1185,-0.10689 0.18407,-0.24057 0.10116,-0.42353 l -0.31078,-0.84976 c -0.093,-0.25312 -0.19855,-0.50119 -0.001,-0.71172 l 0.6396,-0.68624 c 0.19716,-0.21061 0.4522,-0.12505 0.71081,-0.0484 l 0.76133,0.22709 c 0.44359,0.14679 0.58659,-0.16346 0.72703,-0.51447 l 0.12828,-0.32523 c 0.1452,-0.38494 0.28325,-0.74709 -0.17407,-0.95648 l -0.71122,-0.35422 c -0.2415,-0.12002 -0.48676,-0.23091 -0.48732,-0.5194 l -0.001,-0.93774 c -9.8e-4,-0.28849 0.24579,-0.40023 0.48613,-0.52243 l 0.80582,-0.40876 c 0.18532,-0.0775 0.23997,-0.22304 0.23751,-0.38516 l 0.001,-0.001 c -0.002,-0.16214 -0.0639,-0.33899 -0.11228,-0.47933 l -0.29415,-0.64193 c -0.0674,-0.12544 -0.14597,-0.27604 -0.25028,-0.38415 -0.1133,-0.11713 -0.25475,-0.18104 -0.43711,-0.0967 l -0.84436,0.31804 c -0.25245,0.0949 -0.50182,0.19962 -0.71378,0.003 l -0.69035,-0.63427 c -0.21236,-0.19527 -0.12624,-0.45158 -0.0516,-0.71074 l 0.21864,-0.76327 c 0.16085,-0.49829 -0.23969,-0.62459 -0.63858,-0.78456 -0.0173,-0.007 -0.0326,-0.0131 -0.0498,-0.0201 l -0.20235,-0.0802 c -0.18602,-0.065 -0.37273,-0.12953 -0.53974,-0.13045 z m -1.58426,3.10569 a 3.1928382,3.1928382 0 0 1 2.2131,0.92971 3.1928382,3.1928382 0 0 1 0.0105,4.51518 3.1928382,3.1928382 0 0 1 -4.51518,0.0105 3.1928382,3.1928382 0 0 1 -0.0105,-4.51518 3.1928382,3.1928382 0 0 1 2.30208,-0.94018 z"
+                   id="rect1035"
+                   inkscape:connector-curvature="0" />
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

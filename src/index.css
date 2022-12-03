@@ -25,7 +25,7 @@ body{
 
 .logo{
   height: 6vh;
-  margin: 1rem 0 2rem 2rem;
+  margin: 1rem 0 1rem 2rem;
 }
 
 .main{
@@ -36,7 +36,7 @@ body{
   border-radius: 2rem;
   overflow: hidden;
   max-width: 100rem;
-  min-height: 75vh;
+  min-height: 80vh;
   margin: 0 auto 0.5rem auto;
   font-size: 1.6rem; /*change font size to 1.6rem to equal browser default of 16px*/
 }

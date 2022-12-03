@@ -37,7 +37,12 @@ https://sheldont.github.io/Ham-Locator
 <freq:${d[i].freq.length}>${d[i].freq}\
 <mode:${d[i].mode.length}>${d[i].mode}\
 <rst_sent:${d[i].sRep.length}>${d[i].sRep}\
-<rst_rcvd:${d[i].rRep.length}>${d[i].rRep}<eor>
+<rst_rcvd:${d[i].rRep.length}>${d[i].rRep}\
+<name:${d[i].name.length}>${d[i].name}\
+<stx:${d[i].serialSent.length}>${d[i].serialSent}\
+<srx:${d[i].serialRcv.length}>${d[i].serialRcv}\
+<gridsquare:${d[i].grid.length}>${d[i].grid}\
+<comment:${d[i].comment.length}>${d[i].comment} <eor>
 `;
     }  
     
@@ -47,7 +52,7 @@ https://sheldont.github.io/Ham-Locator
 
 function toCSV(d){
     let dataStr = 
-`call,band,freq,mode,qso_date,time_on,rst_sent,rst_rcvd
+`call,band,freq,mode,qso_date,time_on,rst_sent,rst_rcvd,name,stx,srx,grid,comment
 `;
 
     for (let i = 0; i < d.length; i++){
@@ -57,7 +62,10 @@ function toCSV(d){
         const qsoTime = d[i].contactTime.replaceAll(':', '');
 
         dataStr = 
-`${dataStr}${d[i].call},${band},${d[i].freq},${d[i].mode},${qsoDate},${qsoTime},${d[i].sRep},${d[i].rRep}
+`${dataStr}${d[i].call},${band},${d[i].freq},\
+${d[i].mode},${qsoDate},${qsoTime},${d[i].sRep},\
+${d[i].rRep},${d[i].name},${d[i].serialSent},${d[i].serialRcv},\
+${d[i].grid},${d[i].comment}
 `;
     }
 
