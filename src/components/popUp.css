@@ -9,6 +9,11 @@
     width: 20vw;
     bottom: 100%;
     left: 100%;
+    z-index: 500;
+  }
+
+  .popUp:hover{
+    cursor: default;
   }
 
   .popUpMenu{

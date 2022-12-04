@@ -4,8 +4,8 @@
     box-shadow: 0.2rem 0.2rem 0.5rem var(--shadowColor);
     background-color: var(--infoBarColor);
     width: 90%;
-    height: 25vh;
-    overflow-y: auto;
+    height: 20vh;
+    overflow: auto;
     margin: 2rem auto 1rem auto;
   }
 

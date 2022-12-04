@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useRef} from 'react';
 import "./inputBar.css";
 import "./popUp.css";
 
@@ -13,6 +13,8 @@ function InputBar ({setInfo, resetExtra, optionalFields}) {
     const [serialSent, setSerialSent] = useState(1);
     const [serialRcv, setSerialRcv] = useState("");
     const [comment, setComment] = useState("");
+
+    const callField = useRef();
 
 
     const getContact = () => {
@@ -40,6 +42,8 @@ function InputBar ({setInfo, resetExtra, optionalFields}) {
             setSerialRcv("");
             setComment("");
             resetExtra(); //can this be done in Location.js
+
+            callField.current.focus();
       };
 
 
@@ -57,6 +61,7 @@ function InputBar ({setInfo, resetExtra, optionalFields}) {
                 type="text"
                 placeholder="Callsign"
                 value={callSignValue}
+                ref={callField}
                 onChange={(e) => setCallSignValue(e.target.value)}
             />
 

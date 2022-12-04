@@ -12,6 +12,10 @@
     width: inherit;
   }
 
+  .settingsIcon:hover{
+    cursor: pointer;
+  }
+
   .settingsHead{
     font-size: 1.6rem;
     text-decoration: underline;

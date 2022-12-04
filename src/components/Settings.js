@@ -1,4 +1,4 @@
-import { useState, useEffect} from 'react';
+import { useState } from 'react';
 import gear from "../assets/gear.png";
 import "./settings.css";
 import "./popUp.css";

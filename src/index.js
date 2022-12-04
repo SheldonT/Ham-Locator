@@ -5,6 +5,7 @@ import Layout from "./pages/Layout.js";
 import About from "./pages/About.js";
 import HowTo from "./pages/HowTo.js";
 import Stats from "./pages/Stats.js";
+import Log from "./pages/Log.js";
 import Location from "./components/Location.js";
 import './index.css';
 
@@ -20,6 +21,7 @@ function HamLocator(){
           <Route path="instructions" element={<HowTo />} />
           <Route path="about" element={<About />} />
           <Route path="stats" element={<Stats />} />
+          <Route path="log" element={<Log optionalFields={fields} />} />
         </Route>
       </Routes>
     </BrowserRouter>
