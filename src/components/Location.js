@@ -113,7 +113,7 @@ function Location({optionalFields}){
 
       </div>
       
-      <InfoBar info={infoList} selectedInfo={extraInfo} click={setExtraInfo} />
+      <InfoBar info={infoList} selectedInfo={extraInfo} click={setExtraInfo} editField={false} />
       
       <div className="controlBar">
         <SaveLog data={infoList} />

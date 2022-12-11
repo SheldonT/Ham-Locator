@@ -1,7 +1,8 @@
+
 import TableRow from "./TableRow";
 import "./infoBar.css";
 
-function InfoBar({info, selectedInfo, click, style, optionalFields}){
+function InfoBar({info, selectedInfo, click, style, optionalFields, editField}){
 
   const OpFields = () => {
     if(optionalFields) {
@@ -24,6 +25,7 @@ function InfoBar({info, selectedInfo, click, style, optionalFields}){
       <table className="callList" id="callList">
         <thead>
         <tr>
+          {editField ? <th className="infoHead"></th> : null}
           <th className="infoHead" >#</th>
           <th className="infoHead">Call Sign</th>
           <th className="infoHead">Freq.</th>
@@ -37,7 +39,16 @@ function InfoBar({info, selectedInfo, click, style, optionalFields}){
         </thead>
         <tbody>
 
-        {info.map( (callData) => <TableRow info={callData} activeInfo={selectedInfo} click={click} optionalFields={optionalFields} key={callData.id}/>)}
+        {info.map( (callData) =>
+          <TableRow 
+            info={callData}
+            activeInfo={selectedInfo}
+            click={click}
+            optionalFields={optionalFields}
+            key={callData.id}
+            editField={editField}
+          />
+        )}
       </tbody>
     </table>
   </div>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import InfoBar from "../components/InfoBar.js";
 
 const infoListStyle = {
@@ -14,17 +14,41 @@ const infoListStyle = {
 
 function Log({optionalFields}) {
 
-    const infoList = JSON.parse(localStorage.getItem("list") || "[]" );
-
     const [record, setRecord] = useState({});
 
-    console.log(record);
+    const [infoList, setInfoList] = useState(JSON.parse(localStorage.getItem("list") || "[]" ));
+
+    useEffect(() => {
+
+        const il = infoList;
+
+        for (let i = 0; i < il.length; i++){
+            if (il[i].id === record.id){
+                il[i] = {...il[i], ...record};
+            }
+        }
+
+        localStorage.setItem("list", JSON.stringify(il));
+
+        setInfoList(JSON.parse(localStorage.getItem("list") || "[]" ));
+
+    },[record]);
+
 
     return(
         <>
-            <InfoBar style={infoListStyle} info={infoList} selectedInfo={record} click={setRecord} optionalFields={optionalFields} />
+            <InfoBar 
+                style={infoListStyle}
+                info={infoList}
+                selectedInfo={record}
+                click={setRecord}
+                optionalFields={optionalFields}
+                editField={true}
+            />
         </>
     );
 }
 
 export default Log;
+
+//<InfoBar style={infoListStyle} info={infoList} selectedInfo={record} click={setRecord} optionalFields={optionalFields} />

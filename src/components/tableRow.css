@@ -9,9 +9,30 @@
   }
 
   .infoCells {
+    position: relative;
     text-align: left;
     padding: 1rem 1rem 1rem 4rem;
   }
+
+  .editCall {
+    position: absolute;
+    text-align: left;
+    width: 8vw;
+    top: 0;
+    left: 0;
+    padding: 0.5rem 0.5rem 0.5rem 0;
+    margin: 1rem 1rem 1rem 4rem;
+  }
+
+  .editSubmit{
+    position: absolute;
+    display: none;
+    top: 0;
+    left: 0;
+    padding: 0.5rem 0.5rem 0.5rem 0;
+    margin: 1rem 1rem 1rem 4rem;
+  }
+  
 
   
 @media (min-width: 32.1rem) and (max-width: 50rem){
