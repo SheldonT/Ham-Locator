@@ -13,17 +13,7 @@
 
 @media (min-width: 29.1rem) and (max-width: 42rem){}
 
-@media (max-width: 29rem){
-  .callField{
-    width: 30vw;
-  }
-}
-
-/*@media (max-width: 16rem){
-    .callField{
-        width: 40%;
-      }
-}*/
+@media (max-width: 29rem){}
 
 @media (min-height: 27.1rem) and (max-height: 34rem){}
 

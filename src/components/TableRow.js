@@ -1,11 +1,11 @@
-import "./tableRow.css";
+
 import { useState, useEffect } from 'react';
+import ValidateField from "./ValidateField.js";
+import "./tableRow.css";
 import "./inputBar.css";
 
 
 function TableRow({info, activeInfo, click, optionalFields, editField}){
-
-  const [edit, setEdit] = useState(false);
 
   const [callSignValue, setCallSignValue] = useState(info.call); 
   const [freqValue, setFreqValue] = useState(info.freq);
@@ -19,6 +19,10 @@ function TableRow({info, activeInfo, click, optionalFields, editField}){
   const [contactDate, setContactDate] = useState(info.contactDate);
   const [contactTime, setContactTime] = useState(info.contactTime);
   const [comment, setComment] = useState(info.comment);
+
+  const [edit, setEdit] = useState(false);
+
+  const[valid, setValid] = useState({Callsign: false, Freq: false});
 
   const EditButton = () => {
     return(
@@ -58,23 +62,27 @@ function TableRow({info, activeInfo, click, optionalFields, editField}){
 
   const getContact = () => {
 
-    setEdit(false);
+    if (!valid.Callsign && !valid.Freq){
+      setEdit(false);
 
-    const ci = {
+      const ci = {
         id: info.id,
         call: callSignValue.toUpperCase(),
         freq: freqValue,
         mode: mode,
         sRep: sentRep,
         rRep: recRep,
+        contactDate: contactDate,
+        contactTime: contactTime,
         name: name,
         grid: grid,
         serialSent: serialSent,
         serialRcv: serialRcv,
         comment: comment
-    };
+      };
 
-    click(ci);
+      click(ci);
+    }
 
   };
 
@@ -129,15 +137,30 @@ function TableRow({info, activeInfo, click, optionalFields, editField}){
                 {info.id}
               </td>
               <td className="infoCells">
-                <div className="fieldContainer" style={{display: edit ? "flex" : "none"}}>
-                  <input className="callField" type="text" value={callSignValue} onChange={(e) => {setCallSignValue(e.target.value)}} />
-                </div>
+                
+                {edit ? <ValidateField
+                  message="Enter an amateur callsign."
+                  style="callField"
+                  error={valid}
+                  setError={setValid}
+                  value={callSignValue}
+                  setValue={setCallSignValue}
+                  type="Callsign" /> : null}
+                
                 {!edit ? info.call : null}
               </td>
+
               <td className="infoCells">
-                <div className="fieldContainer" style={{display: edit ? "flex" : "none"}}>
-                  <input className="freqField" type="text" value={freqValue} onChange={(e) => {setFreqValue(e.target.value.replace(/[^\d.]/g, ""))}} />
-                </div>
+                {edit ? <ValidateField
+                  message="This is not an amateur frequency."
+                  style="freqField"
+                  error={valid}
+                  setError={setValid}
+                  value={freqValue}
+                  setValue={setFreqValue}
+                  type="Freq"
+                  exp={/[^\d.]/g} /> : null}
+                
                 {!edit ? info.freq : null}
               </td>
               <td className="infoCells" >
@@ -168,13 +191,13 @@ function TableRow({info, activeInfo, click, optionalFields, editField}){
               </td>
               <td className="infoCells">
                 <div className="fieldContainer" style={{display: edit ? "flex" : "none"}}>
-                  <input className="callField" type="date" value={contactDate} onChange={(e) => {setContactDate(e.target.value)}} />
+                  <input className="dateField" type="date" value={contactDate} onChange={(e) => {setContactDate(e.target.value)}} />
                 </div>
                 {!edit ? info.contactDate : null}
               </td>
               <td className="infoCells">
                 <div className="fieldContainer" style={{display: edit ? "flex" : "none"}}>
-                  <input className="callField" type="time" value={contactTime} onChange={(e) => {setContactTime(e.target.value)}} />
+                  <input className="dateField" type="time" value={contactTime} onChange={(e) => {setContactTime(e.target.value)}} />
                 </div>
                 {!edit ? info.contactTime : null}
               </td>

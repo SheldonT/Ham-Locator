@@ -1,6 +1,9 @@
 import {useState, useRef} from 'react';
+import ValidateField from "./ValidateField.js";
 import "./inputBar.css";
 import "./popUp.css";
+
+
 
 function InputBar ({setInfo, resetExtra, optionalFields}) {
 
@@ -14,24 +17,25 @@ function InputBar ({setInfo, resetExtra, optionalFields}) {
     const [serialSent, setSerialSent] = useState(1);
     const [serialRcv, setSerialRcv] = useState("");
     const [comment, setComment] = useState("");
+    const[valid, setValid] = useState({Callsign: false, Freq: false});
 
     const callField = useRef();
 
-
+    
     const getContact = () => {
-
-        const ci = {
-            call: callSignValue.toUpperCase(),
-            freq: freqValue,
-            mode: document.getElementById("mode").value,
-            sRep: sentRep,
-            rRep: recRep,
-            name: name,
-            grid: grid,
-            serialSent: serialSent,
-            serialRcv: serialRcv,
-            comment: comment
-        };
+        if (!valid.Callsign && !valid.Freq){
+            const ci = {
+                call: callSignValue.toUpperCase(),
+                freq: freqValue,
+                mode: document.getElementById("mode").value,
+                sRep: sentRep,
+                rRep: recRep,
+                name: name,
+                grid: grid,
+                serialSent: serialSent,
+                serialRcv: serialRcv,
+                comment: comment
+            };
 
             setInfo(ci);
             setCallSignValue("");
@@ -45,9 +49,9 @@ function InputBar ({setInfo, resetExtra, optionalFields}) {
             resetExtra(); //can this be done in Location.js
 
             callField.current.focus();
-      };
-
-
+        }
+    };
+    
     return(
 
         <div className="inputBar"
@@ -57,18 +61,9 @@ function InputBar ({setInfo, resetExtra, optionalFields}) {
             }
         }}
         >
-            <div className="fieldContainer" >
-                <input className="callField" 
-                    type="text"
-                    placeholder="Callsign"
-                    value={callSignValue}
-                    ref={callField}
-                    onChange={(e) => setCallSignValue(e.target.value)}
-                />
-            </div>
-            <div className="fieldContainer">
-                <input className="freqField" type="text" placeholder="Freq" value={freqValue} onChange={(e) => setFreqValue(e.target.value.replace(/[^\d.]/g, ""))} />
-            </div>
+            
+            <ValidateField message="Enter an amateur callsign." style="callField" value={callSignValue} setValue={setCallSignValue} error={valid} setError={setValid} type="Callsign" refrence={callField} />
+            <ValidateField message="This is not an amateur frequency." style="freqField" value={freqValue} setValue={setFreqValue} error={valid} setError={setValid} type="Freq" exp={/[^\d.]/g} />
 
             <div className="fieldContainer" value={mode} onChange={(e) => {setMode(e.target.value)}}>
                 <select className="modeInput" id="mode">
@@ -109,6 +104,8 @@ function InputBar ({setInfo, resetExtra, optionalFields}) {
             <div className="fieldContainer" style={{display: optionalFields.serialSent ? "flex" : "none"}}>
                 <input className="freqField" type="text" placeholder="SRN" value={serialSent} onChange={(e)=> {
                     setSerialSent(e.target.value.replace(/[^\d]/g, ""));
+                }} onBlur={ () => {
+                    setSerialSent(serialSent + 1);
                 }}/>
             </div>
 
@@ -136,3 +133,18 @@ function InputBar ({setInfo, resetExtra, optionalFields}) {
 }
 
 export default InputBar;
+
+/*<div className="fieldContainer">
+<input className="freqField"
+    type="text" placeholder="Freq"
+    value={freqValue}
+    onChange={(e) => {
+        setFreqValue(e.target.value.replace(/[^\d.]/g, ""));
+        validateInput({type: "freq", value: e.target.value}, error, setError);
+    }}
+    onBlur={(e) => {
+        validateInput({type: "freq", value: e.target.value}, error, setError);
+    }
+}/>
+{error.freq ? <ErrorMessage message="This is not an amateur frequency." /> : null}
+</div>*/

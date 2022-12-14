@@ -2888,6 +2888,6 @@ export const canPrefix = [
     {band: "6m", low: 50, high: 54},
     {band: "2m", low: 144, high: 148},
     {band: "1.35m", low: 222, high: 225}, 
-    {band: "70cm", low: 430, high: 450}
+    {band: "70cm", low: 430, high: 450},
 ];
   

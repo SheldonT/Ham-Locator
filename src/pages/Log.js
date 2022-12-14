@@ -22,7 +22,7 @@ function Log({optionalFields}) {
 
         const il = infoList;
 
-        for (let i = 0; i < il.length; i++){
+        for (let i = 0; i < il.length; i++){       // try using infoList.map() instead
             if (il[i].id === record.id){
                 il[i] = {...il[i], ...record};
             }
@@ -50,5 +50,3 @@ function Log({optionalFields}) {
 }
 
 export default Log;
-
-//<InfoBar style={infoListStyle} info={infoList} selectedInfo={record} click={setRecord} optionalFields={optionalFields} />

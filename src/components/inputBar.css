@@ -45,7 +45,7 @@
   background-color: var(--infoBarColor);
   border-radius: 0.5rem;
   padding: 0.5rem;
-  width: 8vw;
+  width: 10vw;
 }
 
 .comment{
@@ -67,3 +67,104 @@
   padding: 0;
   margin: 0.5rem 1rem 0 0.5rem;
 }
+
+@media (min-width: 59.1rem) and (max-width: 63rem){  /*1008*/
+
+}
+
+@media (min-width: 45.1rem) and (max-width: 59rem){  /*928*/
+  .dateField{
+    background-color: var(--infoBarColor);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    width: 13vw;
+  }
+}
+
+@media (min-width: 35.1rem) and (max-width: 45rem){ /*720*/
+  .callField{
+    background-color: var(--infoBarColor);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    width: 11vw;
+  }
+  .dateField{
+    background-color: var(--infoBarColor);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    width: 16vw;
+  }
+}
+
+@media (min-width: 29.1rem) and (max-width: 35rem){
+  .callField{
+    background-color: var(--infoBarColor);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    width: 14vw;
+  }
+
+  .dateField{
+    background-color: var(--infoBarColor);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    width: 21vw;
+  }
+}
+
+@media (min-width: 24.1rem) and (max-width: 29rem){
+  .callField{
+    background-color: var(--infoBarColor);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    width: 17vw;
+  }
+
+  .dateField{
+    background-color: var(--infoBarColor);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    width: 25vw;
+  }
+
+}
+
+@media (min-width: 22.1rem) and (max-width: 24rem){
+  .callField{
+    background-color: var(--infoBarColor);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    width: 20vw;
+  }
+
+  .dateField{
+    background-color: var(--infoBarColor);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    width: 28vw;
+  }
+}
+
+@media (min-width: 16.6rem) and (max-width: 22rem){
+  .callField{
+    background-color: var(--infoBarColor);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    width: 23vw;
+  }
+
+  .dateField{
+    background-color: var(--infoBarColor);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    width: 34vw;
+  }
+}
+
+@media (max-width: 16.5rem){
+
+}
+
+@media (min-height: 27.1rem) and (max-height: 34rem){}
+
+@media (max-height: 27rem){}
