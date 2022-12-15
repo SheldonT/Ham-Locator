@@ -4,6 +4,16 @@ import ValidateField from "./ValidateField.js";
 import "./tableRow.css";
 import "./inputBar.css";
 
+function restore (event, setValue, value){
+  if (event.key === "Escape"){
+    setValue(value);
+  }
+  
+  if ((event.ctrlKey) && (event.key === 'z')){
+    setValue(value);
+  }
+}
+
 
 function TableRow({info, activeInfo, click, optionalFields, editField}){
 
@@ -92,31 +102,59 @@ function TableRow({info, activeInfo, click, optionalFields, editField}){
         <>
           <td style={{display: optionalFields.name ? "" : "none"}} className="infoCells">
             <div className="fieldContainer" style={{display: edit ? "flex" : "none"}}>
-              <input className="comment" type="text"  value={name} onChange={(e) => {setName(e.target.value)}} />
+              <input
+                className="comment"
+                type="text" 
+                value={name}
+                onChange={(e) => {setName(e.target.value)}}
+                onKeyDown={(e) => restore(e, setName, info.name)}
+              />
             </div>
             {!edit ? info.name : null}
           </td>
           <td style={{display: optionalFields.grid ? "" : "none"}} className="infoCells">
             <div className="fieldContainer" style={{display: edit ? "flex" : "none"}}>
-              <input className="freqField" type={edit ? "text" : "hidden"} value={grid} onChange={(e) => {setGrid(e.target.value)}} />
+              <input
+                className="freqField"
+                type="text"
+                value={grid}
+                onChange={(e) => {setGrid(e.target.value)}}
+                onKeyDown={(e) => restore(e, setGrid, info.grid)}
+              />
             </div>
             {!edit ? info.grid : null}
           </td>
           <td style={{display: optionalFields.serialSent ? "" : "none"}} className="infoCells">
             <div className="fieldContainer" style={{display: edit ? "flex" : "none"}}>
-              <input className="freqField" type="text" value={serialSent} onChange={(e) => {setSerialSent(e.target.value.replace(/[^\d]/g, ""))}} />
+              <input
+                className="freqField"
+                type="text" value={serialSent} 
+                onChange={(e) => {setSerialSent(e.target.value.replace(/[^\d]/g, ""))}}
+                onKeyDown={(e) => restore(e, setSerialSent, info.serialSent)}
+              />
             </div>
             {!edit ? info.serialSent : null}
           </td>
           <td style={{display: optionalFields.serialRcv ? "" : "none"}} className="infoCells">
             <div className="fieldContainer" style={{display: edit ? "flex" : "none"}}>
-              <input className="freqField" type="text" value={serialRcv} onChange={(e) => {setSerialRcv(e.target.value.replace(/[^\d]/g, ""))}} />
+              <input
+                className="freqField"
+                type="text"
+                value={serialRcv}
+                onChange={(e) => {setSerialRcv(e.target.value.replace(/[^\d]/g, ""))}}
+                onKeyDown={(e) => restore(e, setSerialRcv, info.serialRcv)}
+              />
             </div>
             {!edit ? info.serialRcv : null}
           </td>
           <td style={{display: optionalFields.comment ?  "" : "none"}} className="infoCells">
             <div className="fieldContainer" style={{display: edit ? "flex" : "none"}}>
-              <input className="comment" type="text" value={comment} onChange={(e) => {setComment(e.target.value)}} />
+              <input
+                className="comment"
+                type="text"
+                value={comment} onChange={(e) => {setComment(e.target.value)}}
+                onKeyDown={(e) => restore(e, setComment, info.comment)}
+              />
             </div>
             {!edit ? info.comment : null}
           </td>
@@ -145,6 +183,8 @@ function TableRow({info, activeInfo, click, optionalFields, editField}){
                   setError={setValid}
                   value={callSignValue}
                   setValue={setCallSignValue}
+                  initValue={info.call}
+                  restore={restore}
                   type="Callsign" /> : null}
                 
                 {!edit ? info.call : null}
@@ -158,6 +198,8 @@ function TableRow({info, activeInfo, click, optionalFields, editField}){
                   setError={setValid}
                   value={freqValue}
                   setValue={setFreqValue}
+                  initValue={info.freq}
+                  restore={restore}
                   type="Freq"
                   exp={/[^\d.]/g} /> : null}
                 
@@ -179,25 +221,49 @@ function TableRow({info, activeInfo, click, optionalFields, editField}){
               </td>
               <td className="infoCells">
                 <div className="fieldContainer" style={{display: edit ? "flex" : "none"}}>
-                  <input className="sigRep" type="text" value={sentRep} onChange={(e) => {setSentRep(e.target.value.replace(/[^\d]/g, ""))}} />
+                  <input
+                    className="sigRep"
+                    type="text"
+                    value={sentRep}
+                    onChange={(e) => {setSentRep(e.target.value.replace(/[^\d]/g, ""))}} 
+                    onKeyDown={(e) => restore(e, setSentRep, info.sRep)}
+                  />
                 </div>
                 {!edit ? info.sRep : null}
               </td>
               <td className="infoCells">
                 <div className="fieldContainer" style={{display: edit ? "flex" : "none"}}>
-                  <input className="sigRep" type="text" value={recRep} onChange={(e) => {setRecRep(e.target.value.replace(/[^\d]/g, ""))}} />
+                  <input
+                    className="sigRep"
+                    type="text"
+                    value={recRep}
+                    onChange={(e) => {setRecRep(e.target.value.replace(/[^\d]/g, ""))}} 
+                    onKeyDown={(e) => restore(e, setRecRep, info.rRep)}
+                  />
                 </div>
                 {!edit ? info.rRep : null}
               </td>
               <td className="infoCells">
                 <div className="fieldContainer" style={{display: edit ? "flex" : "none"}}>
-                  <input className="dateField" type="date" value={contactDate} onChange={(e) => {setContactDate(e.target.value)}} />
+                  <input
+                    className="dateField"
+                    type="date"
+                    value={contactDate}
+                    onChange={(e) => {setContactDate(e.target.value)}}
+                    onKeyDown={(e) => restore(e, setContactDate, info.contactDate)}
+                  />
                 </div>
                 {!edit ? info.contactDate : null}
               </td>
               <td className="infoCells">
                 <div className="fieldContainer" style={{display: edit ? "flex" : "none"}}>
-                  <input className="dateField" type="time" value={contactTime} onChange={(e) => {setContactTime(e.target.value)}} />
+                  <input
+                    className="dateField"
+                    type="time"
+                    value={contactTime}
+                    onChange={(e) => {setContactTime(e.target.value)}}
+                    onKeyDown={(e) => restore(e, setContactTime, info.contactTime)}
+                  />
                 </div>
                 {!edit ? info.contactTime : null}
               </td>

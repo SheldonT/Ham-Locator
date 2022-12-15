@@ -35,11 +35,12 @@ export function validateInput(obj, flag, setFlag){
     setFlag({...flag, [obj.type]: val});
 }
 
-function ValidateField({message, style, value, setValue, type, error, setError, refrence, exp}){
+function ValidateField({message, style, value, setValue, type, error, setError, initValue, restore, refrence, exp}){
 
     return(
         <div className="fieldContainer">
-            <input className={style}
+            <input
+                className={style}
                 ref={refrence}
                 type="text" placeholder={type}
                 value={value}
@@ -49,8 +50,9 @@ function ValidateField({message, style, value, setValue, type, error, setError, 
                 }}
                 onBlur={(e) => {
                     validateInput({type: type, value: e.target.value}, error, setError);
-                }
-            }/>
+                }}
+                onKeyDown={(e) => {if (restore) restore(e, setValue, initValue)}}
+            />
 
             <div className="errorPopUp" style={{display: error[type] ? "flex" : "none"}}>
                 <img className="errorImg" src={attention} alt="Exclaimation Mark" />
