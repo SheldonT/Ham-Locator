@@ -89,19 +89,19 @@ function InputBar ({setInfo, resetExtra, optionalFields}) {
                 }}/>
             </div>
             
-            <div className="fieldContainer" style={{display: optionalFields.name ? "flex" : "none"}}>
+            <div className="fieldContainer" style={{display: ((optionalFields) && (optionalFields.name)) ? "flex" : "none"}}>
                 <input className="comment" type="text" placeholder="Name" value={name} onChange={(e)=> {
                     setName(e.target.value);
                 }}/>
             </div>
             
-            <div className="fieldContainer" style={{display: optionalFields.grid ? "flex" : "none"}}>
+            <div className="fieldContainer" style={{display: ((optionalFields) && (optionalFields.grid)) ? "flex" : "none"}}>
                 <input className="freqField" type="text" placeholder="Grid" value={grid} onChange={(e)=> {
                     setGrid(e.target.value);
                 }}/>
             </div>
 
-            <div className="fieldContainer" style={{display: optionalFields.serialSent ? "flex" : "none"}}>
+            <div className="fieldContainer" style={{display: ((optionalFields) && (optionalFields.serialSent)) ? "flex" : "none"}}>
                 <input className="freqField" type="text" placeholder="SRN" value={serialSent} onChange={(e)=> {
                     setSerialSent(e.target.value.replace(/[^\d]/g, ""));
                 }} onBlur={ () => {
@@ -109,13 +109,13 @@ function InputBar ({setInfo, resetExtra, optionalFields}) {
                 }}/>
             </div>
 
-            <div className="fieldContainer" style={{display: optionalFields.serialRcv ? "flex" : "none"}}>
+            <div className="fieldContainer" style={{display: ((optionalFields) && (optionalFields.serialRcv)) ? "flex" : "none"}}>
                 <input className="freqField" type="text" placeholder="STN" value={serialRcv} onChange={(e)=> {
                     setSerialRcv(e.target.value.replace(/[^\d]/g, ""));
                 }}/>
             </div>
 
-            <div className="fieldContainer" style={{display: optionalFields.comment ? "flex" : "none"}}>
+            <div className="fieldContainer" style={{display: ((optionalFields) && (optionalFields.comment)) ? "flex" : "none"}}>
                 <input className="comment" type="text" placeholder="Comments" value={comment} onChange={(e)=> {
                     setComment(e.target.value);
                 }}/>
@@ -133,18 +133,3 @@ function InputBar ({setInfo, resetExtra, optionalFields}) {
 }
 
 export default InputBar;
-
-/*<div className="fieldContainer">
-<input className="freqField"
-    type="text" placeholder="Freq"
-    value={freqValue}
-    onChange={(e) => {
-        setFreqValue(e.target.value.replace(/[^\d.]/g, ""));
-        validateInput({type: "freq", value: e.target.value}, error, setError);
-    }}
-    onBlur={(e) => {
-        validateInput({type: "freq", value: e.target.value}, error, setError);
-    }
-}/>
-{error.freq ? <ErrorMessage message="This is not an amateur frequency." /> : null}
-</div>*/
