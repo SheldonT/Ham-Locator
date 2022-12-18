@@ -55,7 +55,13 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
       className="inputBar"
       onKeyDown={(e) => {
         if (e.key === "Enter") {
-          getContact();
+          if (callSignValue === "") {
+            setValid({ ...valid, Callsign: true });
+          } else if (freqValue === "") {
+            setValid({ ...valid, Freq: true });
+          } else {
+            getContact();
+          }
         }
       }}
     >
@@ -226,7 +232,11 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
       <button
         className="submitButton"
         onClick={() => {
-          if (callSignValue !== "") {
+          if (callSignValue === "") {
+            setValid({ ...valid, Callsign: true });
+          } else if (freqValue === "") {
+            setValid({ ...valid, Freq: true });
+          } else if (callSignValue !== "") {
             //ignores the mouse click if callsign value is an empty string
             getContact(); //prevents the events from trying to gather the data twice
           }

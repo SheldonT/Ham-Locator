@@ -1,32 +1,47 @@
-.settings{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    margin: auto 2rem 2rem 2rem;
-    height: 2.5rem;
-    width: 2.5rem;
-  }
+/** @format */
 
-  .settingsIcon {
-    height: inherit;
-    width: inherit;
-  }
+.settings {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: auto 2rem 2rem 2rem;
+  height: 2.5rem;
+  width: 2.5rem;
+}
 
-  .settingsIcon:hover{
-    cursor: pointer;
-  }
+.settingsIcon {
+  height: inherit;
+  width: inherit;
+}
 
-  .settingsHead{
-    font-size: 1.6rem;
-    text-decoration: underline;
-    margin: 1rem 2rem 1rem 2rem;
-    white-space: nowrap;
-  }
+.settingsIcon:hover {
+  cursor: pointer;
+}
 
-  .settingsEl{
-    display: flex;
-    flex-direction: row;
-    font-size: 1.6rem;
-    margin: 0.5rem 2rem 0.5rem 3rem;
-    white-space: nowrap;
-  }
+.settingsHead {
+  font-size: 1.6rem;
+  text-decoration: underline;
+  margin: 1rem 2rem 1rem 2rem;
+  white-space: nowrap;
+}
+
+.settingsEl {
+  display: flex;
+  flex-direction: row;
+  font-size: 1.6rem;
+  margin: 0.5rem 2rem 0.5rem 3rem;
+  white-space: nowrap;
+}
+
+.settingsLink {
+  display: flex;
+  flex-direction: row;
+  font-size: 1.6rem;
+  margin: 0.5rem 2rem 0.5rem 3.5rem;
+  white-space: nowrap;
+}
+
+.settingsLink:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

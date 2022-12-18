@@ -105,13 +105,11 @@ function Settings({
           <label htmlFor="leadLines">Show Lead Lines</label>
         </div>
 
-        <div className="settingsEl">
-          <button className="options" onClick={() => setHomeVis(true)}>
-            Change Home
-          </button>
+        <div className="settingsLink" onClick={() => setHomeVis(true)}>
+          Change Home...
         </div>
 
-        <div className="settingsEl">
+        <div className="settingsHead">
           <button className="options" onClick={() => setOpenSettings(false)}>
             Done
           </button>

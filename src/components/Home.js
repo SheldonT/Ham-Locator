@@ -43,6 +43,7 @@ function Home({ setVis, setHome }) {
               initValue={homeCall}
               type="Callsign"
             />
+            <span className="demo">* Enter "DEMO" for testing</span>
           </div>
 
           <div className="inputCont">

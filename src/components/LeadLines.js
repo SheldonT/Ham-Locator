@@ -7,7 +7,7 @@ function LeadLines({ home, info }) {
     <>
       {info.map((line) => (
         <Polyline
-          pathOptions={{ color: "black" }}
+          pathOptions={{ color: "black", weight: 0.5 }}
           positions={[home.anchor, line.anchor]}
           key={line.id}
         />
