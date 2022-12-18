@@ -1,5 +1,7 @@
-:root{
-  --pageBg: #1d3557;/*#62b6cb;*/
+/** @format */
+
+:root {
+  --pageBg: #1d3557; /*#62b6cb;*/
   --mainContainerBg: #edf6f9; /*#bee9e8;*/
   --infoBarColor: white;
   --infoHeaderColor: #dddddd;
@@ -7,28 +9,28 @@
   --shadowColor: #a6a6a6;
 }
 
-html{
+html {
   font-size: 10px; /*change default font size so 1rem = 10px rather than 16*/
 }
 
-body{
+body {
   font-family: "Roboto", sans-serif;
   background-color: var(--pageBg);
 }
 
-.title{
+.title {
   display: flex;
   flex-direction: row;
   max-width: 100rem;
   margin: 0 auto 0 auto;
 }
 
-.logo{
+.logo {
   height: 6vh;
   margin: 1rem 0 1rem 2rem;
 }
 
-.main{
+.main {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -42,47 +44,46 @@ body{
   font-size: 1.6rem; /*change font size to 1.6rem to equal browser default of 16px*/
 }
 
-.stationInfo{
+.stationInfo {
   width: 100%;
   height: 40%;
 }
 
-.flagIcon{
+.flagIcon {
   margin: 0 1rem 0 0.5rem;
 }
 
-.extraCells{
+.extraCells {
   text-align: left;
 }
 
-.callInput{
+.callInput {
   width: 100%;
 }
 
-.footer{
+.footer {
   text-align: center;
   max-width: 100rem;
   margin: 0 auto 0 auto;
   color: white;
 }
 
-.routeMain{
+.routeMain {
   margin: 0 5rem 0 5rem;
 }
 
-.menuBar{
+.menuBar {
   display: flex;
   flex-direction: row;
   margin: auto 0 2rem auto;
 }
 
-.menuEl{
-  
+.menuEl {
   margin: auto 2rem 0 2rem;
   font-size: 1.6rem;
 }
 
-a:link{
+a:link {
   color: #ffba08;
 }
 
@@ -90,40 +91,32 @@ a:visited {
   color: #f48c06;
 }
 
-@media (min-width: 42.1rem) and (max-width: 63rem){
-
-  .logo{
+@media (min-width: 42.1rem) and (max-width: 63rem) {
+  .logo {
     height: 4vh;
   }
 }
 
-@media (min-width: 29.1rem) and (max-width: 42rem){
-
-  .logo{
+@media (min-width: 29.1rem) and (max-width: 42rem) {
+  .logo {
     height: 4vh;
   }
-
 }
 
-@media (min-width: 16.1rem) and (max-width: 29rem){
-
-  .logo{
+@media (min-width: 16.1rem) and (max-width: 29rem) {
+  .logo {
     height: 4vh;
   }
-
 }
 
-@media (max-width: 16rem){
-
-  .logo{
+@media (max-width: 16rem) {
+  .logo {
     height: 4vh;
   }
-
 }
 
-@media (max-height: 27rem){
-
-  .logo{
+@media (max-height: 27rem) {
+  .logo {
     height: 10vh;
     margin: 1rem 0 2rem 2rem;
   }

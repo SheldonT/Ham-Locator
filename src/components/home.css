@@ -1,0 +1,42 @@
+/** @format */
+.homeBG {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  background-color: rgba(166, 166, 166, 0.6);
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1001;
+}
+
+.homeTitle {
+  margin: auto 2rem 2rem 2rem;
+}
+
+.homeDialog {
+  background-color: white;
+  border-radius: 1rem 1rem 1rem 1rem;
+  width: 40%;
+}
+
+.homeContent {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem auto 2rem auto;
+}
+
+.inputCont {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: auto auto auto 0;
+  padding-left: 5rem;
+}
+
+.submitButton {
+  margin-left: 0;
+}

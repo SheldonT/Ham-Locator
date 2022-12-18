@@ -1,27 +1,40 @@
+/** @format */
 
-import {Marker, useMap} from 'react-leaflet';
+import { Marker, useMap } from "react-leaflet";
+import redMarker from "../assets/leafletImages/home-icon.png";
+import { Icon } from "leaflet";
 
+function Anchor({ info, selectedInfo, action, setIsOpen, isHome }) {
+  const map = useMap();
 
-function Anchor({info, selectedInfo, action, setIsOpen}) {
+  const homeIcon = Icon.extend({
+    options: {},
+  });
 
-    const map = useMap();
+  const redIcon = new homeIcon({
+    iconUrl: redMarker,
+    iconSize: [30, 54],
+    iconAnchor: [15, 54],
+  });
 
-    if (selectedInfo){
-        map.flyTo([selectedInfo.anchor[0] - 5, selectedInfo.anchor[1]], 3);
-    }
+  if (selectedInfo) {
+    map.flyTo([selectedInfo.anchor[0] - 5, selectedInfo.anchor[1]], 3);
+  }
 
-    return(
-            <Marker position={info.anchor}
-                eventHandlers={{
-                    click: () => {
-                        map.flyTo([info.anchor[0] - 5, info.anchor[1]]);
-                        action(info);
-                        setIsOpen(true);
-                    },
-                }}>
-            </Marker>
-    );
-
+  return !isHome ? (
+    <Marker
+      position={info.anchor}
+      eventHandlers={{
+        click: () => {
+          map.flyTo([info.anchor[0] - 5, info.anchor[1]]);
+          action(info);
+          setIsOpen(true);
+        },
+      }}
+    ></Marker>
+  ) : (
+    <Marker position={info.anchor} icon={redIcon}></Marker>
+  );
 }
 
 export default Anchor;
