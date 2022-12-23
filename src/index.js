@@ -22,12 +22,11 @@ function HamLocator() {
     JSON.parse(localStorage.getItem("home") || "{}")
   );
 
-  if (
+  /*if (
     homeData &&
     homeData.call.toUpperCase() === "DEMO" &&
     homeData.country === ""
   ) {
-    console.log(homeData);
     const demoData = {
       call: homeData.call,
       anchor: [51.53, -0.12],
@@ -36,8 +35,7 @@ function HamLocator() {
       unit: "imperial",
     };
     setHomeData(demoData);
-  }
-
+  }*/
   return (
     <BrowserRouter>
       <Routes>
