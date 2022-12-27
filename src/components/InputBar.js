@@ -5,7 +5,7 @@ import ValidateField from "./ValidateField.js";
 import "./inputBar.css";
 import "./popUp.css";
 
-function InputBar({ setInfo, resetExtra, optionalFields }) {
+function InputBar({ info, setInfo, resetExtra, optionalFields }) {
   const [callSignValue, setCallSignValue] = useState("");
   const [freqValue, setFreqValue] = useState("");
   const [mode, setMode] = useState("SSB");
@@ -16,12 +16,16 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
   const [serialSent, setSerialSent] = useState(1);
   const [serialRcv, setSerialRcv] = useState("");
   const [comment, setComment] = useState("");
-  const [valid, setValid] = useState({ Callsign: false, Freq: false });
+
+  const [valid, setValid] = useState(true);
+  const [warning, setWarning] = useState(true);
 
   const callField = useRef();
 
   const getContact = () => {
-    if (!valid.Callsign && !valid.Freq) {
+    if (!valid) {
+      setWarning(false);
+    } else {
       const ci = {
         call: callSignValue.toUpperCase(),
         freq: freqValue,
@@ -45,9 +49,8 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
       setSerialRcv("");
       setComment("");
       resetExtra(); //can this be done in Location.js
-
-      callField.current.focus();
     }
+    callField.current.focus();
   };
 
   return (
@@ -55,13 +58,7 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
       className="inputBar"
       onKeyDown={(e) => {
         if (e.key === "Enter") {
-          if (callSignValue === "") {
-            setValid({ ...valid, Callsign: true });
-          } else if (freqValue === "") {
-            setValid({ ...valid, Freq: true });
-          } else {
-            getContact();
-          }
+          getContact();
         }
       }}
     >
@@ -70,20 +67,24 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
         style="callField"
         value={callSignValue}
         setValue={setCallSignValue}
-        error={valid}
-        setError={setValid}
         type="Callsign"
         refrence={callField}
+        valid={valid}
+        setValid={setValid}
+        warning={warning}
+        setWarning={setWarning}
       />
       <ValidateField
         message="This is not an amateur frequency."
         style="freqField"
         value={freqValue}
         setValue={setFreqValue}
-        error={valid}
-        setError={setValid}
         type="Freq"
         exp={/[^\d.]/g}
+        valid={valid}
+        setValid={setValid}
+        warning={warning}
+        setWarning={setWarning}
       />
 
       <div
@@ -231,12 +232,8 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
 
       <button
         className="submitButton"
-        onClick={() => {
-          if (callSignValue === "") {
-            setValid({ ...valid, Callsign: true });
-          } else if (freqValue === "") {
-            setValid({ ...valid, Freq: true });
-          } else if (callSignValue !== "") {
+        onClick={(e) => {
+          if (callSignValue !== "") {
             //ignores the mouse click if callsign value is an empty string
             getContact(); //prevents the events from trying to gather the data twice
           }

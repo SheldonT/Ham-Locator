@@ -114,6 +114,7 @@ function Location({ optionalFields, setHome, homeData, lines }) {
         />
 
         <InputBar
+          info={contactInfo}
           setInfo={setContactInfo}
           resetExtra={setExtraInfo}
           optionalFields={optionalFields}
