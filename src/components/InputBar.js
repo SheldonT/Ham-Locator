@@ -25,6 +25,7 @@ function InputBar({ info, setInfo, resetExtra, optionalFields }) {
   const getContact = () => {
     if (!valid) {
       setWarning(false);
+      setValid(true);
     } else {
       const ci = {
         call: callSignValue.toUpperCase(),

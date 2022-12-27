@@ -56,6 +56,7 @@ function ValidateField({
           setBorder(validStyle);
           setErrorMsg("");
         }
+
         break;
       case "Freq":
         if (v.length === 0) {
@@ -84,7 +85,6 @@ function ValidateField({
         break;
 
       default:
-        //setValid(true);
         setBorder(validStyle);
         errorMsg = "";
     }

@@ -11,12 +11,17 @@ function Home({ setVis, setHome }) {
     JSON.parse(localStorage.getItem("home") || '{"call": ""}').call
   );
   const [unit, setUnit] = useState("metric");
-  const [valid, setValid] = useState({ Callsign: false, Grid: false });
+
+  const [valid, setValid] = useState(true);
+  const [warning, setWarning] = useState(true);
 
   const homeResp = useFetch(homeCall);
 
   const submit = () => {
-    if (valid.Callsign === false && homeCall !== "") {
+    if (!valid) {
+      setWarning(false);
+      setValid(true);
+    } else {
       const home = { call: homeCall, unit: unit, ...homeResp };
 
       localStorage.setItem("home", JSON.stringify(home));
@@ -36,14 +41,18 @@ function Home({ setVis, setHome }) {
             <ValidateField
               message="Enter your callsign."
               style="callField"
-              error={valid}
-              setError={setValid}
+              valid={valid}
+              setValid={setValid}
+              warning={warning}
+              setWarning={setWarning}
               value={homeCall}
               setValue={setHomeCall}
-              initValue={homeCall}
+              initValue={
+                JSON.parse(localStorage.getItem("home") || '{"call": ""}').call
+              }
               type="Callsign"
             />
-            <span className="demo">* Enter "DEMO" for testing</span>
+            {/*<span className="demo">* Enter "DEMO" for testing</span>*/}
           </div>
 
           <div className="inputCont">
