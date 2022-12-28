@@ -54,6 +54,10 @@ function InputBar({ info, setInfo, resetExtra, optionalFields }) {
     callField.current.focus();
   };
 
+  const liveOut = (val) => {
+    console.log(val);
+  };
+
   return (
     <div
       className="inputBar"
@@ -74,6 +78,7 @@ function InputBar({ info, setInfo, resetExtra, optionalFields }) {
         setValid={setValid}
         warning={warning}
         setWarning={setWarning}
+        onUpdate={liveOut}
       />
       <ValidateField
         message="This is not an amateur frequency."

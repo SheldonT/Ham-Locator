@@ -27,6 +27,7 @@ function ValidateField({
   refrence,
   warning,
   setWarning,
+  onUpdate,
   exp,
 }) {
   const warningStyle = {
@@ -92,6 +93,8 @@ function ValidateField({
     if (valid) setValid(validBuffer);
   };
 
+  if (!onUpdate) onUpdate = (e) => {};
+
   return (
     <div className="fieldContainer">
       <input
@@ -103,6 +106,7 @@ function ValidateField({
         value={value}
         onChange={(e) => {
           validateInput(e.target.value.replace(exp, ""));
+          onUpdate(e.target.value.replace(exp, ""));
         }}
         onBlur={(e) => {
           validateInput(e.target.value.replace(exp, ""));

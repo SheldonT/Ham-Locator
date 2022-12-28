@@ -105,7 +105,13 @@ function Settings({
           <label htmlFor="leadLines">Show Lead Lines</label>
         </div>
 
-        <div className="settingsLink" onClick={() => setHomeVis(true)}>
+        <div
+          className="settingsLink"
+          onClick={() => {
+            setHomeVis(true);
+            setOpenSettings(false);
+          }}
+        >
           Change Home...
         </div>
 

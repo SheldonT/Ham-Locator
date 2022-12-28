@@ -1,5 +1,5 @@
 /** @format */
-import { useState } from "react";
+import { useState, useRef } from "react";
 import FocusTrap from "focus-trap-react";
 import ValidateField from "./ValidateField.js";
 import useFetch from "../useFetch.js";
@@ -15,6 +15,8 @@ function Home({ setVis, setHome }) {
   const [valid, setValid] = useState(true);
   const [warning, setWarning] = useState(true);
 
+  const callField = useRef();
+
   const homeResp = useFetch(homeCall);
 
   const submit = () => {
@@ -29,6 +31,8 @@ function Home({ setVis, setHome }) {
       setHome(home);
       setVis(false);
     }
+
+    callField.current.focus();
   };
 
   return (
@@ -51,6 +55,7 @@ function Home({ setVis, setHome }) {
                 JSON.parse(localStorage.getItem("home") || '{"call": ""}').call
               }
               type="Callsign"
+              refrence={callField}
             />
             {/*<span className="demo">* Enter "DEMO" for testing</span>*/}
           </div>
