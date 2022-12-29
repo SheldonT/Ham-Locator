@@ -2,10 +2,12 @@
 
 import { useState, useRef } from "react";
 import ValidateField from "./ValidateField.js";
+import ExtraInfo from "./ExtraInfo.js";
+import callsign from "callsign";
 import "./inputBar.css";
 import "./popUp.css";
 
-function InputBar({ info, setInfo, resetExtra, optionalFields }) {
+function InputBar({ setInfo, resetExtra, optionalFields }) {
   const [callSignValue, setCallSignValue] = useState("");
   const [freqValue, setFreqValue] = useState("");
   const [mode, setMode] = useState("SSB");
@@ -17,16 +19,33 @@ function InputBar({ info, setInfo, resetExtra, optionalFields }) {
   const [serialRcv, setSerialRcv] = useState("");
   const [comment, setComment] = useState("");
 
-  const [valid, setValid] = useState(true);
-  const [warning, setWarning] = useState(true);
+  const [validCall, setValidCall] = useState(false);
+  const [validFreq, setValidFreq] = useState(false);
+  const [warningCall, setWarningCall] = useState(true);
+  const [warningFreq, setWarningFreq] = useState(true);
 
   const callField = useRef();
+  const freqField = useRef();
+
+  const popupStyle = {
+    borderRadius: "1.5rem 1.5rem 1.5rem 0",
+    width: "auto",
+    top: "auto",
+    left: "10%",
+    bottom: "100%",
+    right: "auto",
+  };
 
   const getContact = () => {
-    if (!valid) {
-      setWarning(false);
-      setValid(true);
-    } else {
+    if (!validCall) {
+      setWarningCall(false);
+    }
+
+    if (!validFreq) {
+      setWarningFreq(false);
+    }
+
+    if (validCall && validFreq) {
       const ci = {
         call: callSignValue.toUpperCase(),
         freq: freqValue,
@@ -54,8 +73,15 @@ function InputBar({ info, setInfo, resetExtra, optionalFields }) {
     callField.current.focus();
   };
 
-  const liveOut = (val) => {
-    console.log(val);
+  const liveOut = (c) => {
+    let cInfo = callsign.getAmateurRadioInfoByCallsign(c);
+
+    if (cInfo) {
+      cInfo = { ...cInfo, country: cInfo.area, call: cInfo.area };
+      delete cInfo.area;
+    }
+
+    return cInfo;
   };
 
   return (
@@ -67,30 +93,36 @@ function InputBar({ info, setInfo, resetExtra, optionalFields }) {
         }
       }}
     >
-      <ValidateField
-        message="Enter an amateur callsign."
-        style="callField"
-        value={callSignValue}
-        setValue={setCallSignValue}
-        type="Callsign"
-        refrence={callField}
-        valid={valid}
-        setValid={setValid}
-        warning={warning}
-        setWarning={setWarning}
-        onUpdate={liveOut}
-      />
+      <div style={{ position: "relative" }}>
+        <ValidateField
+          message="Enter an amateur callsign."
+          style="callField"
+          value={callSignValue}
+          setValue={setCallSignValue}
+          type="Callsign"
+          refrence={callField}
+          valid={validCall}
+          setValid={setValidCall}
+          warning={warningCall}
+          setWarning={setWarningCall}
+        />
+        {callSignValue.length >= 2 ? (
+          <ExtraInfo info={liveOut(callSignValue)} infoStyle={popupStyle} />
+        ) : null}
+      </div>
+
       <ValidateField
         message="This is not an amateur frequency."
         style="freqField"
         value={freqValue}
         setValue={setFreqValue}
         type="Freq"
+        refrence={freqField}
         exp={/[^\d.]/g}
-        valid={valid}
-        setValid={setValid}
-        warning={warning}
-        setWarning={setWarning}
+        valid={validFreq}
+        setValid={setValidFreq}
+        warning={warningFreq}
+        setWarning={setWarningFreq}
       />
 
       <div
@@ -235,7 +267,6 @@ function InputBar({ info, setInfo, resetExtra, optionalFields }) {
           }}
         />
       </div>
-
       <button
         className="submitButton"
         onClick={(e) => {

@@ -4,7 +4,6 @@ import { bandDef } from "../constants.js";
 import attention from "../assets/attention.svg";
 import "./popUp.css";
 import "./inputBar.css";
-import { UserProps } from "victory";
 
 function ErrorMessage({ message }) {
   return (
@@ -27,7 +26,6 @@ function ValidateField({
   refrence,
   warning,
   setWarning,
-  onUpdate,
   exp,
 }) {
   const warningStyle = {
@@ -54,6 +52,7 @@ function ValidateField({
           setBorder(warningStyle);
           setErrorMsg("Enter an amateur callsign.");
         } else {
+          validBuffer = true;
           setBorder(validStyle);
           setErrorMsg("");
         }
@@ -73,6 +72,7 @@ function ValidateField({
               parseFloat(v) >= parseFloat(bandDef[i].low) && //error condition: if a VALID frequency is entered...
               parseFloat(v) <= parseFloat(bandDef[i].high)
             ) {
+              validBuffer = true;
               setBorder(validStyle);
               setErrorMsg(""); //assign empty string and...
               break; // break from for loop
@@ -90,10 +90,8 @@ function ValidateField({
         errorMsg = "";
     }
 
-    if (valid) setValid(validBuffer);
+    setValid(validBuffer);
   };
-
-  if (!onUpdate) onUpdate = (e) => {};
 
   return (
     <div className="fieldContainer">
@@ -106,16 +104,12 @@ function ValidateField({
         value={value}
         onChange={(e) => {
           validateInput(e.target.value.replace(exp, ""));
-          onUpdate(e.target.value.replace(exp, ""));
         }}
         onBlur={(e) => {
           validateInput(e.target.value.replace(exp, ""));
         }}
         onKeyDown={(e) => {
           if (restore) restore(e, setValue, initValue);
-        }}
-        onFocus={() => {
-          if (!warning) setWarning(true);
         }}
       />
       {!warning && errorMsg !== "" ? <ErrorMessage message={errorMsg} /> : null}
