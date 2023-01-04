@@ -1,0 +1,15 @@
+/** @format */
+
+.popUp {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--infoBarColor);
+  box-shadow: 0.2rem 0.2rem 0.5rem var(--shadowColor);
+  padding: 1rem;
+}
+
+.icon {
+  height: 3rem;
+  width: 3rem;
+}

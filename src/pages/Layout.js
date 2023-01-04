@@ -5,6 +5,7 @@ import logo from "../assets/hl-logo.svg";
 import Menu from "../components/Menu.js";
 import Home from "../components/Home.js";
 import Settings from "../components/Settings.js";
+import Pages from "./Pages.module.css";
 
 function Layout({
   optionalFields,
@@ -33,7 +34,7 @@ function Layout({
 
       <div className="main" id="main">
         {vis ? (
-          <div className="homeBG">
+          <div className={Pages.homeBG}>
             <Home setVis={setVis} setHome={setData} />
           </div>
         ) : null}

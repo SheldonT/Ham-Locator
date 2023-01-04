@@ -58,16 +58,36 @@
   width: 10rem;
 }
 
-.submitButton {
-  padding: 0.5rem;
-  margin: 0.5rem 1rem 0 0.5rem;
-}
-
 .fieldContainer {
   display: flex;
   position: relative;
   padding: 0;
   margin: 0.5rem 1rem 0 0.5rem;
+}
+
+.errorPopUp {
+  flex-direction: row;
+  color: white;
+  border-radius: 0 1rem 1rem 1rem;
+  background-color: #023047;
+  box-shadow: 0.2rem 0.2rem 0.5rem var(--shadowColor);
+  margin: 0.2rem;
+  padding: 1rem;
+  width: 12vw;
+  top: 100%;
+  left: 0%;
+  z-index: 410;
+}
+
+.errorText {
+  font-size: 1.3rem;
+  font-weight: normal;
+  margin: auto 0 auto 1rem;
+}
+
+.errorImg {
+  height: 3rem;
+  width: 3rem;
 }
 
 @media (min-width: 59.1rem) and (max-width: 63rem) {

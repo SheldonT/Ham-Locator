@@ -2,9 +2,9 @@
 import { useState, useRef } from "react";
 import FocusTrap from "focus-trap-react";
 import ValidateField from "./ValidateField.js";
+import Button from "./Button.js";
 import useFetch from "../useFetch.js";
-import "./inputBar.css";
-import "./home.css";
+import home from "./home.module.css";
 
 function Home({ setVis, setHome }) {
   const [homeCall, setHomeCall] = useState(
@@ -37,10 +37,10 @@ function Home({ setVis, setHome }) {
 
   return (
     <FocusTrap>
-      <div className="homeDialog">
-        <div className="homeContent">
-          <h3 className="homeTitle">Enter your home information...</h3>
-          <div className="inputCont">
+      <div className={home.homeDialog}>
+        <div className={home.homeContent}>
+          <h3 className={home.homeTitle}>Enter your home information...</h3>
+          <div className={home.inputCont}>
             <label>Callsign: </label>
             <ValidateField
               message="Enter your callsign."
@@ -60,7 +60,7 @@ function Home({ setVis, setHome }) {
             {/*<span className="demo">* Enter "DEMO" for testing</span>*/}
           </div>
 
-          <div className="inputCont">
+          <div className={home.inputCont}>
             <label>Units: </label>
             <input
               type="radio"
@@ -80,10 +80,8 @@ function Home({ setVis, setHome }) {
             />
             <label htmlFor="metric">Imperial</label>
           </div>
-          <div className="inputCont">
-            <button className="submitButton" onClick={submit}>
-              Submit
-            </button>
+          <div className={home.inputCont}>
+            <Button name="Submit" clickEvent={submit} />
           </div>
         </div>
       </div>

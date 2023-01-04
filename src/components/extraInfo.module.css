@@ -39,6 +39,10 @@
   margin: 0 0 0.5rem 0;
 }
 
+.flagIcon {
+  margin: 0 1rem 0 0.5rem;
+}
+
 @media (min-width: 42.1rem) and (max-width: 63rem) {
   .markerInfo {
     width: 15vw;

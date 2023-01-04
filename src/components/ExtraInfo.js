@@ -3,7 +3,7 @@
 import { countryCode } from "../constants.js";
 import Flag from "react-world-flags";
 import { getDistance } from "geolib";
-import "./extraInfo.css";
+import extraInfo from "./extraInfo.module.css";
 
 function ExtraInfo({ info, home, infoStyle }) {
   let code;
@@ -21,10 +21,10 @@ function ExtraInfo({ info, home, infoStyle }) {
     locDetails = info.details;
     callSign = info.call;
     time = info.time ? (
-      <div className="extraDetails">Time Zone: {info.time} UTC </div>
+      <div className={extraInfo.extraDetails}>Time Zone: {info.time} UTC </div>
     ) : null;
     itu = info.itu ? (
-      <div className="extraDetails"> ITU Zone: {info.itu}</div>
+      <div className={extraInfo.extraDetails}> ITU Zone: {info.itu}</div>
     ) : null;
   }
 
@@ -41,7 +41,7 @@ function ExtraInfo({ info, home, infoStyle }) {
     }
 
     distance = (
-      <div className="extraDetails">
+      <div className={extraInfo.extraDetails}>
         Distance:{" "}
         {dist.toString().concat(home.unit === "imperial" ? " mi" : " km")}
       </div>
@@ -49,21 +49,23 @@ function ExtraInfo({ info, home, infoStyle }) {
   }
 
   return (
-    <div className="markerInfo" style={infoStyle ? infoStyle : null}>
-      <div className="extraHeader">
+    <div className={extraInfo.markerInfo} style={infoStyle ? infoStyle : null}>
+      <div className={extraInfo.extraHeader}>
         {callSign}
-        <div className="flagIcon">
+        <div className={extraInfo.flagIcon}>
           <Flag code={code} height={20} />
         </div>
       </div>
       {locDetails ? (
-        <div className="extraRow">
-          <div className="extraDetails">{locDetails}</div>
+        <div className={extraInfo.extraRow}>
+          <div className={extraInfo.extraDetails}>{locDetails}</div>
         </div>
       ) : null}
-      {time ? <div className="extraRow">{time}</div> : null}
-      {itu ? <div className="extraRow">{itu}</div> : null}
-      {distance !== "" ? <div className="extraRow">{distance}</div> : null}
+      {time ? <div className={extraInfo.extraRow}>{time}</div> : null}
+      {itu ? <div className={extraInfo.extraRow}>{itu}</div> : null}
+      {distance !== "" ? (
+        <div className={extraInfo.extraRow}>{distance}</div>
+      ) : null}
     </div>
   );
 }

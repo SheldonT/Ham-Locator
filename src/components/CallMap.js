@@ -5,7 +5,6 @@ import { MapContainer, TileLayer, Popup } from "react-leaflet";
 import { NightRegion } from "react-leaflet-night-region"; //installed with --legacy-peer-deps
 import ExtraInfo from "./ExtraInfo.js";
 import LeadLines from "./LeadLines.js";
-
 import Anchor from "./Anchor.js";
 
 import "./callMap.css";

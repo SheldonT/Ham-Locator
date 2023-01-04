@@ -6,9 +6,9 @@ import InfoBar from "./InfoBar.js";
 import CallMap from "./CallMap.js";
 import InputBar from "./InputBar.js";
 import SaveLog from "./SaveLog.js";
-import PopUp from "./PopUp.js";
+import ClearTable from "./ClearTable.js";
 
-import "./location.css";
+import location from "./location.module.css";
 
 function validateEntry(entry, currentList) {
   let result = false;
@@ -103,7 +103,7 @@ function Location({ optionalFields, setHome, homeData, lines }) {
 
   return (
     <>
-      <div className="map">
+      <div className={location.map}>
         <CallMap
           info={infoList}
           infoLastId={id}
@@ -128,9 +128,9 @@ function Location({ optionalFields, setHome, homeData, lines }) {
         editField={false}
       />
 
-      <div className="controlBar">
+      <div className={location.controlBar}>
         <SaveLog data={infoList} />
-        <PopUp reset={resetTable} count={infoList ? infoList.length : 0} />
+        <ClearTable reset={resetTable} count={infoList ? infoList.length : 0} />
       </div>
     </>
   );

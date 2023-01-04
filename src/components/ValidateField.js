@@ -1,18 +1,9 @@
 /** @format */
 import { useState } from "react";
 import { bandDef } from "../constants.js";
+import Popup from "./Popup.js";
 import attention from "../assets/attention.svg";
-import "./popUp.css";
-import "./inputBar.css";
-
-function ErrorMessage({ message }) {
-  return (
-    <div className="errorPopUp" style={{ display: "flex" }}>
-      <img className="errorImg" src={attention} alt="Exclaimation Mark" />
-      <p className="errorText">{message}</p>
-    </div>
-  );
-}
+import inputBar from "./inputBar.module.css";
 
 function ValidateField({
   style,
@@ -20,12 +11,10 @@ function ValidateField({
   setValue,
   type,
   initValue,
-  valid,
   setValid,
   restore,
   refrence,
   warning,
-  setWarning,
   exp,
 }) {
   const warningStyle = {
@@ -94,9 +83,9 @@ function ValidateField({
   };
 
   return (
-    <div className="fieldContainer">
+    <div className={inputBar.fieldContainer}>
       <input
-        className={style}
+        className={inputBar[style]}
         style={border}
         ref={refrence}
         type="text"
@@ -112,9 +101,19 @@ function ValidateField({
           if (restore) restore(e, setValue, initValue);
         }}
       />
-      {!warning && errorMsg !== "" ? <ErrorMessage message={errorMsg} /> : null}
+
+      <Popup
+        styleSheet={inputBar.errorPopUp}
+        icon={attention}
+        iconSize={{ height: "3rem", width: "3rem" }}
+        active={!warning && errorMsg !== ""}
+      >
+        <p className={inputBar.errorText}>{errorMsg}</p>
+      </Popup>
     </div>
   );
 }
 
 export default ValidateField;
+
+//{!warning && errorMsg !== "" ? <ErrorMessage message={errorMsg} /> : null}

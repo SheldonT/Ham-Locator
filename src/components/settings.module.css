@@ -41,6 +41,17 @@
   white-space: nowrap;
 }
 
+.menu {
+  flex-direction: column;
+  border-radius: 1rem 0 1rem 1rem;
+  background-color: var(--infoBarColor);
+  box-shadow: 0.2rem 0.2rem 0.5rem var(--shadowColor);
+  padding: 0.5rem;
+  top: 100%;
+  right: 100%;
+  z-index: 410;
+}
+
 .settingsLink:hover {
   text-decoration: underline;
   cursor: pointer;

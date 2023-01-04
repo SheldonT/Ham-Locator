@@ -1,58 +1,90 @@
+/** @format */
 
 import TableRow from "./TableRow";
-import "./infoBar.css";
+import infoBar from "./infoBar.module.css";
 
-function InfoBar({info, selectedInfo, click, style, optionalFields, editField}){
-
+function InfoBar({
+  info,
+  selectedInfo,
+  click,
+  style,
+  optionalFields,
+  editField,
+}) {
   const OpFields = () => {
-    if(optionalFields) {
-      return(
+    if (optionalFields) {
+      return (
         <>
-          <th style={{display: optionalFields.name ? "" : "none"}} className="infoHead">Name</th>
-          <th style={{display: optionalFields.grid ? "" : "none"}} className="infoHead">Grid</th>
-          <th style={{display: optionalFields.serialSent ? "" : "none"}} className="infoHead">SRN</th>
-          <th style={{display: optionalFields.serialRcv ? "" : "none"}} className="infoHead">STN</th>
-          <th style={{display: optionalFields.comment ?  "" : "none"}} className="infoHead">Comments</th>
+          <th
+            style={{ display: optionalFields.name ? "" : "none" }}
+            className={infoBar.infoHead}
+          >
+            Name
+          </th>
+          <th
+            style={{ display: optionalFields.grid ? "" : "none" }}
+            className={infoBar.infoHead}
+          >
+            Grid
+          </th>
+          <th
+            style={{ display: optionalFields.serialSent ? "" : "none" }}
+            className={infoBar.infoHead}
+          >
+            SRN
+          </th>
+          <th
+            style={{ display: optionalFields.serialRcv ? "" : "none" }}
+            className={infoBar.infoHead}
+          >
+            STN
+          </th>
+          <th
+            style={{ display: optionalFields.comment ? "" : "none" }}
+            className={infoBar.infoHead}
+          >
+            Comments
+          </th>
         </>
-      );} else{
-        return(<></>);
-      }
-  }
+      );
+    } else {
+      return <></>;
+    }
+  };
 
-  return(
+  return (
     <>
-    <div style={style} className="infoBar">
-      <table className="callList" id="callList">
-        <thead>
-        <tr>
-          {editField ? <th className="infoHead"></th> : null}
-          <th className="infoHead" >#</th>
-          <th className="infoHead">Call Sign</th>
-          <th className="infoHead">Freq.</th>
-          <th className="infoHead">Mode</th>
-          <th className="infoHead">RSTs</th>
-          <th className="infoHead">RSTr</th>
-          <th className="infoHead">Date</th>
-          <th className="infoHead">Time</th>
-          <OpFields d="" />
-        </tr>
-        </thead>
-        <tbody>
-
-        {info.map( (callData) =>
-          <TableRow 
-            info={callData}
-            activeInfo={selectedInfo}
-            click={click}
-            optionalFields={optionalFields}
-            key={callData.id}
-            editField={editField}
-          />
-        )}
-      </tbody>
-    </table>
-  </div>
-  </>
+      <div style={style} className={infoBar.infoBar}>
+        <table className={infoBar.callList} id="callList">
+          <thead>
+            <tr>
+              {editField ? <th className={infoBar.infoHead}></th> : null}
+              <th className={infoBar.infoHead}>#</th>
+              <th className={infoBar.infoHead}>Call Sign</th>
+              <th className={infoBar.infoHead}>Freq.</th>
+              <th className={infoBar.infoHead}>Mode</th>
+              <th className={infoBar.infoHead}>RSTs</th>
+              <th className={infoBar.infoHead}>RSTr</th>
+              <th className={infoBar.infoHead}>Date</th>
+              <th className={infoBar.infoHead}>Time</th>
+              <OpFields d="" />
+            </tr>
+          </thead>
+          <tbody>
+            {info.map((callData) => (
+              <TableRow
+                info={callData}
+                activeInfo={selectedInfo}
+                click={click}
+                optionalFields={optionalFields}
+                key={callData.id}
+                editField={editField}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 }
 

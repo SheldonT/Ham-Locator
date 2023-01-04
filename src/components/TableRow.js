@@ -1,8 +1,9 @@
 /** @format */
 import { useState, useEffect } from "react";
 import ValidateField from "./ValidateField.js";
-import "./tableRow.css";
-import "./inputBar.css";
+import Button from "./Button.js";
+import tableRow from "./tableRow.module.css";
+import inputBar from "./inputBar.module.css";
 
 function restore(event, setValue, value) {
   if (event.key === "Escape") {
@@ -36,9 +37,9 @@ function TableRow({ info, activeInfo, click, optionalFields, editField }) {
   const EditButton = () => {
     return (
       <td>
-        <button
-          className="submitButton"
-          onClick={() => {
+        <Button
+          name={edit ? "Submit" : "Edit"}
+          clickEvent={() => {
             if (editField && !edit) {
               click(info);
             }
@@ -46,9 +47,7 @@ function TableRow({ info, activeInfo, click, optionalFields, editField }) {
               getContact();
             }
           }}
-        >
-          {edit ? "Submit" : "Edit"}
-        </button>
+        />
       </td>
     );
   };
@@ -99,14 +98,14 @@ function TableRow({ info, activeInfo, click, optionalFields, editField }) {
         <>
           <td
             style={{ display: optionalFields.name ? "" : "none" }}
-            className="infoCells"
+            className={tableRow.infoCells}
           >
             <div
-              className="fieldContainer"
+              className={inputBar.fieldContainer}
               style={{ display: edit ? "flex" : "none" }}
             >
               <input
-                className="comment"
+                className={inputBar.comment}
                 type="text"
                 value={name}
                 onChange={(e) => {
@@ -119,14 +118,14 @@ function TableRow({ info, activeInfo, click, optionalFields, editField }) {
           </td>
           <td
             style={{ display: optionalFields.grid ? "" : "none" }}
-            className="infoCells"
+            className={tableRow.infoCells}
           >
             <div
-              className="fieldContainer"
+              className={inputBar.fieldContainer}
               style={{ display: edit ? "flex" : "none" }}
             >
               <input
-                className="freqField"
+                className={inputBar.freqField}
                 type="text"
                 value={grid}
                 onChange={(e) => {
@@ -139,14 +138,14 @@ function TableRow({ info, activeInfo, click, optionalFields, editField }) {
           </td>
           <td
             style={{ display: optionalFields.serialSent ? "" : "none" }}
-            className="infoCells"
+            className={tableRow.infoCells}
           >
             <div
-              className="fieldContainer"
+              className={inputBar.fieldContainer}
               style={{ display: edit ? "flex" : "none" }}
             >
               <input
-                className="freqField"
+                className={inputBar.freqField}
                 type="text"
                 value={serialSent}
                 onChange={(e) => {
@@ -159,14 +158,14 @@ function TableRow({ info, activeInfo, click, optionalFields, editField }) {
           </td>
           <td
             style={{ display: optionalFields.serialRcv ? "" : "none" }}
-            className="infoCells"
+            className={tableRow.infoCells}
           >
             <div
-              className="fieldContainer"
+              className={inputBar.fieldContainer}
               style={{ display: edit ? "flex" : "none" }}
             >
               <input
-                className="freqField"
+                className={inputBar.freqField}
                 type="text"
                 value={serialRcv}
                 onChange={(e) => {
@@ -179,14 +178,14 @@ function TableRow({ info, activeInfo, click, optionalFields, editField }) {
           </td>
           <td
             style={{ display: optionalFields.comment ? "" : "none" }}
-            className="infoCells"
+            className={tableRow.infoCells}
           >
             <div
-              className="fieldContainer"
+              className={inputBar.fieldContainer}
               style={{ display: edit ? "flex" : "none" }}
             >
               <input
-                className="comment"
+                className={inputBar.comment}
                 type="text"
                 value={comment}
                 onChange={(e) => {
@@ -207,14 +206,14 @@ function TableRow({ info, activeInfo, click, optionalFields, editField }) {
   return (
     <>
       <tr
-        className="activeRow"
+        className={tableRow.activeRow}
         onClick={() => {
           if (!editField) click(info);
         }}
       >
         {editField ? <EditButton /> : null}
-        <td className="infoCells">{info.id}</td>
-        <td className="infoCells">
+        <td className={tableRow.infoCells}>{info.id}</td>
+        <td className={tableRow.infoCells}>
           {edit ? (
             <ValidateField
               style="callField"
@@ -233,7 +232,7 @@ function TableRow({ info, activeInfo, click, optionalFields, editField }) {
           {!edit ? info.call : null}
         </td>
 
-        <td className="infoCells">
+        <td className={tableRow.infoCells}>
           {edit ? (
             <ValidateField
               style="freqField"
@@ -252,13 +251,13 @@ function TableRow({ info, activeInfo, click, optionalFields, editField }) {
 
           {!edit ? info.freq : null}
         </td>
-        <td className="infoCells">
+        <td className={tableRow.infoCells}>
           <div
-            className="fieldContainer"
+            className={inputBar.fieldContainer}
             style={{ display: edit ? "flex" : "none" }}
           >
             <select
-              className="modeInput"
+              className={inputBar.modeInput}
               value={mode}
               onChange={(e) => {
                 setMode(e.target.value);
@@ -275,13 +274,13 @@ function TableRow({ info, activeInfo, click, optionalFields, editField }) {
           </div>
           {!edit ? info.mode : null}
         </td>
-        <td className="infoCells">
+        <td className={tableRow.infoCells}>
           <div
-            className="fieldContainer"
+            className={inputBar.fieldContainer}
             style={{ display: edit ? "flex" : "none" }}
           >
             <input
-              className="sigRep"
+              className={inputBar.sigRep}
               type="text"
               value={sentRep}
               onChange={(e) => {
@@ -292,13 +291,13 @@ function TableRow({ info, activeInfo, click, optionalFields, editField }) {
           </div>
           {!edit ? info.sRep : null}
         </td>
-        <td className="infoCells">
+        <td className={tableRow.infoCells}>
           <div
-            className="fieldContainer"
+            className={inputBar.fieldContainer}
             style={{ display: edit ? "flex" : "none" }}
           >
             <input
-              className="sigRep"
+              className={inputBar.sigRep}
               type="text"
               value={recRep}
               onChange={(e) => {
@@ -309,13 +308,13 @@ function TableRow({ info, activeInfo, click, optionalFields, editField }) {
           </div>
           {!edit ? info.rRep : null}
         </td>
-        <td className="infoCells">
+        <td className={tableRow.infoCells}>
           <div
-            className="fieldContainer"
+            className={inputBar.fieldContainer}
             style={{ display: edit ? "flex" : "none" }}
           >
             <input
-              className="dateField"
+              className={inputBar.dateField}
               type="date"
               value={contactDate}
               onChange={(e) => {
@@ -326,13 +325,13 @@ function TableRow({ info, activeInfo, click, optionalFields, editField }) {
           </div>
           {!edit ? info.contactDate : null}
         </td>
-        <td className="infoCells">
+        <td className={tableRow.infoCells}>
           <div
-            className="fieldContainer"
+            className={inputBar.fieldContainer}
             style={{ display: edit ? "flex" : "none" }}
           >
             <input
-              className="dateField"
+              className={inputBar.dateField}
               type="time"
               value={contactTime}
               onChange={(e) => {

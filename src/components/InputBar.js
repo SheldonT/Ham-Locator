@@ -3,9 +3,9 @@
 import { useState, useRef } from "react";
 import ValidateField from "./ValidateField.js";
 import ExtraInfo from "./ExtraInfo.js";
+import Button from "./Button.js";
 import callsign from "callsign";
-import "./inputBar.css";
-import "./popUp.css";
+import inputBar from "./inputBar.module.css";
 
 function InputBar({ setInfo, resetExtra, optionalFields }) {
   const [callSignValue, setCallSignValue] = useState("");
@@ -86,7 +86,7 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
 
   return (
     <div
-      className="inputBar"
+      className={inputBar.inputBar}
       onKeyDown={(e) => {
         if (e.key === "Enter") {
           getContact();
@@ -126,13 +126,13 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
       />
 
       <div
-        className="fieldContainer"
+        className={inputBar.fieldContainer}
         value={mode}
         onChange={(e) => {
           setMode(e.target.value);
         }}
       >
-        <select className="modeInput" id="mode">
+        <select className={inputBar.modeInput} id="mode">
           <option value="SSB">SSB</option>
           <option value="CW">CW</option>
           <option value="AM">AM</option>
@@ -143,9 +143,9 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
         </select>
       </div>
 
-      <div className="fieldContainer">
+      <div className={inputBar.fieldContainer}>
         <input
-          className="sigRep"
+          className={inputBar.sigRep}
           type="text"
           placeholder="RSTs"
           value={sentRep}
@@ -155,9 +155,9 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
         />
       </div>
 
-      <div className="fieldContainer">
+      <div className={inputBar.fieldContainer}>
         <input
-          className="sigRep"
+          className={inputBar.sigRep}
           type="text"
           placeholder="RSTr"
           value={recRep}
@@ -168,13 +168,13 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
       </div>
 
       <div
-        className="fieldContainer"
+        className={inputBar.fieldContainer}
         style={{
           display: optionalFields && optionalFields.name ? "flex" : "none",
         }}
       >
         <input
-          className="comment"
+          className={inputBar.comment}
           type="text"
           placeholder="Name"
           value={name}
@@ -185,13 +185,13 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
       </div>
 
       <div
-        className="fieldContainer"
+        className={inputBar.fieldContainer}
         style={{
           display: optionalFields && optionalFields.grid ? "flex" : "none",
         }}
       >
         <input
-          className="freqField"
+          className={inputBar.freqField}
           type="text"
           placeholder="Grid"
           value={grid}
@@ -202,14 +202,14 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
       </div>
 
       <div
-        className="fieldContainer"
+        className={inputBar.fieldContainer}
         style={{
           display:
             optionalFields && optionalFields.serialSent ? "flex" : "none",
         }}
       >
         <input
-          className="freqField"
+          className={inputBar.freqField}
           type="text"
           placeholder="STX"
           value={
@@ -229,13 +229,13 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
       </div>
 
       <div
-        className="fieldContainer"
+        className={inputBar.fieldContainer}
         style={{
           display: optionalFields && optionalFields.serialRcv ? "flex" : "none",
         }}
       >
         <input
-          className="freqField"
+          className={inputBar.freqField}
           type="text"
           placeholder="SRX"
           value={
@@ -252,13 +252,13 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
       </div>
 
       <div
-        className="fieldContainer"
+        className={inputBar.fieldContainer}
         style={{
           display: optionalFields && optionalFields.comment ? "flex" : "none",
         }}
       >
         <input
-          className="comment"
+          className={inputBar.comment}
           type="text"
           placeholder="Comments"
           value={comment}
@@ -267,17 +267,15 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
           }}
         />
       </div>
-      <button
-        className="submitButton"
-        onClick={(e) => {
+      <Button
+        name="Submit"
+        clickEvent={() => {
           if (callSignValue !== "") {
             //ignores the mouse click if callsign value is an empty string
             getContact(); //prevents the events from trying to gather the data twice
           }
         }}
-      >
-        Submit
-      </button>
+      />
     </div>
   );
 }

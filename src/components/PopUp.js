@@ -1,37 +1,17 @@
-import {useState} from 'react';
-import "./popUp.css"
+/** @format */
 
+import popUp from "./popUp.module.css";
 
-
-function PopUp({reset, count}) {
-
-    const[isPopUpOpen, setIsPopUpOpen] = useState(false);
-
-    const PopUpMenu = () => {
-
-        return(
-        <div className="popUp">
-            <span>Are you sure you want to clear the table?</span>
-            <div className="popUpButtons">
-                <button className="options" onClick={ () => {
-                    localStorage.removeItem("list");
-                    setIsPopUpOpen(false);
-                    reset();}
-                }>Yes</button>
-                <button className="options" onClick={() => setIsPopUpOpen(false)} >Cancel</button>
-            </div>
-        </div>);
-    }
-
-    
-    return(
-        <div className="clearTable">
-
-            <button className="options" onClick={() => setIsPopUpOpen(!isPopUpOpen)} disabled={ count === 0 } >Clear Table</button>
-            {isPopUpOpen ? <PopUpMenu /> : null}
-            
-        </div>
-    );
+function Popup({ children, styleSheet, icon, iconSize, active }) {
+  return (
+    <div
+      className={`${popUp.popUp} ${styleSheet}`}
+      style={{ display: active ? "flex" : "none" }}
+    >
+      {icon ? <img className={popUp.icon} style={iconSize} src={icon} /> : null}
+      {children}
+    </div>
+  );
 }
 
-export default PopUp;
+export default Popup;

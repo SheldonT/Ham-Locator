@@ -1,0 +1,32 @@
+/** @format */
+
+.popUp {
+  flex-direction: column;
+  border-radius: 1rem 1rem 1rem 0;
+  width: 20vw;
+  bottom: 100%;
+  left: 100%;
+  z-index: 500;
+}
+
+.fileNameInput {
+  display: flex;
+  flex-direction: row;
+  margin: 1rem 0 0.5rem 0;
+}
+.fileName {
+  margin: 0 0 0 0.5rem;
+  width: 50%;
+}
+
+.popUpButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 1rem auto 0.5rem auto;
+}
+
+.saveFile {
+  position: relative;
+  margin: 0 auto 1rem auto;
+}
