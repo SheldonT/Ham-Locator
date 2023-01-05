@@ -1,43 +1,54 @@
-.menuBar{
-    display: flex;
-    flex-direction: row;
-    margin: auto 0 2rem auto;
-  }
-  
-  .menuEl{
-    margin: auto 2rem 0 2rem;
-    font-size: 1.6rem;
+/** @format */
+
+.menuBar {
+  display: flex;
+  flex-direction: row;
+  margin: auto 0 2rem auto;
+}
+
+.menuEl {
+  margin: auto 2rem 0 2rem;
+  font-size: 1.6rem;
+}
+
+.hMenuEl {
+  margin: 1rem 2rem 1rem 2rem;
+  font-size: 1.6rem;
+}
+
+.hamburger {
+  position: relative;
+  display: none;
+  background-color: transparent;
+}
+
+.menuImg {
+  width: 3rem;
+  height: 3rem;
+  margin: auto 1rem -0.4rem 0;
+}
+
+.menuImg:hover {
+  cursor: pointer;
+}
+
+.menu {
+  flex-direction: column;
+  border-radius: 1rem 0 1rem 1rem;
+  background-color: var(--infoBarColor);
+  box-shadow: 0.2rem 0.2rem 0.5rem var(--shadowColor);
+  padding: 0.5rem;
+  top: 100%;
+  right: 100%;
+  z-index: 1100;
+}
+
+@media (max-width: 46rem) {
+  .hamburger {
+    display: block;
   }
 
-  .hMenuEl{
-    margin: 1rem 2rem 1rem 2rem;
-    font-size: 1.6rem;
-  }
-
-  .hamburger{
-    position: relative;
+  .menuEl {
     display: none;
-    background-color: transparent;
-    
   }
-
-  .menuImg{
-    width: 3rem;
-    height: 3rem;
-    margin: auto 1rem -0.4rem 0;
-  }
-
-  .menuImg:hover{
-    cursor: pointer;
-  }
-  
-  @media (max-width: 46rem){
-    .hamburger{
-        display: block;
-    }
-
-    .menuEl{
-        display: none;
-    }
-    
-  }
+}

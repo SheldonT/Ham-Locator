@@ -7,6 +7,7 @@
   bottom: 100%;
   left: 100%;
   z-index: 500;
+  margin: 0 0 0 -0.5rem;
 }
 
 .fileNameInput {
@@ -29,4 +30,40 @@
 .saveFile {
   position: relative;
   margin: 0 auto 1rem auto;
+}
+
+@media (min-width: 31.1rem) and (max-width: 45rem) {
+  .popUp {
+    width: 30vw;
+    bottom: 100%;
+    left: 0%;
+    margin: 0;
+  }
+}
+
+@media (min-width: 22.1rem) and (max-width: 31rem) {
+  .popUp {
+    width: 40vw;
+    bottom: 100%;
+    left: 0%;
+    margin: 0;
+  }
+}
+
+@media (min-width: 16.1rem) and (max-width: 22rem) {
+  .popUp {
+    width: 50vw;
+    bottom: 100%;
+    left: 0%;
+    margin: 0;
+  }
+}
+
+@media (max-width: 16rem) {
+  .popUp {
+    width: 60vw;
+    bottom: 100%;
+    left: 0%;
+    margin: 0;
+  }
 }

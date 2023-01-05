@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Button from "./Button.js";
-import Popup from "./Popup.js";
+import PopUp from "./PopUp.js";
 import clearTable from "./clearTable.module.css";
 
 function ClearTable({ reset, count }) {
@@ -16,7 +16,7 @@ function ClearTable({ reset, count }) {
         disarmed={count === 0}
       />
 
-      <Popup styleSheet={clearTable.popUp} active={isPopUpOpen}>
+      <PopUp styleCSS={clearTable.popUp} show={isPopUpOpen}>
         <span>Are you sure you want to clear the table?</span>
         <div className={clearTable.popUpButtons}>
           <Button
@@ -29,7 +29,7 @@ function ClearTable({ reset, count }) {
           />
           <Button name="Cancel" clickEvent={() => setIsPopUpOpen(false)} />
         </div>
-      </Popup>
+      </PopUp>
     </div>
   );
 }

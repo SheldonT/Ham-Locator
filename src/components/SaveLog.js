@@ -4,9 +4,8 @@ import { useState } from "react";
 import { saveAs } from "file-saver";
 import { bandDef } from "../constants.js";
 import { utcHrs, utcMins } from "./Location.js";
-import Popup from "./Popup.js";
+import PopUp from "./PopUp.js";
 import Button from "./Button.js";
-//import popUp from "./clearTable.module.css";
 import saveLog from "./saveLog.module.css";
 
 function toADIF(d) {
@@ -90,7 +89,7 @@ function SaveLog({ data }) {
         clickEvent={() => setIsPopUpOpen(!isPopUpOpen)}
         disarmed={data.length === 0}
       />
-      <Popup styleSheet={saveLog.popUp} active={isPopUpOpen}>
+      <PopUp styleCSS={saveLog.popUp} show={isPopUpOpen}>
         <span>Save File...</span>
 
         <div className={saveLog.fileNameInput}>
@@ -153,7 +152,7 @@ function SaveLog({ data }) {
           />
           <Button name="Cancel" clickEvent={() => setIsPopUpOpen(false)} />
         </div>
-      </Popup>
+      </PopUp>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 /** @format */
 import { useState } from "react";
 import { bandDef } from "../constants.js";
-import Popup from "./Popup.js";
+import PopUp from "./PopUp.js";
 import attention from "../assets/attention.svg";
 import inputBar from "./inputBar.module.css";
 
@@ -31,17 +31,15 @@ function ValidateField({
   const validateInput = (v) => {
     setValue(v);
 
-    let validBuffer = true;
-
     switch (type) {
       case "Callsign":
         if (v.length === 0) {
           //error condition: if no call is entered
-          validBuffer = false;
+          setValid(false);
           setBorder(warningStyle);
           setErrorMsg("Enter an amateur callsign.");
         } else {
-          validBuffer = true;
+          setValid(true);
           setBorder(validStyle);
           setErrorMsg("");
         }
@@ -50,7 +48,7 @@ function ValidateField({
       case "Freq":
         if (v.length === 0) {
           //error condition: if no frequency is entered
-          validBuffer = false;
+          setValid(false);
           setBorder(warningStyle);
           setErrorMsg("Enter a valid amateur frequency");
           break; //break from SWITCH
@@ -61,12 +59,12 @@ function ValidateField({
               parseFloat(v) >= parseFloat(bandDef[i].low) && //error condition: if a VALID frequency is entered...
               parseFloat(v) <= parseFloat(bandDef[i].high)
             ) {
-              validBuffer = true;
+              setValid(true);
               setBorder(validStyle);
               setErrorMsg(""); //assign empty string and...
               break; // break from for loop
             } else {
-              validBuffer = false;
+              setValid(false);
               setBorder(warningStyle);
               setErrorMsg("This is not an Amateur Frequency."); //otherwise, an invalid frequency was entered.
             }
@@ -78,8 +76,6 @@ function ValidateField({
         setBorder(validStyle);
         errorMsg = "";
     }
-
-    setValid(validBuffer);
   };
 
   return (
@@ -102,18 +98,16 @@ function ValidateField({
         }}
       />
 
-      <Popup
-        styleSheet={inputBar.errorPopUp}
+      <PopUp
+        styleCSS={inputBar.errorPopUp}
         icon={attention}
         iconSize={{ height: "3rem", width: "3rem" }}
-        active={!warning && errorMsg !== ""}
+        show={!warning && errorMsg !== ""}
       >
         <p className={inputBar.errorText}>{errorMsg}</p>
-      </Popup>
+      </PopUp>
     </div>
   );
 }
 
 export default ValidateField;
-
-//{!warning && errorMsg !== "" ? <ErrorMessage message={errorMsg} /> : null}

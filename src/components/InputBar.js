@@ -39,37 +39,39 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
   const getContact = () => {
     if (!validCall) {
       setWarningCall(false);
+      return;
     }
 
     if (!validFreq) {
       setWarningFreq(false);
+      return;
     }
 
-    if (validCall && validFreq) {
-      const ci = {
-        call: callSignValue.toUpperCase(),
-        freq: freqValue,
-        mode: document.getElementById("mode").value,
-        sRep: sentRep,
-        rRep: recRep,
-        name: name,
-        grid: grid,
-        serialSent: serialSent,
-        serialRcv: serialRcv,
-        comment: comment,
-      };
+    //if (validCall && validFreq) {
+    const ci = {
+      call: callSignValue.toUpperCase(),
+      freq: freqValue,
+      mode: document.getElementById("mode").value,
+      sRep: sentRep,
+      rRep: recRep,
+      name: name,
+      grid: grid,
+      serialSent: serialSent,
+      serialRcv: serialRcv,
+      comment: comment,
+    };
 
-      setInfo(ci);
-      setCallSignValue("");
-      setSentRep("");
-      setRecRep("");
-      setName("");
-      setGrid("");
-      setSerialSent(serialSent + 1);
-      setSerialRcv("");
-      setComment("");
-      resetExtra(); //can this be done in Location.js
-    }
+    setInfo(ci);
+    setCallSignValue("");
+    setSentRep("");
+    setRecRep("");
+    setName("");
+    setGrid("");
+    setSerialSent(serialSent + 1);
+    setSerialRcv("");
+    setComment("");
+    resetExtra(); //can this be done in Location.js
+    //}
     callField.current.focus();
   };
 
@@ -104,7 +106,6 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
           valid={validCall}
           setValid={setValidCall}
           warning={warningCall}
-          setWarning={setWarningCall}
         />
         {callSignValue.length >= 2 ? (
           <ExtraInfo info={liveOut(callSignValue)} infoStyle={popupStyle} />
@@ -122,7 +123,6 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
         valid={validFreq}
         setValid={setValidFreq}
         warning={warningFreq}
-        setWarning={setWarningFreq}
       />
 
       <div

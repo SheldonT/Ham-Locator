@@ -49,7 +49,7 @@
   padding: 0.5rem;
   top: 100%;
   right: 100%;
-  z-index: 410;
+  z-index: 1100;
 }
 
 .settingsLink:hover {
