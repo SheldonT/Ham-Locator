@@ -21,9 +21,14 @@
   flex-direction: row;
   align-items: center;
   margin: auto auto auto 0;
-  padding-left: 5rem;
+  padding: 0 0 0 5rem;
 }
 
 .demo {
   font-size: 1rem;
+  padding: 1rem auto auto auto;
+}
+.note {
+  font-size: 1rem;
+  margin: 1rem 2rem auto auto;
 }

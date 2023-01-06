@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 import FocusTrap from "focus-trap-react";
 import ValidateField from "./ValidateField.js";
 import Button from "./Button.js";
+import PopUp from "./PopUp.js";
 import useFetch from "../useFetch.js";
 import home from "./home.module.css";
 
@@ -20,19 +21,32 @@ function Home({ setVis, setHome }) {
   const homeResp = useFetch(homeCall);
 
   const submit = () => {
+    let home = {};
+
     if (!valid) {
       setWarning(false);
       setValid(true);
-    } else {
-      const home = { call: homeCall, unit: unit, ...homeResp };
-
-      localStorage.setItem("home", JSON.stringify(home));
-
-      setHome(home);
-      setVis(false);
+      callField.current.focus();
+      return;
     }
 
-    callField.current.focus();
+    if (homeCall.toUpperCase() === "DEMO") {
+      home = {
+        call: "DEMO",
+        unit: "imperial",
+        country: "England",
+        anchor: [51.53, -0.12],
+        itu: "27",
+        time: "0",
+      };
+    } else {
+      home = { call: homeCall, unit: unit, ...homeResp };
+    }
+
+    localStorage.setItem("home", JSON.stringify(home));
+
+    setHome(home);
+    setVis(false);
   };
 
   return (
@@ -57,7 +71,7 @@ function Home({ setVis, setHome }) {
               type="Callsign"
               refrence={callField}
             />
-            {/*<span className="demo">* Enter "DEMO" for testing</span>*/}
+            <span className={home.demo}>* Enter "DEMO" for testing</span>
           </div>
 
           <div className={home.inputCont}>
@@ -83,6 +97,18 @@ function Home({ setVis, setHome }) {
           <div className={home.inputCont}>
             <Button name="Submit" clickEvent={submit} />
           </div>
+          {homeCall.toUpperCase() === "DEMO" ? (
+            <div className={home.inputCont}>
+              <span className={home.note}>
+                For a list of callsigns for testing, go to the Loogbook tab on
+                my qrz.com page{" "}
+                <a href="https://www.qrz.com/db/VO1TWR" target="_blank">
+                  here
+                </a>
+                .
+              </span>
+            </div>
+          ) : null}
         </div>
       </div>
     </FocusTrap>

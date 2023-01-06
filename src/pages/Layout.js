@@ -61,6 +61,3 @@ function Layout({
 }
 
 export default Layout;
-
-//<div className="menuEl"> <Link to="stats" target="_blank" state={infoList}>Log Stats</Link></div>
-//<div className="menuEl" onClick={window.open("stats", "mozillaWindow", "popup")}> Log Stats </div>
