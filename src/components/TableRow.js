@@ -1,6 +1,7 @@
 /** @format */
 import { useState, useEffect } from "react";
-import ValidateField from "./ValidateField.js";
+import TextField from "./TextField.js";
+import { validateCall, validateFreq, formatSRN } from "../ValidateFunctions.js";
 import Button from "./Button.js";
 import tableRow from "./tableRow.module.css";
 import inputBar from "./inputBar.module.css";
@@ -31,8 +32,11 @@ function TableRow({ info, activeInfo, click, optionalFields, editField }) {
 
   const [edit, setEdit] = useState(false);
 
-  const [valid, setValid] = useState(true);
-  const [warning, setWarning] = useState(true);
+  const [validCall, setValidCall] = useState(true);
+  const [validFreq, setValidFreq] = useState(true);
+
+  const [warningCall, setWarningCall] = useState(false);
+  const [warningFreq, setWarningFreq] = useState(false);
 
   const EditButton = () => {
     return (
@@ -67,11 +71,16 @@ function TableRow({ info, activeInfo, click, optionalFields, editField }) {
   }, [activeInfo]);
 
   const getContact = () => {
-    if (!valid) {
-      setWarning(false);
-    } else {
-      setEdit(false);
+    if (!validCall) {
+      setWarningCall(false);
+    }
 
+    if (!validFreq) {
+      setWarningFreq(false);
+    }
+
+    if (validCall && validFreq) {
+      setEdit(false);
       const ci = {
         id: info.id,
         call: callSignValue.toUpperCase(),
@@ -92,117 +101,6 @@ function TableRow({ info, activeInfo, click, optionalFields, editField }) {
     }
   };
 
-  const OpFields = () => {
-    if (optionalFields) {
-      return (
-        <>
-          <td
-            style={{ display: optionalFields.name ? "" : "none" }}
-            className={tableRow.infoCells}
-          >
-            <div
-              className={inputBar.fieldContainer}
-              style={{ display: edit ? "flex" : "none" }}
-            >
-              <input
-                className={inputBar.comment}
-                type="text"
-                value={name}
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-                onKeyDown={(e) => restore(e, setName, info.name)}
-              />
-            </div>
-            {!edit ? info.name : null}
-          </td>
-          <td
-            style={{ display: optionalFields.grid ? "" : "none" }}
-            className={tableRow.infoCells}
-          >
-            <div
-              className={inputBar.fieldContainer}
-              style={{ display: edit ? "flex" : "none" }}
-            >
-              <input
-                className={inputBar.freqField}
-                type="text"
-                value={grid}
-                onChange={(e) => {
-                  setGrid(e.target.value);
-                }}
-                onKeyDown={(e) => restore(e, setGrid, info.grid)}
-              />
-            </div>
-            {!edit ? info.grid : null}
-          </td>
-          <td
-            style={{ display: optionalFields.serialSent ? "" : "none" }}
-            className={tableRow.infoCells}
-          >
-            <div
-              className={inputBar.fieldContainer}
-              style={{ display: edit ? "flex" : "none" }}
-            >
-              <input
-                className={inputBar.freqField}
-                type="text"
-                value={serialSent}
-                onChange={(e) => {
-                  setSerialSent(e.target.value.replace(/[^\d]/g, ""));
-                }}
-                onKeyDown={(e) => restore(e, setSerialSent, info.serialSent)}
-              />
-            </div>
-            {!edit ? info.serialSent : null}
-          </td>
-          <td
-            style={{ display: optionalFields.serialRcv ? "" : "none" }}
-            className={tableRow.infoCells}
-          >
-            <div
-              className={inputBar.fieldContainer}
-              style={{ display: edit ? "flex" : "none" }}
-            >
-              <input
-                className={inputBar.freqField}
-                type="text"
-                value={serialRcv}
-                onChange={(e) => {
-                  setSerialRcv(e.target.value.replace(/[^\d]/g, ""));
-                }}
-                onKeyDown={(e) => restore(e, setSerialRcv, info.serialRcv)}
-              />
-            </div>
-            {!edit ? info.serialRcv : null}
-          </td>
-          <td
-            style={{ display: optionalFields.comment ? "" : "none" }}
-            className={tableRow.infoCells}
-          >
-            <div
-              className={inputBar.fieldContainer}
-              style={{ display: edit ? "flex" : "none" }}
-            >
-              <input
-                className={inputBar.comment}
-                type="text"
-                value={comment}
-                onChange={(e) => {
-                  setComment(e.target.value);
-                }}
-                onKeyDown={(e) => restore(e, setComment, info.comment)}
-              />
-            </div>
-            {!edit ? info.comment : null}
-          </td>
-        </>
-      );
-    } else {
-      return <></>;
-    }
-  };
-
   return (
     <>
       <tr
@@ -215,17 +113,16 @@ function TableRow({ info, activeInfo, click, optionalFields, editField }) {
         <td className={tableRow.infoCells}>{info.id}</td>
         <td className={tableRow.infoCells}>
           {edit ? (
-            <ValidateField
-              style="callField"
+            <TextField
+              style={inputBar.callField}
+              validate={validateCall}
               value={callSignValue}
               setValue={setCallSignValue}
-              initValue={info.call}
-              restore={restore}
-              type="Callsign"
-              isValid={valid}
-              setValid={setValid}
-              warning={warning}
-              setWarning={setWarning}
+              keyDown={(e) => restore(e, setCallSignValue, info.call)}
+              placeHolder="Callsign"
+              setValid={setValidCall}
+              warning={warningCall}
+              isValid={validCall}
             />
           ) : null}
 
@@ -234,18 +131,17 @@ function TableRow({ info, activeInfo, click, optionalFields, editField }) {
 
         <td className={tableRow.infoCells}>
           {edit ? (
-            <ValidateField
-              style="freqField"
+            <TextField
+              style={inputBar.freqField}
+              validate={validateFreq}
               value={freqValue}
               setValue={setFreqValue}
-              initValue={info.freq}
-              restore={restore}
-              type="Freq"
+              keyDown={(e) => restore(e, setFreqValue, info.freq)}
+              placeHolder="Freq"
               exp={/[^\d.]/g}
-              isValid={valid}
-              setValid={setValid}
-              warning={warning}
-              setWarning={setWarning}
+              setValid={setValidFreq}
+              warning={warningFreq}
+              isValid={validFreq}
             />
           ) : null}
 
@@ -279,14 +175,14 @@ function TableRow({ info, activeInfo, click, optionalFields, editField }) {
             className={inputBar.fieldContainer}
             style={{ display: edit ? "flex" : "none" }}
           >
-            <input
-              className={inputBar.sigRep}
-              type="text"
+            <TextField
+              style={inputBar.sigRep}
               value={sentRep}
-              onChange={(e) => {
-                setSentRep(e.target.value.replace(/[^\d]/g, ""));
-              }}
-              onKeyDown={(e) => restore(e, setSentRep, info.sRep)}
+              setValue={setSentRep}
+              keyDown={(e) => restore(e, setSentRep, info.sRep)}
+              exp={/[^\d]/g}
+              placeHolder="RSTs"
+              isValid={true}
             />
           </div>
           {!edit ? info.sRep : null}
@@ -296,14 +192,14 @@ function TableRow({ info, activeInfo, click, optionalFields, editField }) {
             className={inputBar.fieldContainer}
             style={{ display: edit ? "flex" : "none" }}
           >
-            <input
-              className={inputBar.sigRep}
-              type="text"
+            <TextField
+              style={inputBar.sigRep}
               value={recRep}
-              onChange={(e) => {
-                setRecRep(e.target.value.replace(/[^\d]/g, ""));
-              }}
-              onKeyDown={(e) => restore(e, setRecRep, info.rRep)}
+              setValue={setRecRep}
+              keyDown={(e) => restore(e, setRecRep, info.rRep)}
+              exp={/[^\d]/g}
+              placeHolder="RSTr"
+              isValid={true}
             />
           </div>
           {!edit ? info.rRep : null}
@@ -342,7 +238,113 @@ function TableRow({ info, activeInfo, click, optionalFields, editField }) {
           </div>
           {!edit ? info.contactTime : null}
         </td>
-        <OpFields />
+        <td
+          style={{
+            display: optionalFields && optionalFields.name ? "" : "none",
+          }}
+          className={tableRow.infoCells}
+        >
+          <div
+            className={inputBar.fieldContainer}
+            style={{ display: edit ? "flex" : "none" }}
+          >
+            <TextField
+              style={inputBar.comment}
+              value={name}
+              setValue={setName}
+              keyDown={(e) => restore(e, setName, info.name)}
+              placeHolder="Name"
+              isValid={true}
+            />
+          </div>
+          {!edit ? info.name : null}
+        </td>
+        <td
+          style={{
+            display: optionalFields && optionalFields.grid ? "" : "none",
+          }}
+          className={tableRow.infoCells}
+        >
+          <div
+            className={inputBar.fieldContainer}
+            style={{ display: edit ? "flex" : "none" }}
+          >
+            <TextField
+              style={inputBar.freqField}
+              value={grid}
+              setValue={setGrid}
+              keyDown={(e) => restore(e, setGrid, info.grid)}
+              placeHolder="Grid"
+              isValid={true}
+            />
+          </div>
+          {!edit ? info.grid : null}
+        </td>
+        <td
+          style={{
+            display: optionalFields && optionalFields.serialSent ? "" : "none",
+          }}
+          className={tableRow.infoCells}
+        >
+          <div
+            className={inputBar.fieldContainer}
+            style={{ display: edit ? "flex" : "none" }}
+          >
+            <TextField
+              style={inputBar.freqField}
+              value={formatSRN(serialSent)}
+              setValue={setSerialSent}
+              keyDown={(e) => restore(e, setSerialSent, info.serialSent)}
+              placeHolder="STX"
+              isValid={true}
+              exp={/[^\d]/g}
+            />
+          </div>
+          {!edit ? info.serialSent : null}
+        </td>
+        <td
+          style={{
+            display: optionalFields && optionalFields.serialRcv ? "" : "none",
+          }}
+          className={tableRow.infoCells}
+        >
+          <div
+            className={inputBar.fieldContainer}
+            style={{ display: edit ? "flex" : "none" }}
+          >
+            <TextField
+              style={inputBar.freqField}
+              value={formatSRN(serialRcv)}
+              setValue={setSerialRcv}
+              keyDown={(e) => restore(e, setSerialRcv, info.serialRcv)}
+              placeHolder="SRX"
+              isValid={true}
+              exp={/[^\d]/g}
+            />
+          </div>
+          {!edit ? info.serialRcv : null}
+        </td>
+        <td
+          style={{
+            display: optionalFields && optionalFields.comment ? "" : "none",
+          }}
+          className={tableRow.infoCells}
+        >
+          <div
+            className={inputBar.fieldContainer}
+            style={{ display: edit ? "flex" : "none" }}
+          >
+            <TextField
+              style={inputBar.comment}
+              value={comment}
+              setValue={setComment}
+              keyDown={(e) => restore(e, setComment, info.comment)}
+              placeHolder="Comments"
+              isValid={true}
+            />
+          </div>
+          {!edit ? info.comment : null}
+        </td>
       </tr>
     </>
   );

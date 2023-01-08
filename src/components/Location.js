@@ -34,13 +34,32 @@ export const utcMins = (date) => {
   }
 };
 
+export const formatDate = (date) => {
+  let day = "";
+  let month = "";
+
+  if (parseInt(date.getUTCMonth() + 1) < 10) {
+    month = `0${date.getUTCMonth() + 1}`;
+  } else {
+    month = date.getUTCMonth() + 1;
+  }
+
+  if (parseInt(date.getUTCDate()) < 10) {
+    day = `0${date.getUTCDate()}`;
+  } else {
+    day = date.getUTCDate();
+  }
+
+  return date.getUTCFullYear() + "-" + month + "-" + day;
+};
+
 function Location({ optionalFields, setHome, homeData, lines }) {
   const [contactInfo, setContactInfo] = useState({});
   const [infoList, setInfoList] = useState([]);
   const [extraInfo, setExtraInfo] = useState();
   const [id, setId] = useState(1);
 
-  const jsonResp = useFetch(contactInfo.call); //fetch station information from callsign
+  const jsonResp = useFetch(contactInfo.call);
 
   const resetTable = () => {
     setId(1);
@@ -48,18 +67,14 @@ function Location({ optionalFields, setHome, homeData, lines }) {
   };
 
   useEffect(() => {
-    //make sure an entry with jsonResp.id doesn't already exist.
     if (validateEntry(jsonResp, infoList)) {
-      alert("An error occured. Please try again.");
+      console.log("An error occured. Please try again.");
     } else {
       if (jsonResp.anchor && contactInfo) {
         const currDate = new Date();
-        const utcDate =
-          currDate.getUTCFullYear() +
-          "-" +
-          parseInt(currDate.getUTCMonth() + 1) +
-          "-" +
-          currDate.getUTCDate();
+        const utcDate = formatDate(currDate);
+
+        console.log(utcDate);
 
         const utcTime = utcHrs(currDate) + ":" + utcMins(currDate);
 
@@ -83,8 +98,6 @@ function Location({ optionalFields, setHome, homeData, lines }) {
       }
     }
   }, [jsonResp]);
-
-  //Check if the "list" array is located in localStorage on first render.
 
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem("list") || "[]");

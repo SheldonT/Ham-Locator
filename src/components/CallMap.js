@@ -10,12 +10,6 @@ import Anchor from "./Anchor.js";
 import "./callMap.css";
 
 function CallMap({ info, selectedInfo, click, home, drawLines }) {
-  //assign info[0] to selected info on first render, and everytime a new entry
-  //is added to infoList (when info.length changes). Makes ExtraInfo appear
-  //when a new entry is added.
-  //   --click() only needs to run on first render and when info.length changes,
-  //      not on every render, so a prop wasn't appropriate
-
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {

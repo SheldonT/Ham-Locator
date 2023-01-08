@@ -1,9 +1,10 @@
 /** @format */
 
 import { useState, useRef } from "react";
-import ValidateField from "./ValidateField.js";
+import TextField from "./TextField.js";
 import ExtraInfo from "./ExtraInfo.js";
 import Button from "./Button.js";
+import { validateCall, validateFreq, formatSRN } from "../ValidateFunctions.js";
 import callsign from "callsign";
 import inputBar from "./inputBar.module.css";
 
@@ -15,14 +16,14 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
   const [recRep, setRecRep] = useState("");
   const [name, setName] = useState("");
   const [grid, setGrid] = useState("");
-  const [serialSent, setSerialSent] = useState(1);
+  const [serialSent, setSerialSent] = useState("000");
   const [serialRcv, setSerialRcv] = useState("");
   const [comment, setComment] = useState("");
 
-  const [validCall, setValidCall] = useState(false);
-  const [validFreq, setValidFreq] = useState(false);
-  const [warningCall, setWarningCall] = useState(true);
-  const [warningFreq, setWarningFreq] = useState(true);
+  const [validCall, setValidCall] = useState(true);
+  const [validFreq, setValidFreq] = useState(true);
+  const [warningCall, setWarningCall] = useState(false);
+  const [warningFreq, setWarningFreq] = useState(false);
 
   const callField = useRef();
   const freqField = useRef();
@@ -37,41 +38,50 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
   };
 
   const getContact = () => {
+    callField.current.focus();
+    freqField.current.focus();
+
     if (!validCall) {
-      setWarningCall(false);
-      return;
+      setWarningCall(true);
     }
 
     if (!validFreq) {
-      setWarningFreq(false);
-      return;
+      setWarningFreq(true);
     }
 
-    //if (validCall && validFreq) {
-    const ci = {
-      call: callSignValue.toUpperCase(),
-      freq: freqValue,
-      mode: document.getElementById("mode").value,
-      sRep: sentRep,
-      rRep: recRep,
-      name: name,
-      grid: grid,
-      serialSent: serialSent,
-      serialRcv: serialRcv,
-      comment: comment,
-    };
+    if (
+      validCall &&
+      validFreq &&
+      freqValue.length !== 0 &&
+      callSignValue.length !== 0
+    ) {
+      const ci = {
+        call: callSignValue.toUpperCase(),
+        freq: freqValue,
+        mode: document.getElementById("mode").value,
+        sRep: sentRep,
+        rRep: recRep,
+        name: name,
+        grid: grid,
+        serialSent: serialSent,
+        serialRcv: serialRcv,
+        comment: comment,
+      };
 
-    setInfo(ci);
-    setCallSignValue("");
-    setSentRep("");
-    setRecRep("");
-    setName("");
-    setGrid("");
-    setSerialSent(serialSent + 1);
-    setSerialRcv("");
-    setComment("");
-    resetExtra(); //can this be done in Location.js
-    //}
+      setInfo(ci);
+      setCallSignValue("");
+      setSentRep("");
+      setRecRep("");
+      setName("");
+      setGrid("");
+      setSerialSent(serialSent);
+      setSerialRcv("");
+      setComment("");
+      resetExtra(); //can this be done in Location.js
+
+      setWarningCall(false);
+      setWarningFreq(false);
+    }
     callField.current.focus();
   };
 
@@ -96,37 +106,37 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
       }}
     >
       <div style={{ position: "relative" }}>
-        <ValidateField
-          message="Enter an amateur callsign."
-          style="callField"
+        <TextField
+          style={inputBar.callField}
+          validate={validateCall}
           value={callSignValue}
           setValue={setCallSignValue}
-          type="Callsign"
+          placeHolder="Callsign"
           refrence={callField}
-          valid={validCall}
           setValid={setValidCall}
           warning={warningCall}
+          isValid={validCall}
         />
         {callSignValue.length >= 2 ? (
           <ExtraInfo info={liveOut(callSignValue)} infoStyle={popupStyle} />
         ) : null}
       </div>
 
-      <ValidateField
-        message="This is not an amateur frequency."
-        style="freqField"
+      <TextField
+        style={inputBar.freqField}
+        validate={validateFreq}
         value={freqValue}
         setValue={setFreqValue}
-        type="Freq"
+        placeHolder="Freq"
         refrence={freqField}
         exp={/[^\d.]/g}
-        valid={validFreq}
         setValid={setValidFreq}
         warning={warningFreq}
+        isValid={validFreq}
       />
 
       <div
-        className={inputBar.fieldContainer}
+        className={inputBar.modeCont}
         value={mode}
         onChange={(e) => {
           setMode(e.target.value);
@@ -144,26 +154,24 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
       </div>
 
       <div className={inputBar.fieldContainer}>
-        <input
-          className={inputBar.sigRep}
-          type="text"
-          placeholder="RSTs"
+        <TextField
+          style={inputBar.sigRep}
           value={sentRep}
-          onChange={(e) => {
-            setSentRep(e.target.value.replace(/[^\d]/g, ""));
-          }}
+          setValue={setSentRep}
+          exp={/[^\d]/g}
+          placeHolder="RSTs"
+          isValid={true}
         />
       </div>
 
       <div className={inputBar.fieldContainer}>
-        <input
-          className={inputBar.sigRep}
-          type="text"
-          placeholder="RSTr"
+        <TextField
+          style={inputBar.sigRep}
           value={recRep}
-          onChange={(e) => {
-            setRecRep(e.target.value.replace(/[^\d]/g, ""));
-          }}
+          setValue={setRecRep}
+          exp={/[^\d]/g}
+          placeHolder="RSTr"
+          isValid={true}
         />
       </div>
 
@@ -173,14 +181,12 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
           display: optionalFields && optionalFields.name ? "flex" : "none",
         }}
       >
-        <input
-          className={inputBar.comment}
-          type="text"
-          placeholder="Name"
+        <TextField
+          style={inputBar.comment}
           value={name}
-          onChange={(e) => {
-            setName(e.target.value);
-          }}
+          setValue={setName}
+          placeHolder="Name"
+          isValid={true}
         />
       </div>
 
@@ -190,14 +196,12 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
           display: optionalFields && optionalFields.grid ? "flex" : "none",
         }}
       >
-        <input
-          className={inputBar.freqField}
-          type="text"
-          placeholder="Grid"
+        <TextField
+          style={inputBar.freqField}
           value={grid}
-          onChange={(e) => {
-            setGrid(e.target.value);
-          }}
+          setValue={setGrid}
+          placeHolder="Grid"
+          isValid={true}
         />
       </div>
 
@@ -208,23 +212,17 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
             optionalFields && optionalFields.serialSent ? "flex" : "none",
         }}
       >
-        <input
-          className={inputBar.freqField}
-          type="text"
-          placeholder="STX"
-          value={
-            parseInt(serialSent) < 10
-              ? "00" + serialSent
-              : parseInt(serialSent) < 100
-              ? "0" + serialSent
-              : serialSent
-          }
-          onChange={(e) => {
-            setSerialSent(e.target.value.replace(/[^\d]/g, ""));
+        <TextField
+          style={inputBar.freqField}
+          value={formatSRN(serialSent)}
+          setValue={setSerialSent}
+          keyDown={(e) => {
+            if (e.key === "Tab")
+              setSerialSent(formatSRN(parseInt(serialSent) + 1));
           }}
-          onBlur={() => {
-            setSerialSent(parseInt(serialSent) + 1);
-          }}
+          placeHolder="STX"
+          isValid={true}
+          exp={/[^\d]/g}
         />
       </div>
 
@@ -234,20 +232,13 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
           display: optionalFields && optionalFields.serialRcv ? "flex" : "none",
         }}
       >
-        <input
-          className={inputBar.freqField}
-          type="text"
-          placeholder="SRX"
-          value={
-            parseInt(serialRcv) < 10
-              ? "00" + serialRcv
-              : parseInt(serialRcv) < 100
-              ? "0" + serialRcv
-              : serialRcv
-          }
-          onChange={(e) => {
-            setSerialRcv(e.target.value.replace(/[^\d]/g, ""));
-          }}
+        <TextField
+          style={inputBar.freqField}
+          value={formatSRN(serialRcv)}
+          setValue={setSerialRcv}
+          placeHolder="SRX"
+          isValid={true}
+          exp={/[^\d]/g}
         />
       </div>
 
@@ -257,14 +248,12 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
           display: optionalFields && optionalFields.comment ? "flex" : "none",
         }}
       >
-        <input
-          className={inputBar.comment}
-          type="text"
-          placeholder="Comments"
+        <TextField
+          style={inputBar.comment}
           value={comment}
-          onChange={(e) => {
-            setComment(e.target.value);
-          }}
+          setValue={setComment}
+          placeHolder="Comments"
+          isValid={true}
         />
       </div>
       <Button

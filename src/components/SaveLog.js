@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { saveAs } from "file-saver";
 import { bandDef } from "../constants.js";
-import { utcHrs, utcMins } from "./Location.js";
+import { utcHrs, utcMins, formatDate } from "./Location.js";
 import PopUp from "./PopUp.js";
 import Button from "./Button.js";
 import saveLog from "./saveLog.module.css";
@@ -12,12 +12,7 @@ function toADIF(d) {
   const currDate = new Date();
 
   const timeStamp =
-    currDate.getUTCFullYear() +
-    parseInt(currDate.getUTCMonth() + 1) +
-    currDate.getUTCDate() +
-    " " +
-    utcHrs(currDate) +
-    utcMins(currDate);
+    formatDate(currDate) + " " + utcHrs(currDate) + utcMins(currDate);
 
   let dataStr = `Exported by Ham-Locator
 https://sheldont.github.io/Ham-Locator
