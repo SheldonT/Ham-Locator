@@ -58,7 +58,6 @@ function Home({ setVis, setHome }) {
               <label>Callsign: </label>
 
               <TextField
-                //style={inputBar.callField}
                 validate={validateCall}
                 value={homeCall}
                 setValue={setHomeCall}
@@ -66,6 +65,11 @@ function Home({ setVis, setHome }) {
                 refrence={callField}
                 setValid={setValid}
                 warning={warning}
+                keyDown={(e) => {
+                  if (e.key === "Enter") {
+                    submit();
+                  }
+                }}
                 isValid={valid}
               />
               <span className={home.demo}>* Enter "DEMO" for testing</span>
@@ -97,7 +101,7 @@ function Home({ setVis, setHome }) {
             {homeCall.toUpperCase() === "DEMO" ? (
               <div className={home.inputCont}>
                 <span className={home.note}>
-                  For a list of callsigns for testing, go to the Loogbook tab on
+                  For a list of callsigns for testing, go to the Logbook tab on
                   my qrz.com page{" "}
                   <a href="https://www.qrz.com/db/VO1TWR" target="_blank">
                     here

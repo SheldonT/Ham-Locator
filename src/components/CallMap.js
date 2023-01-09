@@ -12,6 +12,8 @@ import "./callMap.css";
 function CallMap({ info, selectedInfo, click, home, drawLines }) {
   const [isOpen, setIsOpen] = useState(false);
 
+  let mapCenter;
+
   useEffect(() => {
     click(info[0]);
     if (info.length === 0) {
@@ -21,19 +23,23 @@ function CallMap({ info, selectedInfo, click, home, drawLines }) {
     }
   }, [info.length]);
 
-  let mapCenter = [0, 0];
+  useEffect(() => {
+    click(home);
+  }, [home.call]);
 
   let popUp = <></>;
 
   if (info.length > 0) {
     mapCenter = info[0].anchor;
+  } else {
+    mapCenter = [0, 0];
   }
 
-  if (selectedInfo && info.length !== 0) {
-    const findCenter = info.find((a) => a.id === selectedInfo.id) || [];
+  //if (selectedInfo && info.length !== 0) {
+  //const findCenter = info.find((a) => a.id === selectedInfo.id) || [];
 
-    mapCenter = findCenter.anchor;
-  }
+  //mapCenter = findCenter.anchor;
+  //}
 
   if (isOpen) {
     popUp = (
@@ -56,15 +62,12 @@ function CallMap({ info, selectedInfo, click, home, drawLines }) {
       />
       <NightRegion fillColor="#00345c" color="#001a2e" stroke={false} />
 
-      {Object.keys(home).length !== 0 ? (
-        <Anchor
-          info={home}
-          selectedInfo={selectedInfo}
-          action={click}
-          setIsOpen={setIsOpen}
-          isHome={true}
-        />
-      ) : null}
+      {
+        //Object.keys(home).length !== 0
+        selectedInfo === home ? (
+          <Anchor info={home} selectedInfo={home} isHome={true} />
+        ) : null
+      }
 
       {info.map((mapCoord) => (
         <Anchor

@@ -74,8 +74,6 @@ function Location({ optionalFields, setHome, homeData, lines }) {
         const currDate = new Date();
         const utcDate = formatDate(currDate);
 
-        console.log(utcDate);
-
         const utcTime = utcHrs(currDate) + ":" + utcMins(currDate);
 
         setId(id + 1);

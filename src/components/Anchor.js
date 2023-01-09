@@ -1,7 +1,7 @@
 /** @format */
 
 import { Marker, useMap } from "react-leaflet";
-import redMarker from "../assets/leafletImages/home-icon.png";
+import redMarker from "../assets/leafletImages/markerRed2.png";
 import { Icon } from "leaflet";
 
 function Anchor({ info, selectedInfo, action, setIsOpen, isHome }) {
