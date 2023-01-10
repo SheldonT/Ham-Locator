@@ -53,47 +53,57 @@ function Home({ setVis, setHome }) {
       <div className={home.homeBG}>
         <div className={home.homeDialog}>
           <div className={home.homeContent}>
-            <h3 className={home.homeTitle}>Enter your home information...</h3>
-            <div className={home.inputCont}>
-              <label>Callsign: </label>
-
-              <TextField
-                validate={validateCall}
-                value={homeCall}
-                setValue={setHomeCall}
-                placeHolder="Callsign"
-                refrence={callField}
-                setValid={setValid}
-                warning={warning}
-                keyDown={(e) => {
-                  if (e.key === "Enter") {
-                    submit();
-                  }
-                }}
-                isValid={valid}
-              />
+            <span className={home.homeTitle}>
+              Enter your home information...
+            </span>
+            <div className={`${home.inputCont} ${home.inputAdapt}`}>
+              <div className={home.textField}>
+                <label className={home.callLabel}>Callsign: </label>
+                <TextField
+                  style={home.callWidth}
+                  validate={validateCall}
+                  value={homeCall}
+                  setValue={setHomeCall}
+                  placeHolder="Callsign"
+                  refrence={callField}
+                  setValid={setValid}
+                  warning={warning}
+                  keyDown={(e) => {
+                    if (e.key === "Enter") {
+                      submit();
+                    }
+                  }}
+                  isValid={valid}
+                />
+              </div>
               <span className={home.demo}>* Enter "DEMO" for testing</span>
             </div>
 
-            <div className={home.inputCont}>
+            <div className={`${home.inputCont} ${home.radioAdapt}`}>
               <label>Units: </label>
-              <input
-                type="radio"
-                id="metric"
-                value="metric"
-                name="units"
-                defaultChecked
-                onChange={(e) => setUnit(e.target.value)}
-              />
-              <label htmlFor="metric">Metric</label>
-              <input
-                type="radio"
-                id="imperial"
-                value="imperial"
-                name="units"
-                onChange={(e) => setUnit(e.target.value)}
-              />
-              <label htmlFor="metric">Imperial</label>
+              <div className={home.radioButtonGroup}>
+                <div className={home.radioButton}>
+                  <input
+                    type="radio"
+                    id="metric"
+                    value="metric"
+                    name="units"
+                    defaultChecked
+                    onChange={(e) => setUnit(e.target.value)}
+                  />
+                  <label htmlFor="metric">Metric</label>
+                </div>
+                <div className={home.radioButton}>
+                  <input
+                    type="radio"
+                    id="imperial"
+                    value="imperial"
+                    name="units"
+                    onChange={(e) => setUnit(e.target.value)}
+                  />
+                  <label htmlFor="metric">Imperial</label>
+                </div>
+              </div>
             </div>
             <div className={home.inputCont}>
               <Button name="Submit" clickEvent={submit} />
