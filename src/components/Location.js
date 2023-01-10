@@ -56,7 +56,7 @@ export const formatDate = (date) => {
 function Location({ optionalFields, setHome, homeData, lines }) {
   const [contactInfo, setContactInfo] = useState({});
   const [infoList, setInfoList] = useState([]);
-  const [extraInfo, setExtraInfo] = useState();
+  const [extraInfo, setExtraInfo] = useState({});
   const [id, setId] = useState(1);
 
   const jsonResp = useFetch(contactInfo.call);

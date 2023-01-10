@@ -17,8 +17,10 @@ function Anchor({ info, selectedInfo, action, setIsOpen, isHome }) {
     iconAnchor: [15, 54],
   });
 
-  if (selectedInfo) {
-    map.flyTo([selectedInfo.anchor[0] - 5, selectedInfo.anchor[1]], 3);
+  if (Object.keys(selectedInfo).length !== 0) {
+    if (selectedInfo.anchor) {
+      map.flyTo([selectedInfo.anchor[0] - 5, selectedInfo.anchor[1]], 3);
+    }
   }
 
   return !isHome ? (

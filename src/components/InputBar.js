@@ -77,7 +77,7 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
       setSerialSent(serialSent);
       setSerialRcv("");
       setComment("");
-      resetExtra(); //can this be done in Location.js
+      resetExtra({}); //can this be done in Location.js
 
       setWarningCall(false);
       setWarningFreq(false);

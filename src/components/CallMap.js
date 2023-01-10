@@ -44,7 +44,9 @@ function CallMap({ info, selectedInfo, click, home, drawLines }) {
   if (isOpen) {
     popUp = (
       <Popup
-        position={selectedInfo ? selectedInfo.anchor : [0, 0]}
+        position={
+          Object.keys(selectedInfo).length !== 0 ? selectedInfo.anchor : [0, 0]
+        }
         closeButton={false}
       >
         <ExtraInfo info={selectedInfo} home={home} />
@@ -62,12 +64,10 @@ function CallMap({ info, selectedInfo, click, home, drawLines }) {
       />
       <NightRegion fillColor="#00345c" color="#001a2e" stroke={false} />
 
-      {
-        //Object.keys(home).length !== 0
-        selectedInfo === home ? (
-          <Anchor info={home} selectedInfo={home} isHome={true} />
-        ) : null
-      }
+      {Object.keys(home).length !== 0 ? (
+        //selectedInfo === home ? (
+        <Anchor info={home} selectedInfo={home} isHome={true} />
+      ) : null}
 
       {info.map((mapCoord) => (
         <Anchor
