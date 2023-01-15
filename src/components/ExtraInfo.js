@@ -28,7 +28,7 @@ function ExtraInfo({ info, home, infoStyle }) {
     ) : null;
   }
 
-  if (home && info) {
+  if (home && Object.keys(info).length !== 0) {
     let dist = getDistance(
       { latitude: home.anchor[0], longitude: home.anchor[1] },
       { latitude: info.anchor[0], longitude: info.anchor[1] }

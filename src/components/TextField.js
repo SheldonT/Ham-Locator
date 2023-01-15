@@ -18,6 +18,7 @@ function TextField({
   leaveFocus,
   exp,
 }) {
+  const [errorMsg, setErrorMsg] = useState("");
   const warningStyle = {
     borderColor: "red",
     borderWidth: "0.4rem",
@@ -26,7 +27,6 @@ function TextField({
   const validStyle = {
     borderColor: "black",
   };
-  const [errorMsg, setErrorMsg] = useState("");
 
   return (
     <div className={inputField.fieldContainer}>
