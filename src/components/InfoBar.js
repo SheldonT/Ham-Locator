@@ -67,7 +67,7 @@ function InfoBar({
               <th className={infoBar.infoHead}>RSTr</th>
               <th className={infoBar.infoHead}>Date</th>
               <th className={infoBar.infoHead}>Time</th>
-              <OpFields d="" />
+              <OpFields />
             </tr>
           </thead>
           <tbody>
