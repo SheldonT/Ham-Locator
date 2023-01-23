@@ -2,13 +2,18 @@
 
 Every ham radio operator should keep a log of all their radio contacts, and at the least, each entry should include the other station's callsign, the frequency used, the transmission mode used (AM, FM, Digital, etc.), and a standard signal report sent and recieved (RSTs and RSTr). Most hams use apps rather than pencil and paper to create these logs, and as a new ham, I found most of these apps to be very complicated and difficult to set up. That's why I created Ham locator, which is a simple ham radio logging app intended for new and casual operators.
 
-Ham Locator was built using these technologies:
+<h3>Ham Locator was built using these technologies:</h3>
 <ul>
-<li>React.js</li>
+  <li>React.js</li>
+  <li><a href="https://www.hamqth.com/" target="_blank">HamQTH.com</a> callbook database for retrieving callsign / station location.</li>
+  
+  <li><a href="https://github.com/YuYanDev/callsign" target="_blank">Callsign.js</a> is used as an alternative callsign search, if HamQTH.com is not available</li>
+  
+  <li><a href="https://react-leaflet.js.org/" target="_blank">React Leaflet</a> to create interactive maps</li>
 
-<li><a href="https://react-leaflet.js.org/" target="_blank">React Leaflet</a> to create interactive maps</li>
-
-<li><a href="https://github.com/tammaroivan/react-leaflet-night-region#readme" target="_blank">react-leaflet-night-region</a> plugin for React Leaflet used to plot the night region (gray line) on the map</li>
+  <li><a href="https://github.com/tammaroivan/react-leaflet-night-region#readme" target="_blank">react-leaflet-night-region</a> plugin for React Leaflet used to plot     the   night region (gray line) on the map</li>
+  
+  <li><a href="https://github.com/smucode/react-world-flags" target="_blank">react-world-flags</a> for retrieving country flag icons for each station contact.</li>
 
 </ul>
 
