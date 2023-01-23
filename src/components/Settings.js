@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import gear from "../assets/gear.png";
+import useOutsideClick from "../useOutsideClick.js";
 import Button from "./Button.js";
 import settings from "./settings.module.css";
 import PopUp from "./PopUp.js";
@@ -15,10 +16,12 @@ function Settings({
 }) {
   const [openSettings, setOpenSettings] = useState(false);
 
+  const ref = useOutsideClick(() => setOpenSettings(false));
+
   localStorage.setItem("fields", JSON.stringify(optionalFields));
 
   return (
-    <div className={settings.settings}>
+    <div className={settings.settings} ref={ref}>
       <img
         className={settings.settingsIcon}
         onClick={() => setOpenSettings(!openSettings)}
