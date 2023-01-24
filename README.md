@@ -24,9 +24,9 @@ Every ham radio operator should keep a log of all their radio contacts, and at t
 
 <h3>Usage</h3>
 
-![hl_screenshot](https://user-images.githubusercontent.com/109766064/211208660-e414b225-ca68-4474-90d1-f1020e565dc8.png)
+On initial start, you'll be prompted to enter your home information. If you're a radio amateur, enter your callsign, or enter <i>DEMO</i> if you're just testing. You can also select your preferred unit of measurement to be used throughout the app, but mainly to display to the distance between your home station and a contact. After clicking the <i>Submit</i> button, you'll be brought to Ham Locator's main screen, which has a world map, a field for entering new log records (contacts), and a table for displaying recent log entries. A red pin with a home icon will be placed on the map showing your home location.
 
-On initial start, you'll be prompted to enter your home information. If you're a radio amateur, enter your callsign, or enter <i>DEMO<</i> if you're just testing.
+![hl_screenshot](https://user-images.githubusercontent.com/109766064/211208660-e414b225-ca68-4474-90d1-f1020e565dc8.png)
 
 To add a record to your log, just fill in the form at the bottom of the map on the main screen with the information exchanged with your radio contact. The default fields are:
 
@@ -37,6 +37,7 @@ To add a record to your log, just fill in the form at the bottom of the map on t
 <li>signal report sent (RSTs), and</li>
 <li>signal report received (RSTr).</li>
 </ul>
+
 Optional fields can be added to the form from the settings menu. Available optional fields are:
 <ul>
 <li>contact's name,</li>
@@ -45,7 +46,7 @@ Optional fields can be added to the form from the settings menu. Available optio
 <li>serial received (for radio contests)</li>
 </ul>
 
-After entering a record, press <i>enter</i> or click/tap the submit button. The record will be entered in a table below the map. Each consecutive record will be entered in the table in reverse order. A marker is also placed on the world map for each record at the location determined from the station's callsign. A popup is also displayed showing some extra information about the station, such as city, country, flag, and distance from your home station. All records are stored in your browser's local storage, so your log won't be lost if you refresh or close your browser.
+After entering a record, press <i>enter</i> or click/tap the submit button. The record will be entered in a table below the map. Each consecutive record will be entered in the table in reverse order. A blue marker is also placed on the world map for each record at the location determined from the station's callsign. A popup is also displayed showing some extra information about the station, such as city, country, flag, and distance from your home station. All records are stored in your browser's local storage, so your log won't be lost if you refresh or close your browser.
 
 If you're not a ham radio operator, you can still try Ham Locator by entering some log entries from my ham radio log, located under the <i>Logbook</i> tab on my <a href="https://www.qrz.com/db/VO1TWR">qrz.com profile</a>.
 
