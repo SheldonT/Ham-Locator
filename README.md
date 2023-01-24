@@ -7,27 +7,20 @@ Every ham radio operator should keep a log of all their radio contacts, and at t
 
 <h3>Ham Locator was built using these technologies:</h3>
 <ul>
-  <li>React.js</li>
-  <li><a href="https://www.hamqth.com/" target="_blank">HamQTH.com</a> callbook database for retrieving callsign / station location.</li>
-  
-  <li><a href="https://github.com/YuYanDev/callsign" target="_blank">Callsign.js</a> is used as an alternative callsign search, if HamQTH.com is not available</li>
-  
-  <li><a href="https://react-leaflet.js.org/" target="_blank">React Leaflet</a> to create interactive maps</li>
-
-<li><a href="https://github.com/tammaroivan/react-leaflet-night-region#readme" target="_blank">react-leaflet-night-region</a> plugin for React Leaflet used to plot     the   night region (gray line) on the map</li>
-
-<li><a href="https://github.com/smucode/react-world-flags" target="_blank">react-world-flags</a> for retrieving country flag icons for each station contact.</li>
-
-<li><a href="https://formidable.com/open-source/victory/" target="_blank">Victory</a> for creating the bar graphs on the Stats page</li>
-
+  <li>React.js</li><li><a href="https://www.hamqth.com/" target="_blank">HamQTH.com</a> callbook database for retrieving callsign / station location.</li>
+  <li><a href="https://github.com/YuYanDev/callsign" target="_blank">Callsign.js</a> is used as an alternative callsign search, if HamQTH.com is not available</li>
+  <li><a href="https://react-leaflet.js.org/" target="_blank">React Leaflet</a> to create interactive maps</li>
+  <li><a href="https://github.com/tammaroivan/react-leaflet-night-region#readme" target="_blank">react-leaflet-night-region</a> plugin for React Leaflet used to plot the night region (gray line) on the map</li>
+  <li><a href="https://github.com/smucode/react-world-flags" target="_blank">react-world-flags</a> for retrieving country flag icons for each station contact.</li>
+  <li><a href="https://formidable.com/open-source/victory/" target="_blank">Victory</a> for creating the bar graphs on the Stats page</li>
 </ul>
 
 <h3>Installation</h3>
 <ol>
   <li>Download and install Node.js.</li>
-  <li>Download the Ham Locator source code from github.com/SheldonT/Ham-Locator, or clone the repository using git. Decompress the .zip file if necessary.</li>
-  <li>On a command line, navigate to the directory containing the Ham Locator source files and run <i>npm start</i>. A development server will start, and Ham Locator will start the default browser.</li>
-<ol>
+  <li>Download the Ham Locator source code from github.com/SheldonT/Ham-Locator, or clone the repository using git. Decompress the .zip file if necessary.</li>
+  <li>On a command line, navigate to the directory containing the Ham Locator source files and run <i>npm start</i>. A development server will start, and Ham Locator will start the default browser.</li>
+</ol>
 
 <h3>Usage</h3>
 
