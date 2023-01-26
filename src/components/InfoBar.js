@@ -10,6 +10,7 @@ function InfoBar({
   style,
   optionalFields,
   editField,
+  hoverEffect,
 }) {
   const OpFields = () => {
     if (optionalFields) {
@@ -79,6 +80,7 @@ function InfoBar({
                 optionalFields={optionalFields}
                 key={callData.id}
                 editField={editField}
+                hoverEffect={hoverEffect}
               />
             ))}
           </tbody>

@@ -16,7 +16,14 @@ function restore(event, setValue, value) {
   }
 }
 
-function TableRow({ info, activeInfo, click, optionalFields, editField }) {
+function TableRow({
+  info,
+  activeInfo,
+  click,
+  optionalFields,
+  editField,
+  hoverEffect,
+}) {
   const [callSignValue, setCallSignValue] = useState(info.call);
   const [freqValue, setFreqValue] = useState(info.freq);
   const [mode, setMode] = useState(info.mode);
@@ -40,7 +47,12 @@ function TableRow({ info, activeInfo, click, optionalFields, editField }) {
 
   const EditButton = () => {
     return (
-      <td>
+      <td
+        style={{
+          display: "flex",
+          flexDirection: "row",
+        }}
+      >
         <Button
           name={edit ? "Submit" : "Edit"}
           clickEvent={() => {
@@ -50,6 +62,13 @@ function TableRow({ info, activeInfo, click, optionalFields, editField }) {
             if (editField && edit) {
               getContact();
             }
+          }}
+        />
+        <Button
+          name="Cancel"
+          show={edit ? true : false}
+          clickEvent={() => {
+            setEdit(false);
           }}
         />
       </td>
@@ -104,7 +123,9 @@ function TableRow({ info, activeInfo, click, optionalFields, editField }) {
   return (
     <>
       <tr
-        className={tableRow.activeRow}
+        className={
+          hoverEffect === false ? tableRow.activeRowNoHover : tableRow.activeRow
+        }
         onClick={() => {
           if (!editField) click(info);
         }}

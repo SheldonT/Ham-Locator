@@ -5,6 +5,10 @@
   cursor: pointer;
 }
 
+.activeRowNoHover {
+  text-decoration: none;
+}
+
 .activeRow:hover {
   text-decoration: underline;
   color: var(--activeRow);
