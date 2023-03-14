@@ -1,7 +1,7 @@
 /** @format */
 
 import ReactDOM from "react-dom/client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout.js";
 import About from "./pages/About.js";
@@ -10,6 +10,7 @@ import Stats from "./pages/Stats.js";
 import Log from "./pages/Log.js";
 import Location from "./components/Location.js";
 import "./index.css";
+import UserProvider, { UserContext } from "./contexts/UserContext.js";
 
 function HamLocator() {
   const [fields, setFields] = useState(
@@ -21,6 +22,17 @@ function HamLocator() {
   const [homeData, setHomeData] = useState(
     JSON.parse(localStorage.getItem("home") || "{}")
   );
+  
+  /* 
+    useContext is the react hook that can reference the context created 
+    here the [isAuthenticated] is being pulled from the UserContext
+
+    the same can be done for functions defined in contexts
+  */
+  const { isAuthenticated } = useContext(UserContext);
+  console.log({isAuthenticated})
+
+
 
   return (
     <BrowserRouter>
@@ -66,6 +78,8 @@ function HamLocator() {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <HamLocator />
+    <UserProvider>
+      <HamLocator />
+    </UserProvider>
   </React.StrictMode>
 );
