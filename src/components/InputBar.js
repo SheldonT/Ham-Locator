@@ -17,7 +17,7 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
   const [name, setName] = useState("");
   const [grid, setGrid] = useState("");
   const [serialSent, setSerialSent] = useState("000");
-  const [serialRcv, setSerialRcv] = useState("");
+  const [serialRcv, setSerialRcv] = useState("000");
   const [comment, setComment] = useState("");
 
   const [validCall, setValidCall] = useState(true);
@@ -56,15 +56,15 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
       callSignValue.length !== 0
     ) {
       const ci = {
-        call: callSignValue.toUpperCase(),
+        contactCall: callSignValue.toUpperCase(),
         freq: freqValue,
         mode: document.getElementById("mode").value,
-        sRep: sentRep,
-        rRep: recRep,
+        sigRepSent: sentRep,
+        sigRepRecv: recRep,
         name: name,
         grid: grid,
         serialSent: serialSent,
-        serialRcv: serialRcv,
+        serialRecv: serialRcv,
         comment: comment,
       };
 
@@ -81,6 +81,8 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
 
       setWarningCall(false);
       setWarningFreq(false);
+
+      //localStorage.setItem("lastEntry", JSON.stringify(ci.contactCall));
     }
     callField.current.focus();
   };
@@ -89,7 +91,7 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
     let cInfo = callsign.getAmateurRadioInfoByCallsign(c);
 
     if (cInfo) {
-      cInfo = { ...cInfo, country: cInfo.area, call: cInfo.area };
+      cInfo = { ...cInfo, country: cInfo.area, contactCall: cInfo.area };
       delete cInfo.area;
     }
 
@@ -107,7 +109,7 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
     >
       <div style={{ position: "relative" }}>
         <TextField
-          style={inputBar.callField}
+          fieldStyle={inputBar.callField}
           validate={validateCall}
           value={callSignValue}
           setValue={setCallSignValue}
@@ -123,7 +125,7 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
       </div>
 
       <TextField
-        style={inputBar.freqField}
+        fieldStyle={inputBar.freqField}
         validate={validateFreq}
         value={freqValue}
         setValue={setFreqValue}
@@ -155,7 +157,7 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
 
       <div className={inputBar.fieldContainer}>
         <TextField
-          style={inputBar.sigRep}
+          fieldStyle={inputBar.sigRep}
           value={sentRep}
           setValue={setSentRep}
           exp={/[^\d]/g}
@@ -166,7 +168,7 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
 
       <div className={inputBar.fieldContainer}>
         <TextField
-          style={inputBar.sigRep}
+          fieldStyle={inputBar.sigRep}
           value={recRep}
           setValue={setRecRep}
           exp={/[^\d]/g}
@@ -182,7 +184,7 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
         }}
       >
         <TextField
-          style={inputBar.comment}
+          fieldStyle={inputBar.comment}
           value={name}
           setValue={setName}
           placeHolder="Name"
@@ -197,7 +199,7 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
         }}
       >
         <TextField
-          style={inputBar.freqField}
+          fieldStyle={inputBar.freqField}
           value={grid}
           setValue={setGrid}
           placeHolder="Grid"
@@ -213,7 +215,7 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
         }}
       >
         <TextField
-          style={inputBar.freqField}
+          fieldStyle={inputBar.freqField}
           value={formatSRN(serialSent)}
           setValue={setSerialSent}
           keyDown={(e) => {
@@ -233,7 +235,7 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
         }}
       >
         <TextField
-          style={inputBar.freqField}
+          fieldStyle={inputBar.freqField}
           value={formatSRN(serialRcv)}
           setValue={setSerialRcv}
           placeHolder="SRX"
@@ -249,7 +251,7 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
         }}
       >
         <TextField
-          style={inputBar.comment}
+          fieldStyle={inputBar.comment}
           value={comment}
           setValue={setComment}
           placeHolder="Comments"

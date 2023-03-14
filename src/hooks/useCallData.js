@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import XMLParser from "react-xml-parser";
 import callsign from "callsign";
-import { canPrefix, gps, areaCode } from "./constants.js";
+import { canPrefix, gps, areaCode } from "../constants.js";
 
 function countryCoord(country, call, prefix) {
   const numberReg = /\d/;
@@ -44,7 +44,7 @@ function countryCoord(country, call, prefix) {
   return cCoord;
 }
 
-export default function useFetch(call) {
+export default function useCallData(call) {
   //custom hook for retrieving station information from hamqth.com
 
   const [data, setData] = useState(null);
@@ -73,7 +73,7 @@ export default function useFetch(call) {
             anchor: [parseFloat(rLatitude), parseFloat(rLongitude)],
             country: rCountry,
             details: rDetails,
-            time: rTimeZone,
+            utc: rTimeZone,
             itu: rITU,
           });
         })
@@ -101,7 +101,7 @@ export default function useFetch(call) {
                 anchor: coord,
                 country: rCountry,
                 details: rDetails,
-                time: rTimeZone,
+                utc: rTimeZone,
                 itu: rITU,
               });
             })

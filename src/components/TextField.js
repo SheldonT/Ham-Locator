@@ -5,7 +5,8 @@ import attention from "../assets/attention.svg";
 import inputField from "./inputField.module.css";
 
 function TextField({
-  style,
+  fieldStyle,
+  fieldContainerStyle,
   value,
   validate,
   setValue,
@@ -15,13 +16,17 @@ function TextField({
   isValid,
   setValid,
   warning,
+  setWarning,
   leaveFocus,
   exp,
+  errMsg,
+  errorPopupStyle,
+  password,
 }) {
-  const [errorMsg, setErrorMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState(errMsg || "");
   const warningStyle = {
     borderColor: "red",
-    borderWidth: "0.4rem",
+    borderWidth: "0.2rem",
     outlineWidth: "0.1rem",
   };
   const validStyle = {
@@ -29,12 +34,12 @@ function TextField({
   };
 
   return (
-    <div className={inputField.fieldContainer}>
+    <div className={`${inputField.fieldContainer} ${fieldContainerStyle}`}>
       <input
-        className={`${inputField.field} ${style}`}
+        className={`${inputField.field} ${fieldStyle}`}
         style={!isValid ? warningStyle : validStyle}
         ref={refrence}
-        type="text"
+        type={password ? "password" : "text"}
         placeholder={placeHolder}
         value={value}
         onChange={(e) => {
@@ -42,6 +47,11 @@ function TextField({
 
           if (validate) {
             setValid(validate(e.target.value.replace(exp, ""), setErrorMsg));
+          }
+        }}
+        onFocus={() => {
+          if (setWarning && warning) {
+            setWarning(false);
           }
         }}
         onBlur={(e) => {
@@ -58,10 +68,10 @@ function TextField({
       />
 
       <PopUp
-        styleCSS={inputField.errorPopUp}
+        styleCSS={inputField.errorPopUp || errorPopupStyle}
         icon={attention}
         iconSize={{ height: "3rem", width: "3rem" }}
-        show={warning && errorMsg !== ""}
+        show={warning}
       >
         <p className={inputField.errorText}>{errorMsg}</p>
       </PopUp>

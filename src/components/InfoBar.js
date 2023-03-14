@@ -5,7 +5,6 @@ import infoBar from "./infoBar.module.css";
 
 function InfoBar({
   info,
-  selectedInfo,
   click,
   style,
   optionalFields,
@@ -35,13 +34,13 @@ function InfoBar({
             SRN
           </th>
           <th
-            style={{ display: optionalFields.serialRcv ? "" : "none" }}
+            style={{ display: optionalFields.serialRecv ? "" : "none" }}
             className={infoBar.infoHead}
           >
             STN
           </th>
           <th
-            style={{ display: optionalFields.comment ? "" : "none" }}
+            style={{ display: optionalFields.serialComments ? "" : "none" }}
             className={infoBar.infoHead}
           >
             Comments
@@ -75,7 +74,6 @@ function InfoBar({
             {info.map((callData) => (
               <TableRow
                 info={callData}
-                activeInfo={selectedInfo}
                 click={click}
                 optionalFields={optionalFields}
                 key={callData.id}

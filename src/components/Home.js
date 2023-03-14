@@ -1,51 +1,63 @@
 /** @format */
-import { useState, useRef } from "react";
+import { useState, useContext } from "react";
 import FocusTrap from "focus-trap-react";
+import axios from "axios";
 import TextField from "./TextField.js";
 import Button from "./Button.js";
-import { validateCall } from "../ValidateFunctions.js";
-import useFetch from "../useFetch.js";
+import useCallData from "../hooks/useCallData.js";
 import home from "./home.module.css";
+import { SERVER_DOMAIN } from "../constants.js";
 
 function Home({ setVis, setHome }) {
-  const [homeCall, setHomeCall] = useState(
-    JSON.parse(localStorage.getItem("home") || '{"call": ""}').call
-  );
+  const homeData = JSON.parse(localStorage.getItem("home") || `{}`);
+
+  const [callsign, setCallsign] = useState(homeData.call);
+  const [email, setEmail] = useState("");
+  const [gridloc, setGridloc] = useState("");
+
   const [unit, setUnit] = useState("metric");
 
-  const [valid, setValid] = useState(true);
-  const [warning, setWarning] = useState(false);
-
-  const callField = useRef();
-
-  const homeResp = useFetch(homeCall);
+  const homeResp = useCallData(callsign);
 
   const submit = () => {
-    let home = {};
-
-    if (!valid) {
-      setWarning(true);
-      callField.current.focus();
-      return;
-    }
-
-    if (homeCall.toUpperCase() === "DEMO") {
-      home = {
-        call: "DEMO",
-        unit: "imperial",
-        country: "England",
-        anchor: [51.53, -0.12],
-        itu: "27",
-        time: "0",
-      };
-    } else {
-      home = { call: homeCall, unit: unit, ...homeResp };
-    }
+    let home = {
+      call: callsign.length !== 0 ? callsign.toUpperCase() : homeData.call,
+      gridloc: gridloc.length !== 0 ? gridloc : homeData.gridloc,
+      unit: unit.length !== 0 ? unit : homeData.unit,
+      country: homeResp.country,
+      anchor: homeResp.anchor,
+      details: homeResp.details,
+      itu: homeResp.itu,
+      utc: homeResp.utc,
+    };
 
     localStorage.setItem("home", JSON.stringify(home));
-
     setHome(home);
-    setVis(false);
+
+    let dbUpdate = {
+      userId: JSON.parse(localStorage.getItem("authUser")).authUser,
+      call: callsign.toUpperCase(),
+      country: homeResp.country,
+      lat: parseFloat(homeResp.anchor[0]),
+      lng: parseFloat(homeResp.anchor[1]),
+      gridloc: gridloc,
+      itu: parseInt(homeResp.itu),
+      utc: parseFloat(homeResp.utc),
+    };
+
+    if (email.length !== 0) dbUpdate = { email: email, ...dbUpdate };
+    if (unit.length !== 0) dbUpdate = { units: unit, ...dbUpdate };
+
+    console.log(callsign);
+
+    axios
+      .post(`${SERVER_DOMAIN}/users/edituser`, dbUpdate)
+      .then((response) => {
+        if (response.status === 200) {
+          setVis(false);
+        }
+      })
+      .catch((e) => console.log(e));
   };
 
   return (
@@ -58,25 +70,45 @@ function Home({ setVis, setHome }) {
             </span>
             <div className={`${home.inputCont} ${home.inputAdapt}`}>
               <div className={home.textField}>
-                <label className={home.callLabel}>Callsign: </label>
+                {/*<label className={home.callLabel}>Callsign: </label>*/}
                 <TextField
-                  style={home.callWidth}
-                  validate={validateCall}
-                  value={homeCall}
-                  setValue={setHomeCall}
+                  fieldContainerStyle={home.formFields}
+                  value={callsign === undefined ? homeData.call : callsign}
+                  setValue={setCallsign}
                   placeHolder="Callsign"
-                  refrence={callField}
-                  setValid={setValid}
-                  warning={warning}
+                  isValid={true}
                   keyDown={(e) => {
                     if (e.key === "Enter") {
                       submit();
                     }
                   }}
-                  isValid={valid}
+                />
+                <TextField
+                  fieldContainerStyle={home.formFields}
+                  value={email}
+                  setValue={setEmail}
+                  placeHolder="E-Mail"
+                  isValid={true}
+                  keyDown={(e) => {
+                    if (e.key === "Enter") {
+                      submit();
+                    }
+                  }}
+                />
+                <TextField
+                  fieldContainerStyle={home.formFields}
+                  value={gridloc}
+                  setValue={setGridloc}
+                  placeHolder="Grid Locator"
+                  isValid={true}
+                  keyDown={(e) => {
+                    if (e.key === "Enter") {
+                      submit();
+                    }
+                  }}
                 />
               </div>
-              <span className={home.demo}>* Enter "DEMO" for testing</span>
+              {/*<span className={home.demo}>* Enter "DEMO" for testing</span>*/}
             </div>
 
             <div className={`${home.inputCont} ${home.radioAdapt}`}>
@@ -108,18 +140,6 @@ function Home({ setVis, setHome }) {
             <div className={home.inputCont}>
               <Button name="Submit" clickEvent={submit} />
             </div>
-            {homeCall.toUpperCase() === "DEMO" ? (
-              <div className={home.inputCont}>
-                <span className={home.note}>
-                  For a list of callsigns for testing, go to the Logbook tab on
-                  my qrz.com page{" "}
-                  <a href="https://www.qrz.com/db/VO1TWR" target="_blank">
-                    here
-                  </a>
-                  .
-                </span>
-              </div>
-            ) : null}
           </div>
         </div>
       </div>

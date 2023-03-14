@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import gear from "../assets/gear.png";
-import useOutsideClick from "../useOutsideClick.js";
+import useOutsideClick from "../hooks/useOutsideClick.js";
 import Button from "./Button.js";
 import settings from "./settings.module.css";
 import PopUp from "./PopUp.js";

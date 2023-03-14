@@ -1,14 +1,15 @@
 /** @format */
 
 import { useEffect, useState } from "react";
-import useFetch from "../useFetch.js";
+import useCallData from "../hooks/useCallData.js";
+import axios from "axios";
 import InfoBar from "./InfoBar.js";
 import CallMap from "./CallMap.js";
 import InputBar from "./InputBar.js";
 import SaveLog from "./SaveLog.js";
 import ClearTable from "./ClearTable.js";
-
 import location from "./location.module.css";
+import { SERVER_DOMAIN } from "../constants.js";
 
 function validateEntry(entry, currentList) {
   let result = false;
@@ -53,13 +54,13 @@ export const formatDate = (date) => {
   return date.getUTCFullYear() + "-" + month + "-" + day;
 };
 
-function Location({ optionalFields, setHome, homeData, lines }) {
+function Location({ optionalFields, homeData, isAuth, lines }) {
   const [contactInfo, setContactInfo] = useState({});
   const [infoList, setInfoList] = useState([]);
   const [extraInfo, setExtraInfo] = useState({});
   const [id, setId] = useState(1);
 
-  const jsonResp = useFetch(contactInfo.call);
+  const jsonResp = useCallData(contactInfo.contactCall);
 
   const resetTable = () => {
     setId(1);
@@ -67,6 +68,23 @@ function Location({ optionalFields, setHome, homeData, lines }) {
   };
 
   useEffect(() => {
+    const insertToDB = async (newData) => {
+      const newRecord = {
+        userId: isAuth,
+        lat: newData.anchor[0],
+        lng: newData.anchor[1],
+        ...newData,
+      };
+
+      delete newRecord.anchor;
+
+      try {
+        await axios.post(`${SERVER_DOMAIN}/logs/addrecord`, newRecord);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     if (validateEntry(jsonResp, infoList)) {
       console.log("An error occured. Please try again.");
     } else {
@@ -87,9 +105,11 @@ function Location({ optionalFields, setHome, homeData, lines }) {
             ...jsonResp,
           };
 
+          insertToDB(newData);
+
           const dataCollection = [newData, ...previousInfo];
 
-          localStorage.setItem("list", JSON.stringify(dataCollection));
+          //localStorage.setItem("list", JSON.stringify(dataCollection));
 
           return dataCollection;
         });
@@ -98,18 +118,37 @@ function Location({ optionalFields, setHome, homeData, lines }) {
   }, [jsonResp]);
 
   useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem("list") || "[]");
+    //const storedData = JSON.parse(localStorage.getItem("list") || "[]");
 
-    if (storedData.length !== 0) {
-      setId(storedData.length + 1);
-      setInfoList(storedData);
-    } else {
-      resetTable();
-    }
+    const getLog = async () => {
+      try {
+        const response = await axios.get(`${SERVER_DOMAIN}/logs`, {
+          params: { id: isAuth, decend: true },
+        });
 
-    if (Object.keys(homeData).length === 0) {
-      setHome(true);
-    }
+        if (response.data.length !== 0) {
+          setId(response.data.length + 1);
+          let data = response.data;
+
+          for (let i = 0; i < data.length; i++) {
+            data[i].anchor = [response.data[i].lat, response.data[i].lng];
+            data[i].id = data.length - i;
+
+            data[i].contactDate = data[i].contactDate.slice(0, 10);
+
+            delete data[i].lat;
+            delete data[i].lng;
+            delete data[i].userId;
+          }
+          setInfoList(data);
+        } else {
+          resetTable();
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getLog();
   }, []);
 
   return (
@@ -132,12 +171,7 @@ function Location({ optionalFields, setHome, homeData, lines }) {
         />
       </div>
 
-      <InfoBar
-        info={infoList}
-        selectedInfo={extraInfo}
-        click={setExtraInfo}
-        editField={false}
-      />
+      <InfoBar info={infoList} click={setExtraInfo} editField={false} />
 
       <div className={location.controlBar}>
         <SaveLog data={infoList} />

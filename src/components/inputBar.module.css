@@ -23,8 +23,9 @@
 .modeInput {
   background-color: var(--infoBarColor);
   border-radius: 0.5rem;
+  border-width: 0.2rem;
+  border-color: black;
   padding: 0.5rem;
-
   width: 8rem;
 }
 

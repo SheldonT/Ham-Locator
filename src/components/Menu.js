@@ -1,36 +1,73 @@
 /** @format */
 
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import menuImg from "../assets/hamburgerMenu.svg";
 import menu from "./menu.module.css";
 import PopUp from "./PopUp.js";
 
-function Menu() {
+function Menu({ auth }) {
   const [openMenu, setOpenMenu] = useState(false);
+  const [itemSelected, setItemSelected] = useState("");
+
+  const nav = useNavigate();
+
+  useEffect(() => {
+    if (auth) {
+      nav(itemSelected);
+    } else {
+      nav("login");
+    }
+  }, [itemSelected]);
 
   return (
     <div className={menu.menuBar}>
-      <div className={menu.menuEl}>
+      <div
+        className={menu.menuEl}
+        onClick={() => {
+          setItemSelected("/Ham-Locator/");
+        }}
+      >
         {" "}
-        <Link to="/Ham-Locator/">Home</Link>{" "}
+        Home
       </div>
-      <div className={menu.menuEl}>
+      <div
+        className={menu.menuEl}
+        onClick={() => {
+          setItemSelected("log");
+        }}
+      >
         {" "}
-        <Link to="log">Full Log</Link>{" "}
+        Full Log
       </div>
-      <div className={menu.menuEl}>
+      <div
+        className={menu.menuEl}
+        onClick={() => {
+          setItemSelected("stats");
+        }}
+      >
         {" "}
-        <Link to="stats">Log Stats</Link>{" "}
+        Log Stats
       </div>
-      <div className={menu.menuEl}>
+      <div
+        className={menu.menuEl}
+        onClick={() => {
+          setItemSelected("instructions");
+        }}
+      >
         {" "}
-        <Link to="instructions">Instructions</Link>{" "}
+        Instructions
       </div>
-      <div className={menu.menuEl}>
+      <div
+        className={menu.menuEl}
+        onClick={() => {
+          setItemSelected("about");
+        }}
+      >
         {" "}
-        <Link to="about">About</Link>{" "}
+        About
       </div>
+
       <div
         className={menu.hamburger}
         onClick={() => {
@@ -40,21 +77,45 @@ function Menu() {
         <img className={menu.menuImg} src={menuImg} />
 
         <PopUp styleCSS={menu.menu} show={openMenu}>
-          <div className={menu.hMenuEl}>
-            <Link to="/Ham-Locator/">Home</Link>{" "}
+          <div
+            className={menu.hMenuEl}
+            onClick={() => {
+              setItemSelected("/Ham-Locator");
+            }}
+          >
+            Home
           </div>
-          <div className={menu.hMenuEl}>
-            <Link to="log">Full Log</Link>
+          <div
+            className={menu.hMenuEl}
+            onClick={() => {
+              setItemSelected("log");
+            }}
+          >
+            Full Log
           </div>
-          <div className={menu.hMenuEl}>
-            <Link to="stats">Log Stats</Link>
+          <div
+            className={menu.hMenuEl}
+            onClick={() => {
+              setItemSelected("stats");
+            }}
+          >
+            Log Stats
           </div>
-          {/* target="_blank" causes a 404 issue */}
-          <div className={menu.hMenuEl}>
-            <Link to="instructions">Instructions</Link>{" "}
+          <div
+            className={menu.hMenuEl}
+            onClick={() => {
+              setItemSelected("instructions");
+            }}
+          >
+            Instructions
           </div>
-          <div className={menu.hMenuEl}>
-            <Link to="about">About</Link>{" "}
+          <div
+            className={menu.hMenuEl}
+            onClick={() => {
+              setItemSelected("about");
+            }}
+          >
+            About
           </div>
         </PopUp>
       </div>

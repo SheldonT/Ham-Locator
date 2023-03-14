@@ -9,7 +9,6 @@
 .homeDialog {
   background-color: white;
   border-radius: 1rem 1rem 1rem 1rem;
-  width: 40%;
 }
 
 .homeContent {
@@ -51,11 +50,12 @@
 
 .textField {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.callWidth {
+.formFields {
+  margin: 1.5rem 0 1.5rem 0;
   max-width: 8vw;
 }
 

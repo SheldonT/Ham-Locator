@@ -5,10 +5,10 @@ export function validateCall(v, setMsg) {
   let msg = "";
   let isValid = true;
 
-  if (v.length === 0) {
+  if (v.length < 3) {
     isValid = false;
 
-    msg = "Enter an amateur callsign.";
+    msg = "Enter a valid amateur callsign.";
   } else {
     isValid = true;
     msg = "";
@@ -61,4 +61,35 @@ export function formatSRN(val) {
   }
 
   return int.toString();
+}
+
+export function validatePasswd(v, setMsg) {
+  let msg = "";
+  let isValid = true;
+
+  if (v.length < 8) {
+    isValid = false;
+
+    msg = "Password must be at least 8 characters long.";
+  } else {
+    isValid = true;
+    msg = "";
+  }
+  setMsg(msg);
+  return isValid;
+}
+
+export function validateEmail(v, setMsg) {
+  let msg = "";
+  let isValid = true;
+
+  if (v.length === 0) {
+    isValid = false;
+    msg = "Invalid email address.";
+  } else {
+    isValid = true;
+    msg = "";
+  }
+  setMsg(msg);
+  return isValid;
 }

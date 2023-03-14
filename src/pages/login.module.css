@@ -1,0 +1,80 @@
+/** @format */
+
+.loginBG {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  background-color: rgba(166, 166, 166, 0.6);
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1001;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: auto;
+  box-shadow: 0.2rem 0.2rem 0.5rem var(--shadowColor);
+}
+
+.submit {
+  display: flex;
+  flex-direction: row;
+  padding-top: 1rem;
+  flex-shrink: 1;
+  margin: 1.5rem;
+}
+
+.registerButtons {
+  margin: auto 3rem auto 0;
+}
+
+.login {
+  padding-top: 1rem;
+  flex-shrink: 1;
+  margin: auto 1.5rem auto 1.5rem;
+}
+
+.newAccount {
+  text-align: center;
+}
+
+.radioButton {
+  display: flex;
+  flex-direction: row;
+}
+
+.radioButtonGroup {
+  display: flex;
+  flex-direction: row;
+}
+
+.radioButtonLabel {
+  padding: 1rem 0 0.5rem 1rem;
+}
+
+.formContent {
+  display: flex;
+  flex-direction: row;
+}
+
+.formColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.customField {
+  /*margin: 0.5rem auto 0.5rem auto;*/
+}
+
+.customFieldCont {
+  margin: 1.5rem;
+}

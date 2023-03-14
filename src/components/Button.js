@@ -1,10 +1,10 @@
 /** @format */
 import Submit from "./Submit.module.css";
 
-function Button({ name, clickEvent, disarmed, show }) {
+function Button({ style, name, clickEvent, disarmed, show }) {
   return (
     <button
-      className={Submit.submitButton}
+      className={`${Submit.submitButton} ${style}`}
       style={{ display: show === undefined || show ? "flex" : "none" }}
       onClick={clickEvent}
       disabled={disarmed}

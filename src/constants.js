@@ -1,5 +1,7 @@
 /** @format */
 
+export const SERVER_DOMAIN = `http://localhost:3007`;
+
 export const countryCode = [
   { name: "Alaska", countryCode: "us" },
   { name: "Afghanistan", countryCode: "af" },

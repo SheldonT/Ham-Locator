@@ -1,7 +1,7 @@
 /** @format */
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import TextField from "./TextField.js";
-import { validateCall, validateFreq, formatSRN } from "../ValidateFunctions.js";
+import { validateCall, validateFreq } from "../ValidateFunctions.js";
 import Button from "./Button.js";
 import tableRow from "./tableRow.module.css";
 import inputBar from "./inputBar.module.css";
@@ -16,23 +16,16 @@ function restore(event, setValue, value) {
   }
 }
 
-function TableRow({
-  info,
-  activeInfo,
-  click,
-  optionalFields,
-  editField,
-  hoverEffect,
-}) {
-  const [callSignValue, setCallSignValue] = useState(info.call);
+function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
+  const [callSignValue, setCallSignValue] = useState(info.contactCall);
   const [freqValue, setFreqValue] = useState(info.freq);
   const [mode, setMode] = useState(info.mode);
-  const [sentRep, setSentRep] = useState(info.sRep);
-  const [recRep, setRecRep] = useState(info.rRep);
+  const [sentRep, setSentRep] = useState(info.sigRepSent);
+  const [recRep, setRecRep] = useState(info.sigRepRecv);
   const [name, setName] = useState(info.name);
   const [grid, setGrid] = useState(info.grid);
   const [serialSent, setSerialSent] = useState(info.serialSent);
-  const [serialRcv, setSerialRcv] = useState(info.serialRcv);
+  const [serialRcv, setSerialRcv] = useState(info.serialRecv);
   const [contactDate, setContactDate] = useState(info.contactDate);
   const [contactTime, setContactTime] = useState(info.contactTime);
   const [comment, setComment] = useState(info.comment);
@@ -57,7 +50,7 @@ function TableRow({
           name={edit ? "Submit" : "Edit"}
           clickEvent={() => {
             if (editField && !edit) {
-              click(info);
+              setEdit(true);
             }
             if (editField && edit) {
               getContact();
@@ -69,25 +62,24 @@ function TableRow({
           show={edit ? true : false}
           clickEvent={() => {
             setEdit(false);
+
+            setCallSignValue(info.contactCall);
+            setFreqValue(info.freq);
+            setMode(info.mode);
+            setSentRep(info.sigRepSent);
+            setRecRep(info.sigRepRecv);
+            setName(info.name);
+            setGrid(info.grid);
+            setSerialSent(info.serialSent);
+            setSerialRcv(info.serialRecv);
+            setContactDate(info.contactDate);
+            setContactTime(info.contactTime);
+            setComment(info.comment);
           }}
         />
       </td>
     );
   };
-
-  useEffect(() => {
-    if (info && activeInfo && editField) {
-      if (activeInfo.id === info.id) {
-        setEdit(true);
-      } else {
-        setEdit(false);
-      }
-
-      if (info !== activeInfo) {
-        setEdit(false);
-      }
-    }
-  }, [activeInfo]);
 
   const getContact = () => {
     if (!validCall) {
@@ -100,22 +92,22 @@ function TableRow({
 
     if (validCall && validFreq) {
       setEdit(false);
+
       const ci = {
-        id: info.id,
-        call: callSignValue.toUpperCase(),
+        ...info,
+        contactCall: callSignValue.toUpperCase(),
         freq: freqValue,
         mode: mode,
-        sRep: sentRep,
-        rRep: recRep,
+        sigRepSent: sentRep,
+        sigRepRecv: recRep,
         contactDate: contactDate,
         contactTime: contactTime,
         name: name,
         grid: grid,
         serialSent: serialSent,
-        serialRcv: serialRcv,
+        serialRecv: serialRcv,
         comment: comment,
       };
-
       click(ci);
     }
   };
@@ -127,19 +119,21 @@ function TableRow({
           hoverEffect === false ? tableRow.activeRowNoHover : tableRow.activeRow
         }
         onClick={() => {
-          if (!editField) click(info);
+          if (!editField) {
+            click(info);
+          }
         }}
       >
         {editField ? <EditButton /> : null}
         <td className={tableRow.infoCells}>{info.id}</td>
         <td className={tableRow.infoCells}>
-          {edit ? (
+          {edit && editField ? (
             <TextField
               style={inputBar.callField}
               validate={validateCall}
               value={callSignValue}
               setValue={setCallSignValue}
-              keyDown={(e) => restore(e, setCallSignValue, info.call)}
+              keyDown={(e) => restore(e, setCallSignValue, info.contactCall)}
               placeHolder="Callsign"
               setValid={setValidCall}
               warning={warningCall}
@@ -147,11 +141,13 @@ function TableRow({
             />
           ) : null}
 
-          {!edit ? info.call : null}
+          {!edit && editField ? callSignValue.toUpperCase() : null}
+
+          {!edit && !editField ? info.contactCall.toUpperCase() : null}
         </td>
 
         <td className={tableRow.infoCells}>
-          {edit ? (
+          {edit && editField ? (
             <TextField
               style={inputBar.freqField}
               validate={validateFreq}
@@ -166,12 +162,14 @@ function TableRow({
             />
           ) : null}
 
-          {!edit ? info.freq : null}
+          {!edit && editField ? freqValue : null}
+
+          {!edit && !editField ? info.freq : null}
         </td>
         <td className={tableRow.infoCells}>
           <div
             className={inputBar.fieldContainer}
-            style={{ display: edit ? "flex" : "none" }}
+            style={{ display: edit && editField ? "flex" : "none" }}
           >
             <select
               className={inputBar.modeInput}
@@ -189,46 +187,55 @@ function TableRow({
               <option value="FT8">FT8</option>
             </select>
           </div>
-          {!edit ? info.mode : null}
+
+          {!edit && editField ? mode : null}
+
+          {!edit && !editField ? info.mode : null}
         </td>
         <td className={tableRow.infoCells}>
           <div
             className={inputBar.fieldContainer}
-            style={{ display: edit ? "flex" : "none" }}
+            style={{ display: edit && editField ? "flex" : "none" }}
           >
             <TextField
               style={inputBar.sigRep}
               value={sentRep}
               setValue={setSentRep}
-              keyDown={(e) => restore(e, setSentRep, info.sRep)}
+              keyDown={(e) => restore(e, setSentRep, info.sigRepSent)}
               exp={/[^\d]/g}
               placeHolder="RSTs"
               isValid={true}
             />
           </div>
-          {!edit ? info.sRep : null}
+
+          {!edit && editField ? sentRep : null}
+
+          {!edit && !editField ? info.sigRepSent : null}
         </td>
         <td className={tableRow.infoCells}>
           <div
             className={inputBar.fieldContainer}
-            style={{ display: edit ? "flex" : "none" }}
+            style={{ display: edit && editField ? "flex" : "none" }}
           >
             <TextField
               style={inputBar.sigRep}
               value={recRep}
               setValue={setRecRep}
-              keyDown={(e) => restore(e, setRecRep, info.rRep)}
+              keyDown={(e) => restore(e, setRecRep, info.sigRepRecv)}
               exp={/[^\d]/g}
               placeHolder="RSTr"
               isValid={true}
             />
           </div>
-          {!edit ? info.rRep : null}
+
+          {!edit && editField ? recRep : null}
+
+          {!edit && !editField ? info.sitRepRecv : null}
         </td>
         <td className={tableRow.infoCells}>
           <div
             className={inputBar.fieldContainer}
-            style={{ display: edit ? "flex" : "none" }}
+            style={{ display: edit && editField ? "flex" : "none" }}
           >
             <input
               className={inputBar.dateField}
@@ -240,12 +247,15 @@ function TableRow({
               onKeyDown={(e) => restore(e, setContactDate, info.contactDate)}
             />
           </div>
-          {!edit ? info.contactDate : null}
+
+          {!edit && editField ? contactDate : null}
+
+          {!edit && !editField ? info.contactDate : null}
         </td>
         <td className={tableRow.infoCells}>
           <div
             className={inputBar.fieldContainer}
-            style={{ display: edit ? "flex" : "none" }}
+            style={{ display: edit && editField ? "flex" : "none" }}
           >
             <input
               className={inputBar.dateField}
@@ -257,7 +267,10 @@ function TableRow({
               onKeyDown={(e) => restore(e, setContactTime, info.contactTime)}
             />
           </div>
-          {!edit ? info.contactTime : null}
+
+          {!edit && editField ? contactTime : null}
+
+          {!edit && !editField ? info.contactTime : null}
         </td>
         <td
           style={{
@@ -267,7 +280,7 @@ function TableRow({
         >
           <div
             className={inputBar.fieldContainer}
-            style={{ display: edit ? "flex" : "none" }}
+            style={{ display: edit && editField ? "flex" : "none" }}
           >
             <TextField
               style={inputBar.comment}
@@ -278,7 +291,10 @@ function TableRow({
               isValid={true}
             />
           </div>
-          {!edit ? info.name : null}
+
+          {!edit && editField ? name : null}
+
+          {!edit && !editField ? info.name : null}
         </td>
         <td
           style={{
@@ -288,7 +304,7 @@ function TableRow({
         >
           <div
             className={inputBar.fieldContainer}
-            style={{ display: edit ? "flex" : "none" }}
+            style={{ display: edit && editField ? "flex" : "none" }}
           >
             <TextField
               style={inputBar.freqField}
@@ -299,7 +315,10 @@ function TableRow({
               isValid={true}
             />
           </div>
-          {!edit ? info.grid : null}
+
+          {!edit && editField ? grid : null}
+
+          {!edit && !editField ? info.grid : null}
         </td>
         <td
           style={{
@@ -309,11 +328,11 @@ function TableRow({
         >
           <div
             className={inputBar.fieldContainer}
-            style={{ display: edit ? "flex" : "none" }}
+            style={{ display: edit && editField ? "flex" : "none" }}
           >
             <TextField
               style={inputBar.freqField}
-              value={formatSRN(serialSent)}
+              value={serialSent}
               setValue={setSerialSent}
               keyDown={(e) => restore(e, setSerialSent, info.serialSent)}
               placeHolder="STX"
@@ -321,29 +340,35 @@ function TableRow({
               exp={/[^\d]/g}
             />
           </div>
-          {!edit ? info.serialSent : null}
+
+          {!edit && editField ? serialSent : null}
+
+          {!edit && !editField ? info.serialSent : null}
         </td>
         <td
           style={{
-            display: optionalFields && optionalFields.serialRcv ? "" : "none",
+            display: optionalFields && optionalFields.serialRecv ? "" : "none",
           }}
           className={tableRow.infoCells}
         >
           <div
             className={inputBar.fieldContainer}
-            style={{ display: edit ? "flex" : "none" }}
+            style={{ display: edit && editField ? "flex" : "none" }}
           >
             <TextField
               style={inputBar.freqField}
-              value={formatSRN(serialRcv)}
+              value={serialRcv}
               setValue={setSerialRcv}
-              keyDown={(e) => restore(e, setSerialRcv, info.serialRcv)}
+              keyDown={(e) => restore(e, setSerialRcv, info.serialRecv)}
               placeHolder="SRX"
               isValid={true}
               exp={/[^\d]/g}
             />
           </div>
-          {!edit ? info.serialRcv : null}
+
+          {!edit && editField ? serialRcv : null}
+
+          {!edit && !editField ? info.serialRecv : null}
         </td>
         <td
           style={{
@@ -353,7 +378,7 @@ function TableRow({
         >
           <div
             className={inputBar.fieldContainer}
-            style={{ display: edit ? "flex" : "none" }}
+            style={{ display: edit && editField ? "flex" : "none" }}
           >
             <TextField
               style={inputBar.comment}
@@ -364,7 +389,10 @@ function TableRow({
               isValid={true}
             />
           </div>
-          {!edit ? info.comment : null}
+
+          {!edit && editField ? comment : null}
+
+          {!edit && !editField ? info.comment : null}
         </td>
       </tr>
     </>

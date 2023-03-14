@@ -19,9 +19,12 @@ function ExtraInfo({ info, home, infoStyle }) {
     if (countryInfo) code = countryInfo.countryCode;
 
     locDetails = info.details;
-    callSign = info.call;
-    time = info.time ? (
-      <div className={extraInfo.extraDetails}>Time Zone: {info.time} UTC </div>
+    callSign = info.contactCall;
+
+    if (info.call) callSign = info.call;
+
+    time = info.utc ? (
+      <div className={extraInfo.extraDetails}>Time Zone: {info.utc} UTC </div>
     ) : null;
     itu = info.itu ? (
       <div className={extraInfo.extraDetails}> ITU Zone: {info.itu}</div>

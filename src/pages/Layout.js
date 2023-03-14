@@ -9,8 +9,9 @@ import Settings from "../components/Settings.js";
 function Layout({
   optionalFields,
   setOptionalFields,
-  vis,
-  setVis,
+  auth,
+  showHome,
+  setHome,
   setData,
   lines,
   setLines,
@@ -21,18 +22,19 @@ function Layout({
         <Link to="/Ham-Locator/">
           <img className="logo" src={logo} alt="" />{" "}
         </Link>
-        <Menu />
+
+        <Menu auth={auth} />
         <Settings
           optionalFields={optionalFields}
           setOptionalFields={setOptionalFields}
           lines={lines}
           setLines={setLines}
-          setHomeVis={setVis}
+          setHomeVis={setHome}
         />
       </div>
 
       <div className="main" id="main">
-        {vis ? <Home setVis={setVis} setHome={setData} /> : null}
+        {showHome ? <Home setVis={setHome} setHome={setData} /> : null}
         <Outlet />
       </div>
       <div className="footer">
