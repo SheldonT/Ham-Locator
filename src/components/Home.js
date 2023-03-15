@@ -5,59 +5,63 @@ import axios from "axios";
 import TextField from "./TextField.js";
 import Button from "./Button.js";
 import useCallData from "../hooks/useCallData.js";
+import { UserContext } from "../contexts/UserContext.js";
 import home from "./home.module.css";
 import { SERVER_DOMAIN } from "../constants.js";
 
-function Home({ setVis, setHome }) {
-  const homeData = JSON.parse(localStorage.getItem("home") || `{}`);
-
-  const [callsign, setCallsign] = useState(homeData.call);
+function Home({ setVis }) {
+  const [callsign, setCallsign] = useState("");
   const [email, setEmail] = useState("");
   const [gridloc, setGridloc] = useState("");
 
   const [unit, setUnit] = useState("metric");
 
+  const { authUserHome, setHomeDataFromDB, isAuthenticated } =
+    useContext(UserContext);
+
   const homeResp = useCallData(callsign);
 
   const submit = () => {
-    let home = {
-      call: callsign.length !== 0 ? callsign.toUpperCase() : homeData.call,
-      gridloc: gridloc.length !== 0 ? gridloc : homeData.gridloc,
-      unit: unit.length !== 0 ? unit : homeData.unit,
-      country: homeResp.country,
-      anchor: homeResp.anchor,
-      details: homeResp.details,
-      itu: homeResp.itu,
-      utc: homeResp.utc,
-    };
+    if (Object.keys(homeResp).length !== 0) {
+      let home = {
+        call:
+          callsign.length !== 0
+            ? callsign.toUpperCase()
+            : authUserHome.call.toUpperCase(), //callsign.length !== 0 ? callsign.toUpperCase() : homeData.call,
+        gridloc: gridloc.length !== 0 ? gridloc : authUserHome.gridloc,
+        unit: unit.length !== 0 ? unit : authUserHome.unit,
+        country: homeResp.country,
+        anchor: homeResp.anchor,
+        details: homeResp.details,
+        itu: homeResp.itu,
+        utc: homeResp.utc,
+      };
 
-    localStorage.setItem("home", JSON.stringify(home));
-    setHome(home);
+      setHomeDataFromDB(home);
 
-    let dbUpdate = {
-      userId: JSON.parse(localStorage.getItem("authUser")).authUser,
-      call: callsign.toUpperCase(),
-      country: homeResp.country,
-      lat: parseFloat(homeResp.anchor[0]),
-      lng: parseFloat(homeResp.anchor[1]),
-      gridloc: gridloc,
-      itu: parseInt(homeResp.itu),
-      utc: parseFloat(homeResp.utc),
-    };
+      let dbUpdate = {
+        userId: isAuthenticated,
+        call: callsign.toUpperCase(),
+        country: homeResp.country,
+        lat: parseFloat(homeResp.anchor[0]),
+        lng: parseFloat(homeResp.anchor[1]),
+        gridloc: gridloc,
+        itu: parseInt(homeResp.itu),
+        utc: parseFloat(homeResp.utc),
+      };
 
-    if (email.length !== 0) dbUpdate = { email: email, ...dbUpdate };
-    if (unit.length !== 0) dbUpdate = { units: unit, ...dbUpdate };
+      if (email.length !== 0) dbUpdate = { email: email, ...dbUpdate };
+      if (unit.length !== 0) dbUpdate = { units: unit, ...dbUpdate };
 
-    console.log(callsign);
-
-    axios
-      .post(`${SERVER_DOMAIN}/users/edituser`, dbUpdate)
-      .then((response) => {
-        if (response.status === 200) {
-          setVis(false);
-        }
-      })
-      .catch((e) => console.log(e));
+      axios
+        .post(`${SERVER_DOMAIN}/users/edituser`, dbUpdate)
+        .then((response) => {
+          if (response.status === 200) {
+            setVis(false);
+          }
+        })
+        .catch((e) => console.log(e));
+    }
   };
 
   return (
@@ -73,7 +77,7 @@ function Home({ setVis, setHome }) {
                 {/*<label className={home.callLabel}>Callsign: </label>*/}
                 <TextField
                   fieldContainerStyle={home.formFields}
-                  value={callsign === undefined ? homeData.call : callsign}
+                  value={callsign}
                   setValue={setCallsign}
                   placeHolder="Callsign"
                   isValid={true}
@@ -139,6 +143,12 @@ function Home({ setVis, setHome }) {
             </div>
             <div className={home.inputCont}>
               <Button name="Submit" clickEvent={submit} />
+              <Button
+                name="Cancel"
+                clickEvent={() => {
+                  setVis(false);
+                }}
+              />
             </div>
           </div>
         </div>

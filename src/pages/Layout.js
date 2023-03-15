@@ -9,12 +9,11 @@ import Settings from "../components/Settings.js";
 function Layout({
   optionalFields,
   setOptionalFields,
-  auth,
   showHome,
   setHome,
-  setData,
   lines,
   setLines,
+  auth,
 }) {
   return (
     <>
@@ -23,7 +22,7 @@ function Layout({
           <img className="logo" src={logo} alt="" />{" "}
         </Link>
 
-        <Menu auth={auth} />
+        <Menu />
         <Settings
           optionalFields={optionalFields}
           setOptionalFields={setOptionalFields}
@@ -34,7 +33,7 @@ function Layout({
       </div>
 
       <div className="main" id="main">
-        {showHome ? <Home setVis={setHome} setHome={setData} /> : null}
+        {showHome ? <Home setVis={setHome} /> : null}
         <Outlet />
       </div>
       <div className="footer">

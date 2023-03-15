@@ -1,32 +1,17 @@
 /** @format */
 
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import TextField from "../components/TextField.js";
 import Button from "../components/Button.js";
 import login from "./login.module.css";
-import { SERVER_DOMAIN } from "../constants.js";
+import { UserContext } from "../contexts/UserContext.js";
 
-function Login({ setAuthUser }) {
+function Login() {
   const [userName, setUserName] = useState("");
   const [passwd, setPasswd] = useState("");
 
-  const [serverResponse, setServerResponse] = useState(-1);
-
-  useEffect(() => {
-    if (serverResponse !== -1) {
-      console.log("Authorized user with id " + serverResponse);
-
-      localStorage.setItem(
-        "authUser",
-        JSON.stringify({ authUser: serverResponse })
-      );
-      setAuthUser(serverResponse);
-    } else {
-      console.log("No User Authenticated");
-    }
-  }, [serverResponse]);
+  const { authenticate } = useContext(UserContext);
 
   return (
     <div className={login.loginBG}>
@@ -54,24 +39,7 @@ function Login({ setAuthUser }) {
             name="Login"
             clickEvent={() => {
               if (userName !== "" && passwd !== "") {
-                axios
-                  .post(`${SERVER_DOMAIN}/users`, {
-                    username: userName,
-                    passwd: passwd,
-                  })
-                  .then((response) => {
-                    if (
-                      response.status === 200 &&
-                      response.data.userId !== -1
-                    ) {
-                      setServerResponse(response.data.userId);
-                    }
-                  })
-                  .catch(() => {
-                    if (serverResponse === -1) {
-                      console.log("No user with username " + userName);
-                    }
-                  });
+                authenticate(userName, passwd);
               }
             }}
           />

@@ -1,8 +1,9 @@
 /** @format */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import InfoBar from "../components/InfoBar.js";
 import axios from "axios";
+import { UserContext } from "../contexts/UserContext.js";
 import { SERVER_DOMAIN } from "../constants.js";
 
 const infoListStyle = {
@@ -20,14 +21,16 @@ function Log({ optionalFields }) {
   const [record, setRecord] = useState({});
   const [infoList, setInfoList] = useState([]);
 
-  const isAuth = JSON.parse(
-    localStorage.getItem("authUser") || `{"authUser" : -1 }`
-  ).authUser;
+  const { isAuthenticated } = useContext(UserContext);
+
+  //const isAuth = JSON.parse(
+  //  localStorage.getItem("authUser") || `{"authUser" : -1 }`
+  //).authUser;
 
   const getLog = async () => {
     try {
       const response = await axios.get(`${SERVER_DOMAIN}/logs`, {
-        params: { id: isAuth, decend: true },
+        params: { id: isAuthenticated, decend: true },
       });
 
       if (response.data.length !== 0) {
@@ -56,7 +59,7 @@ function Log({ optionalFields }) {
     let newRecord = {
       lat: record.anchor[0],
       lng: record.anchor[1],
-      userId: isAuth,
+      userId: isAuthenticated,
       ...record,
     };
     delete newRecord.anchor;

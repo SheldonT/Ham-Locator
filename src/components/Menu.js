@@ -1,24 +1,28 @@
 /** @format */
 
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext.js";
 import menuImg from "../assets/hamburgerMenu.svg";
 import menu from "./menu.module.css";
 import PopUp from "./PopUp.js";
 
-function Menu({ auth }) {
+function Menu() {
   const [openMenu, setOpenMenu] = useState(false);
   const [itemSelected, setItemSelected] = useState("");
 
   const nav = useNavigate();
 
+  const { isAuthenticated } = useContext(UserContext);
+
   useEffect(() => {
-    if (auth) {
+    if (isAuthenticated !== -1) {
       nav(itemSelected);
     } else {
+      setItemSelected("");
       nav("login");
     }
-  }, [itemSelected]);
+  }, [itemSelected, isAuthenticated]);
 
   return (
     <div className={menu.menuBar}>
