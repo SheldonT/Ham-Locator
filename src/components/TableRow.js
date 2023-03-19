@@ -6,6 +6,10 @@ import Button from "./Button.js";
 import tableRow from "./tableRow.module.css";
 import inputBar from "./inputBar.module.css";
 
+import saveIcon from "../assets/icons/save_black_24dp.svg";
+import cancel from "../assets/icons/clear_black_24dp.svg";
+import drop from "../assets/icons/delete_black_24dp.svg";
+
 function restore(event, setValue, value) {
   if (event.key === "Escape") {
     setValue(value);
@@ -40,14 +44,10 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
 
   const EditButton = () => {
     return (
-      <td
-        style={{
-          display: "flex",
-          flexDirection: "row",
-        }}
-      >
+      <div className={tableRow.buttonContainer}>
         <Button
-          name={edit ? "Submit" : "Edit"}
+          name={edit ? null : "Edit"}
+          style={edit ? tableRow.submitButton : null}
           clickEvent={() => {
             if (editField && !edit) {
               setEdit(true);
@@ -56,10 +56,12 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
               getContact();
             }
           }}
-        />
+        >
+          {edit ? <img src={saveIcon} /> : null}
+        </Button>
         <Button
-          name="Cancel"
           show={edit ? true : false}
+          style={edit ? tableRow.submitButton : null}
           clickEvent={() => {
             setEdit(false);
 
@@ -76,9 +78,26 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
             setContactTime(info.contactTime);
             setComment(info.comment);
           }}
-        />
-      </td>
+        >
+          <img src={cancel} />
+        </Button>
+
+        <Button
+          show={edit ? true : false}
+          style={edit ? tableRow.submitButton : null}
+          clickEvent={() => deleteRecord()}
+        >
+          <img src={drop} />
+        </Button>
+      </div>
     );
+  };
+
+  const deleteRecord = () => {
+    let rec = info;
+    rec.delete = true;
+    click(rec);
+    setEdit(false);
   };
 
   const getContact = () => {
@@ -124,12 +143,17 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
           }
         }}
       >
-        {editField ? <EditButton /> : null}
+        <td
+          className={tableRow.buttonCell}
+          style={{ display: editField ? "flex" : "none" }}
+        >
+          {editField ? <EditButton /> : null}
+        </td>
         <td className={tableRow.infoCells}>{info.id}</td>
         <td className={tableRow.infoCells}>
           {edit && editField ? (
             <TextField
-              style={inputBar.callField}
+              fieldStyle={inputBar.callField}
               validate={validateCall}
               value={callSignValue}
               setValue={setCallSignValue}
@@ -149,7 +173,7 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
         <td className={tableRow.infoCells}>
           {edit && editField ? (
             <TextField
-              style={inputBar.freqField}
+              fieldStyle={inputBar.freqField}
               validate={validateFreq}
               value={freqValue}
               setValue={setFreqValue}
@@ -198,7 +222,7 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
             style={{ display: edit && editField ? "flex" : "none" }}
           >
             <TextField
-              style={inputBar.sigRep}
+              fieldStyle={inputBar.sigRep}
               value={sentRep}
               setValue={setSentRep}
               keyDown={(e) => restore(e, setSentRep, info.sigRepSent)}
@@ -218,7 +242,7 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
             style={{ display: edit && editField ? "flex" : "none" }}
           >
             <TextField
-              style={inputBar.sigRep}
+              fieldStyle={inputBar.sigRep}
               value={recRep}
               setValue={setRecRep}
               keyDown={(e) => restore(e, setRecRep, info.sigRepRecv)}
@@ -230,7 +254,7 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
 
           {!edit && editField ? recRep : null}
 
-          {!edit && !editField ? info.sitRepRecv : null}
+          {!edit && !editField ? info.sigRepRecv : null}
         </td>
         <td className={tableRow.infoCells}>
           <div
@@ -283,7 +307,7 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
             style={{ display: edit && editField ? "flex" : "none" }}
           >
             <TextField
-              style={inputBar.comment}
+              fieldStyle={inputBar.comment}
               value={name}
               setValue={setName}
               keyDown={(e) => restore(e, setName, info.name)}
@@ -307,7 +331,7 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
             style={{ display: edit && editField ? "flex" : "none" }}
           >
             <TextField
-              style={inputBar.freqField}
+              fieldStyle={inputBar.freqField}
               value={grid}
               setValue={setGrid}
               keyDown={(e) => restore(e, setGrid, info.grid)}
@@ -331,7 +355,7 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
             style={{ display: edit && editField ? "flex" : "none" }}
           >
             <TextField
-              style={inputBar.freqField}
+              fieldStyle={inputBar.freqField}
               value={serialSent}
               setValue={setSerialSent}
               keyDown={(e) => restore(e, setSerialSent, info.serialSent)}
@@ -356,7 +380,7 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
             style={{ display: edit && editField ? "flex" : "none" }}
           >
             <TextField
-              style={inputBar.freqField}
+              fieldStyle={inputBar.freqField}
               value={serialRcv}
               setValue={setSerialRcv}
               keyDown={(e) => restore(e, setSerialRcv, info.serialRecv)}
@@ -381,7 +405,7 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
             style={{ display: edit && editField ? "flex" : "none" }}
           >
             <TextField
-              style={inputBar.comment}
+              fieldStyle={inputBar.comment}
               value={comment}
               setValue={setComment}
               keyDown={(e) => restore(e, setComment, info.comment)}

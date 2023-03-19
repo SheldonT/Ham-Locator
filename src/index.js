@@ -28,7 +28,6 @@ function HamLocator() {
     useContext(UserContext);
 
   useEffect(() => {
-    console.log("[Index.js]: " + isAuthenticated);
     setHomeDataFromDB();
   }, [isAuthenticated]);
 
@@ -52,12 +51,7 @@ function HamLocator() {
             index
             element={
               isAuthenticated !== -1 ? (
-                <Location
-                  optionalFields={fields}
-                  homeData={authUserHome}
-                  isAuth={isAuthenticated}
-                  lines={lines}
-                />
+                <Location optionalFields={fields} lines={lines} />
               ) : (
                 <Login /> //login for now, but can be a landing page later, with a login option.
               )

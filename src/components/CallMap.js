@@ -1,8 +1,9 @@
 /** @format */
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { MapContainer, TileLayer, Popup } from "react-leaflet";
 import { NightRegion } from "react-leaflet-night-region"; //installed with --legacy-peer-deps
+import { UserContext } from "../contexts/UserContext.js";
 import ExtraInfo from "./ExtraInfo.js";
 import LeadLines from "./LeadLines.js";
 import Anchor from "./Anchor.js";
@@ -11,6 +12,8 @@ import "./callMap.css";
 
 function CallMap({ info, selectedInfo, click, home, drawLines }) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const { authUserHome } = useContext(UserContext);
 
   let mapCenter;
 
@@ -24,8 +27,8 @@ function CallMap({ info, selectedInfo, click, home, drawLines }) {
   }, [info.length]);
 
   useEffect(() => {
-    click(home);
-  }, [home.call]);
+    click(authUserHome);
+  }, [authUserHome.call]);
 
   let popUp = <></>;
 
@@ -49,7 +52,7 @@ function CallMap({ info, selectedInfo, click, home, drawLines }) {
         }
         closeButton={false}
       >
-        <ExtraInfo info={selectedInfo} home={home} />
+        <ExtraInfo info={selectedInfo} />
       </Popup>
     );
   } else {
@@ -63,9 +66,9 @@ function CallMap({ info, selectedInfo, click, home, drawLines }) {
       />
       <NightRegion fillColor="#00345c" color="#001a2e" stroke={false} />
 
-      {Object.keys(home).length !== 0 ? (
+      {Object.keys(authUserHome).length !== 0 ? (
         //selectedInfo === home ? (
-        <Anchor info={home} selectedInfo={home} isHome={true} />
+        <Anchor info={authUserHome} selectedInfo={authUserHome} isHome={true} />
       ) : null}
 
       {info.map((mapCoord) => (
@@ -77,7 +80,7 @@ function CallMap({ info, selectedInfo, click, home, drawLines }) {
           key={mapCoord.id}
         />
       ))}
-      {drawLines ? <LeadLines home={home} info={info} /> : null}
+      {drawLines ? <LeadLines info={info} /> : null}
       {popUp}
     </MapContainer>
   );

@@ -34,13 +34,13 @@ https://sheldont.github.io/Ham-Locator
 <time_on:${qsoTime.length}>${qsoTime}\
 <call:${d[i].contactCall.length}>${d[i].contactCall}\
 <band:${band.length}>${band}\
-<freq:${d[i].freq.length}>${d[i].freq}\
+<freq:${d[i].freq.toString().length}>${d[i].freq}\
 <mode:${d[i].mode.length}>${d[i].mode}\
-<rst_sent:${d[i].sigRepSent.length}>${d[i].sigRepSent}\
-<rst_rcvd:${d[i].sigRepRecv.length}>${d[i].sigRepRecv}\
+<rst_sent:${d[i].sigRepSent.toString().length}>${d[i].sigRepSent}\
+<rst_rcvd:${d[i].sigRepRecv.toString().length}>${d[i].sigRepRecv}\
 <name:${d[i].name.length}>${d[i].name}\
-<stx:${d[i].serialSent.length}>${d[i].serialSent}\
-<srx:${d[i].serialRecv.length}>${d[i].serialRecv}\
+<stx:${d[i].serialSent.toString().length}>${d[i].serialSent}\
+<srx:${d[i].serialRecv.toString().length}>${d[i].serialRecv}\
 <gridsquare:${d[i].grid.length}>${d[i].grid}\
 <comment:${d[i].comment.length}>${d[i].comment} <eor>
 `;
@@ -81,7 +81,10 @@ function SaveLog({ data }) {
     <div className={saveLog.saveFile}>
       <Button
         name="Save Log"
-        clickEvent={() => setIsPopUpOpen(!isPopUpOpen)}
+        clickEvent={() => {
+          setIsPopUpOpen(!isPopUpOpen);
+          console.log(data);
+        }}
         disarmed={data.length === 0}
       />
       <PopUp styleCSS={saveLog.popUp} show={isPopUpOpen}>

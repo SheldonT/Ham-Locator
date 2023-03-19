@@ -1,6 +1,6 @@
 /** @format */
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import useCallData from "../hooks/useCallData.js";
 import axios from "axios";
 import InfoBar from "./InfoBar.js";
@@ -9,6 +9,7 @@ import InputBar from "./InputBar.js";
 import SaveLog from "./SaveLog.js";
 import ClearTable from "./ClearTable.js";
 import location from "./location.module.css";
+import { UserContext } from "../contexts/UserContext.js";
 import { SERVER_DOMAIN } from "../constants.js";
 
 function validateEntry(entry, currentList) {
@@ -54,13 +55,15 @@ export const formatDate = (date) => {
   return date.getUTCFullYear() + "-" + month + "-" + day;
 };
 
-function Location({ optionalFields, homeData, isAuth, lines }) {
+function Location({ optionalFields, lines }) {
   const [contactInfo, setContactInfo] = useState({});
   const [infoList, setInfoList] = useState([]);
   const [extraInfo, setExtraInfo] = useState({});
   const [id, setId] = useState(1);
 
   const jsonResp = useCallData(contactInfo.contactCall);
+
+  const { isAuthenticated } = useContext(UserContext);
 
   const resetTable = () => {
     setId(1);
@@ -70,7 +73,7 @@ function Location({ optionalFields, homeData, isAuth, lines }) {
   useEffect(() => {
     const insertToDB = async (newData) => {
       const newRecord = {
-        userId: isAuth,
+        userId: isAuthenticated,
         lat: newData.anchor[0],
         lng: newData.anchor[1],
         ...newData,
@@ -123,7 +126,7 @@ function Location({ optionalFields, homeData, isAuth, lines }) {
     const getLog = async () => {
       try {
         const response = await axios.get(`${SERVER_DOMAIN}/logs`, {
-          params: { id: isAuth, decend: true },
+          params: { id: isAuthenticated, decend: true },
         });
 
         if (response.data.length !== 0) {
@@ -159,12 +162,10 @@ function Location({ optionalFields, homeData, isAuth, lines }) {
           infoLastId={id}
           selectedInfo={extraInfo}
           click={setExtraInfo}
-          home={homeData}
           drawLines={lines}
         />
 
         <InputBar
-          home={homeData}
           setInfo={setContactInfo}
           resetExtra={setExtraInfo}
           optionalFields={optionalFields}

@@ -58,6 +58,8 @@ export function formatSRN(val) {
     if (parseInt(val) > 99) {
       int = parseInt(val);
     }
+  } else {
+    val = 0;
   }
 
   return int.toString();

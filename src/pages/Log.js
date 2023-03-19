@@ -72,25 +72,46 @@ function Log({ optionalFields }) {
     }
   };
 
+  const deleteRecord = async () => {
+    console.log(isAuthenticated);
+    try {
+      await axios.post(`${SERVER_DOMAIN}/logs/deleterecord`, {
+        userId: isAuthenticated,
+        recordId: record.recordId,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
     if (infoList.length === 0) {
       getLog();
     }
+
     if (Object.keys(record).length !== 0) {
+      if (record.hasOwnProperty("delete") === true) {
+        deleteRecord();
+      }
+
       editRecord();
     }
 
+    let info = [];
+
     for (let i = 0; i < infoList.length; i++) {
+      if (infoList[i].recordId !== record.recordId) {
+        info.push(infoList[i]);
+      }
       if (
         infoList[i].recordId === record.recordId &&
-        Object.keys(record).length !== 0
+        record.hasOwnProperty("delete") === false
       ) {
-        console.log("Adding Record...");
-        let info = infoList;
-        info[i] = record;
-        setInfoList(info);
+        info.push(record);
       }
     }
+
+    setInfoList(info);
   }, [record]);
 
   return (

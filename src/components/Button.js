@@ -1,7 +1,7 @@
 /** @format */
 import Submit from "./Submit.module.css";
 
-function Button({ style, name, clickEvent, disarmed, show }) {
+function Button({ style, name, clickEvent, disarmed, show, children }) {
   return (
     <button
       className={`${Submit.submitButton} ${style}`}
@@ -10,6 +10,7 @@ function Button({ style, name, clickEvent, disarmed, show }) {
       disabled={disarmed}
     >
       {name}
+      {children}
     </button>
   );
 }

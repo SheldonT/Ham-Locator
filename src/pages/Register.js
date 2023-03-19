@@ -89,9 +89,10 @@ function Register() {
     }
 
     if (validCall && validPasswd && validEmail && passwd === passwdCheck) {
+      console.log(newUserInfo);
       axios
         .post(`${SERVER_DOMAIN}/users/adduser`, {
-          contactCall: userName,
+          call: userName,
           email: email,
           country: newUserInfo.country,
           lat: newUserInfo.anchor[0],
@@ -100,7 +101,7 @@ function Register() {
           privilege: "user",
           units: unit,
           itu: newUserInfo.itu,
-          utc: newUserInfo.time,
+          utc: newUserInfo.utc,
           password: passwd,
         })
         .then((response) => {

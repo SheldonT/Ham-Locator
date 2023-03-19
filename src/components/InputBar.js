@@ -55,6 +55,9 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
       freqValue.length !== 0 &&
       callSignValue.length !== 0
     ) {
+      if (!serialRcv || serialRcv.length === 0);
+      console.log("serialRcv");
+
       const ci = {
         contactCall: callSignValue.toUpperCase(),
         freq: freqValue,
@@ -63,8 +66,8 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
         sigRepRecv: recRep,
         name: name,
         grid: grid,
-        serialSent: serialSent,
-        serialRecv: serialRcv,
+        serialSent: !serialSent || serialSent.length === 0 ? 0 : serialSent,
+        serialRecv: !serialRcv || serialRcv.length === 0 ? 0 : serialRcv,
         comment: comment,
       };
 
@@ -97,6 +100,8 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
 
     return cInfo;
   };
+
+  //console.log(liveOut(callSignValue));
 
   return (
     <div

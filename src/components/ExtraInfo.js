@@ -1,11 +1,14 @@
 /** @format */
-
+import { useContext } from "react";
 import { countryCode } from "../constants.js";
 import Flag from "react-world-flags";
 import { getDistance } from "geolib";
+import { UserContext } from "../contexts/UserContext.js";
 import extraInfo from "./extraInfo.module.css";
 
-function ExtraInfo({ info, home, infoStyle }) {
+function ExtraInfo({ info, infoStyle }) {
+  const { authUserHome } = useContext(UserContext);
+
   let code;
   let locDetails;
   let callSign;
@@ -31,13 +34,13 @@ function ExtraInfo({ info, home, infoStyle }) {
     ) : null;
   }
 
-  if (home && Object.keys(info).length !== 0) {
+  if (!info.prefix && Object.keys(info).length !== 0) {
     let dist = getDistance(
-      { latitude: home.anchor[0], longitude: home.anchor[1] },
+      { latitude: authUserHome.anchor[0], longitude: authUserHome.anchor[1] },
       { latitude: info.anchor[0], longitude: info.anchor[1] }
     );
 
-    if (home.unit === "imperial") {
+    if (authUserHome.unit === "imperial") {
       dist = Math.round(dist * 0.000621371, 0);
     } else {
       dist = Math.round(dist / 1000, 1000);
@@ -46,7 +49,9 @@ function ExtraInfo({ info, home, infoStyle }) {
     distance = (
       <div className={extraInfo.extraDetails}>
         Distance:{" "}
-        {dist.toString().concat(home.unit === "imperial" ? " mi" : " km")}
+        {dist
+          .toString()
+          .concat(authUserHome.unit === "imperial" ? " mi" : " km")}
       </div>
     );
   }

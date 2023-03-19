@@ -1,6 +1,8 @@
 /** @format */
 
-import { useEffect, useState } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../contexts/UserContext.js";
+import axios from "axios";
 import {
   VictoryBar,
   VictoryChart,
@@ -8,7 +10,7 @@ import {
   VictoryTheme,
   VictoryLabel,
 } from "victory";
-import { countryCode, bandDef } from "../constants.js";
+import { countryCode, bandDef, SERVER_DOMAIN } from "../constants.js";
 import "./stats.css";
 
 function getCountry(data, currState) {
@@ -65,7 +67,7 @@ function Stats() {
   const [countries, setCountries] = useState([]);
   const [bands, setBands] = useState([]);
 
-  useEffect(() => {
+  /*useEffect(() => {
     const checkStoreChange = () => {
       const store = JSON.parse(localStorage.getItem("list") || "[]");
 
@@ -80,8 +82,30 @@ function Stats() {
     window.addEventListener("storage", checkStoreChange);
 
     return () => window.removeEventListener("storage", checkStoreChange);
+  }, []);*/
+
+  const { isAuthenticated } = useContext(UserContext);
+  console.log(isAuthenticated);
+
+  const getLog = async () => {
+    try {
+      const response = await axios.get(`${SERVER_DOMAIN}/logs`, {
+        params: { id: isAuthenticated, decend: true },
+      });
+
+      setListLen(response.data.length);
+      setCountries(getCountry(response.data, countries));
+      setBands(getBands(response.data));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    getLog();
   }, []);
 
+  console.log(listLen);
   return (
     <>
       <h1>Log Stats</h1>
