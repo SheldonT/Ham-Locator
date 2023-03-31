@@ -13,7 +13,6 @@ function Layout({
   setHome,
   lines,
   setLines,
-  auth,
 }) {
   return (
     <>

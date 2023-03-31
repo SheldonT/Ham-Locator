@@ -51,7 +51,7 @@ function Log({ optionalFields }) {
         console.log("No Log Found");
       }
     } catch (e) {
-      console.log(e);
+      alert(`Server did not respond. Please try again later. \n\n ${e}`);
     }
   };
 
@@ -68,19 +68,18 @@ function Log({ optionalFields }) {
     try {
       await axios.post(`${SERVER_DOMAIN}/logs/editrecord`, newRecord);
     } catch (e) {
-      console.log(e);
+      alert(`Server did not respond. Please try again later. \n\n ${e}`);
     }
   };
 
   const deleteRecord = async () => {
-    console.log(isAuthenticated);
     try {
       await axios.post(`${SERVER_DOMAIN}/logs/deleterecord`, {
         userId: isAuthenticated,
         recordId: record.recordId,
       });
     } catch (e) {
-      console.log(e);
+      alert(`Server did not respond. Please try again later. \n\n ${e}`);
     }
   };
 
@@ -94,7 +93,7 @@ function Log({ optionalFields }) {
         deleteRecord();
       }
 
-      editRecord();
+      if (!record.hasOwnProperty("delete")) editRecord();
     }
 
     let info = [];

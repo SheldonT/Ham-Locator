@@ -11,7 +11,11 @@ function Login() {
   const [userName, setUserName] = useState("");
   const [passwd, setPasswd] = useState("");
 
-  const { authenticate } = useContext(UserContext);
+  const { authenticate, isAuthenticated } = useContext(UserContext);
+
+  const submitLogin = () => {
+    authenticate(userName, passwd);
+  };
 
   return (
     <div className={login.loginBG}>
@@ -33,13 +37,15 @@ function Login() {
           isValid={true}
           password={true}
         />
-
+        {isAuthenticated === "-1" ? (
+          <div className={login.errorMsg}>Invalid callsign or password.</div>
+        ) : null}
         <div className={login.login}>
           <Button
             name="Login"
             clickEvent={() => {
               if (userName !== "" && passwd !== "") {
-                authenticate(userName, passwd);
+                submitLogin();
               }
             }}
           />

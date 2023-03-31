@@ -1,6 +1,7 @@
 /** @format */
+import { getStageURL } from "./utils.js";
 
-export const SERVER_DOMAIN = `http://localhost:3007`;
+export const SERVER_DOMAIN = getStageURL(window);
 
 export const countryCode = [
   { name: "Alaska", countryCode: "us" },

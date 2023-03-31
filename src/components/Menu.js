@@ -16,7 +16,7 @@ function Menu() {
   const { isAuthenticated } = useContext(UserContext);
 
   useEffect(() => {
-    if (isAuthenticated !== -1) {
+    if (isAuthenticated !== "-1") {
       nav(itemSelected);
     } else {
       setItemSelected("");

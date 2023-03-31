@@ -101,8 +101,6 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
     return cInfo;
   };
 
-  //console.log(liveOut(callSignValue));
-
   return (
     <div
       className={inputBar.inputBar}

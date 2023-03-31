@@ -55,7 +55,6 @@ function ExtraInfo({ info, infoStyle }) {
       </div>
     );
   }
-
   return (
     <div className={extraInfo.markerInfo} style={infoStyle ? infoStyle : null}>
       <div className={extraInfo.extraHeader}>

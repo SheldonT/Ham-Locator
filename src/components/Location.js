@@ -36,6 +36,14 @@ export const utcMins = (date) => {
   }
 };
 
+export const utcSeconds = (date) => {
+  if (date.getUTCSeconds() < 10) {
+    return "0" + date.getUTCSeconds();
+  } else {
+    return date.getUTCSeconds();
+  }
+};
+
 export const formatDate = (date) => {
   let day = "";
   let month = "";
@@ -95,7 +103,12 @@ function Location({ optionalFields, lines }) {
         const currDate = new Date();
         const utcDate = formatDate(currDate);
 
-        const utcTime = utcHrs(currDate) + ":" + utcMins(currDate);
+        const utcTime =
+          utcHrs(currDate) +
+          ":" +
+          utcMins(currDate) +
+          ":" +
+          utcSeconds(currDate);
 
         setId(id + 1);
 
@@ -148,7 +161,7 @@ function Location({ optionalFields, lines }) {
           resetTable();
         }
       } catch (e) {
-        console.log(e);
+        alert(`Server did not respond. Please try again later. \n\n ${e}`);
       }
     };
     getLog();

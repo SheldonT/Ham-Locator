@@ -3,6 +3,7 @@
 import ReactDOM from "react-dom/client";
 import React, { useState, useEffect, useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import axios from "axios";
 import Layout from "./pages/Layout.js";
 import About from "./pages/About.js";
 import HowTo from "./pages/HowTo.js";
@@ -14,6 +15,8 @@ import Login from "./pages/Login.js";
 import Register from "./pages/Register.js";
 import UserProvider, { UserContext } from "./contexts/UserContext.js";
 
+import { SERVER_DOMAIN } from "./constants.js";
+
 import "./index.css";
 
 function HamLocator() {
@@ -24,13 +27,25 @@ function HamLocator() {
   const [home, setHome] = useState(false);
   const [lines, setLines] = useState(false);
 
-  const { isAuthenticated, authUserHome, setHomeDataFromDB } =
-    useContext(UserContext);
+  const { isAuthenticated, setHomeDataFromDB } = useContext(UserContext);
+
+  const serverInstance = axios.create({ withCredentials: true });
+  useEffect(() => {
+    serverInstance.get(`${SERVER_DOMAIN}/`);
+  }, []);
 
   useEffect(() => {
-    setHomeDataFromDB();
+    if (isAuthenticated !== "0" && isAuthenticated !== "-1")
+      setHomeDataFromDB();
   }, [isAuthenticated]);
 
+  const IndexRoute = () => {
+    if (isAuthenticated !== "0" && isAuthenticated !== "-1") {
+      return <Location optionalFields={fields} lines={lines} />;
+    }
+
+    return <Login />;
+  };
   return (
     <BrowserRouter>
       <Routes>
@@ -50,11 +65,12 @@ function HamLocator() {
           <Route
             index
             element={
-              isAuthenticated !== -1 ? (
+              <IndexRoute />
+              /*isAuthenticated !== 0 ? (
                 <Location optionalFields={fields} lines={lines} />
               ) : (
-                <Login /> //login for now, but can be a landing page later, with a login option.
-              )
+                <Login />
+              )*/
             }
           />
           <Route path="login" element={<Login />} />

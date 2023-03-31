@@ -34,13 +34,13 @@ function InfoBar({
             SRN
           </th>
           <th
-            style={{ display: optionalFields.serialRecv ? "" : "none" }}
+            style={{ display: optionalFields.serialRcv ? "" : "none" }}
             className={infoBar.infoHead}
           >
             STN
           </th>
           <th
-            style={{ display: optionalFields.serialComments ? "" : "none" }}
+            style={{ display: optionalFields.comment ? "" : "none" }}
             className={infoBar.infoHead}
           >
             Comments

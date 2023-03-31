@@ -92,7 +92,6 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
       </div>
     );
   };
-
   const deleteRecord = () => {
     let rec = info;
     rec.delete = true;
@@ -130,7 +129,7 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
       click(ci);
     }
   };
-
+  //console.log(info);
   return (
     <>
       <tr
@@ -371,7 +370,7 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
         </td>
         <td
           style={{
-            display: optionalFields && optionalFields.serialRecv ? "" : "none",
+            display: optionalFields && optionalFields.serialRcv ? "" : "none",
           }}
           className={tableRow.infoCells}
         >

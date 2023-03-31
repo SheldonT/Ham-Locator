@@ -67,25 +67,7 @@ function Stats() {
   const [countries, setCountries] = useState([]);
   const [bands, setBands] = useState([]);
 
-  /*useEffect(() => {
-    const checkStoreChange = () => {
-      const store = JSON.parse(localStorage.getItem("list") || "[]");
-
-      setListLen(store.length);
-      setCountries(getCountry(store, countries));
-
-      setBands(getBands(store));
-    };
-
-    checkStoreChange();
-
-    window.addEventListener("storage", checkStoreChange);
-
-    return () => window.removeEventListener("storage", checkStoreChange);
-  }, []);*/
-
   const { isAuthenticated } = useContext(UserContext);
-  console.log(isAuthenticated);
 
   const getLog = async () => {
     try {
@@ -105,7 +87,6 @@ function Stats() {
     getLog();
   }, []);
 
-  console.log(listLen);
   return (
     <>
       <h1>Log Stats</h1>
