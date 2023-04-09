@@ -29,14 +29,10 @@ function HamLocator() {
 
   const { isAuthenticated, setHomeDataFromDB } = useContext(UserContext);
 
-  const serverInstance = axios.create({ withCredentials: true });
   useEffect(() => {
-    serverInstance.get(`${SERVER_DOMAIN}/`);
-  }, []);
-
-  useEffect(() => {
-    if (isAuthenticated !== "0" && isAuthenticated !== "-1")
+    if (!["-1", "0"].includes(isAuthenticated)) {
       setHomeDataFromDB();
+    }
   }, [isAuthenticated]);
 
   const IndexRoute = () => {
@@ -62,17 +58,7 @@ function HamLocator() {
             />
           }
         >
-          <Route
-            index
-            element={
-              <IndexRoute />
-              /*isAuthenticated !== 0 ? (
-                <Location optionalFields={fields} lines={lines} />
-              ) : (
-                <Login />
-              )*/
-            }
-          />
+          <Route index element={<IndexRoute />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="instructions" element={<HowTo />} />

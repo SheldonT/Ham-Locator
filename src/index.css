@@ -68,6 +68,16 @@ body {
   margin: 0 5rem 0 5rem;
 }
 
+.logoutLogo {
+  width: auto;
+  height: 2.5rem;
+  margin: auto 2rem 2rem 1.5rem;
+}
+
+.logoutLogo:hover {
+  cursor: pointer;
+}
+
 /*.menuBar {
   display: flex;
   flex-direction: row;

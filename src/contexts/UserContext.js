@@ -1,6 +1,6 @@
 /** @format */
 
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import { SERVER_DOMAIN } from "../constants.js";
 
@@ -12,6 +12,23 @@ function UserProvider({ children }) {
 
   const serverInstance = axios.create({ withCredentials: true });
 
+  const userSession = async () => {
+    try {
+      const response = await serverInstance.get(
+        `${SERVER_DOMAIN}/users/session`
+      );
+      if (response.data !== -1) {
+        setIsAuthenticated(response.data.toString());
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    userSession();
+  }, []);
+
   const authenticate = async (userName, passwd) => {
     if (userName !== "" && passwd !== "") {
       try {
@@ -19,8 +36,7 @@ function UserProvider({ children }) {
           username: userName,
           passwd: passwd,
         });
-
-        if (response.data.userId) setIsAuthenticated(response.data.userId);
+        if (response.data) setIsAuthenticated(response.data.toString());
       } catch (e) {
         alert(`Server did not respond. Please try again later. \n\n ${e}`);
       }
@@ -33,7 +49,6 @@ function UserProvider({ children }) {
       const response = await axios.get(`${SERVER_DOMAIN}/users/getuser`, {
         params: { id: isAuthenticated },
       });
-
       const home = {
         call: response.data.callsign,
         country: response.data.country,
@@ -49,7 +64,7 @@ function UserProvider({ children }) {
     } catch (e) {
       alert(`Server did not respond. Please try again later. \n\n ${e}`);
     }
-    /* } else {
+    /*} else {
       console.log(
         "User with id " +
           isAuthenticated +
@@ -58,9 +73,31 @@ function UserProvider({ children }) {
     }*/
   };
 
+  const logoutUser = async () => {
+    try {
+      const response = await axios.get(`${SERVER_DOMAIN}/users/logout`, {
+        params: {
+          sessionId: isAuthenticated,
+        },
+      });
+      if (response === true) {
+        setIsAuthenticated("0");
+        setHomeDataFromDB({});
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <UserContext.Provider
-      value={{ isAuthenticated, authenticate, authUserHome, setHomeDataFromDB }}
+      value={{
+        isAuthenticated,
+        authenticate,
+        authUserHome,
+        setHomeDataFromDB,
+        logoutUser,
+      }}
     >
       {children}
     </UserContext.Provider>

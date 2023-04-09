@@ -1,10 +1,13 @@
 /** @format */
 
-import { Outlet, Link } from "react-router-dom";
+import { useContext } from "react";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 import logo from "../assets/hl-logo.svg";
+import logout from "../assets/logoutIcon.svg";
 import Menu from "../components/Menu.js";
 import Home from "../components/Home.js";
 import Settings from "../components/Settings.js";
+import { UserContext } from "../contexts/UserContext.js";
 
 function Layout({
   optionalFields,
@@ -14,6 +17,16 @@ function Layout({
   lines,
   setLines,
 }) {
+  const navigate = useNavigate();
+
+  const { logoutUser, isAuthenticated } = useContext(UserContext);
+
+  const logoutAction = () => {
+    logoutUser();
+
+    navigate("/Ham-Locator/login");
+  };
+
   return (
     <>
       <div className="title" id="title">
@@ -28,6 +41,14 @@ function Layout({
           lines={lines}
           setLines={setLines}
           setHomeVis={setHome}
+        />
+        <img
+          className="logoutLogo"
+          src={logout}
+          alt="Logout"
+          onClick={() => {
+            logoutAction();
+          }}
         />
       </div>
 
