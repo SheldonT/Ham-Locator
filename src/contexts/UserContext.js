@@ -36,6 +36,7 @@ function UserProvider({ children }) {
           username: userName,
           passwd: passwd,
         });
+
         if (response.data) setIsAuthenticated(response.data.toString());
       } catch (e) {
         alert(`Server did not respond. Please try again later. \n\n ${e}`);
@@ -44,7 +45,6 @@ function UserProvider({ children }) {
   };
 
   const setHomeDataFromDB = async () => {
-    //if (isAuthenticated !== "-1") {
     try {
       const response = await axios.get(`${SERVER_DOMAIN}/users/getuser`, {
         params: { id: isAuthenticated },
@@ -64,13 +64,6 @@ function UserProvider({ children }) {
     } catch (e) {
       alert(`Server did not respond. Please try again later. \n\n ${e}`);
     }
-    /*} else {
-      console.log(
-        "User with id " +
-          isAuthenticated +
-          " is not authenticated, or doesn't exist."
-      );
-    }*/
   };
 
   const logoutUser = async () => {
@@ -80,9 +73,10 @@ function UserProvider({ children }) {
           sessionId: isAuthenticated,
         },
       });
-      if (response === true) {
+      console.log(response.data);
+      if (response.data === true) {
         setIsAuthenticated("0");
-        setHomeDataFromDB({});
+        setAuthUserHome({});
       }
     } catch (e) {
       console.log(e);

@@ -77,6 +77,13 @@ body {
 .logoutLogo:hover {
   cursor: pointer;
 }
+.logoutBar {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-left: 2rem;
+  align-items: center;
+}
 
 /*.menuBar {
   display: flex;

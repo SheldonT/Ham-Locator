@@ -24,7 +24,7 @@ function Layout({
   const logoutAction = () => {
     logoutUser();
 
-    navigate("/Ham-Locator/login");
+    navigate("/login");
   };
 
   return (
@@ -33,23 +33,27 @@ function Layout({
         <Link to="/Ham-Locator/">
           <img className="logo" src={logo} alt="" />{" "}
         </Link>
-
         <Menu />
-        <Settings
-          optionalFields={optionalFields}
-          setOptionalFields={setOptionalFields}
-          lines={lines}
-          setLines={setLines}
-          setHomeVis={setHome}
-        />
-        <img
-          className="logoutLogo"
-          src={logout}
-          alt="Logout"
-          onClick={() => {
-            logoutAction();
-          }}
-        />
+        <div
+          className="logoutBar"
+          style={{ display: isAuthenticated !== "0" ? "flex" : "none" }}
+        >
+          <Settings
+            optionalFields={optionalFields}
+            setOptionalFields={setOptionalFields}
+            lines={lines}
+            setLines={setLines}
+            setHomeVis={setHome}
+          />
+          <img
+            className="logoutLogo"
+            src={logout}
+            alt="Logout"
+            onClick={() => {
+              logoutAction();
+            }}
+          />
+        </div>
       </div>
 
       <div className="main" id="main">

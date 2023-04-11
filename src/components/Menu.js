@@ -16,7 +16,7 @@ function Menu() {
   const { isAuthenticated } = useContext(UserContext);
 
   useEffect(() => {
-    if (isAuthenticated !== "-1") {
+    if (isAuthenticated !== "0") {
       nav(itemSelected);
     } else {
       setItemSelected("");
@@ -25,11 +25,14 @@ function Menu() {
   }, [itemSelected, isAuthenticated]);
 
   return (
-    <div className={menu.menuBar}>
+    <div
+      className={menu.menuBar}
+      style={{ display: isAuthenticated !== "0" ? "flex" : "none" }}
+    >
       <div
         className={menu.menuEl}
         onClick={() => {
-          setItemSelected("/Ham-Locator/");
+          setItemSelected("/");
         }}
       >
         {" "}
@@ -71,7 +74,6 @@ function Menu() {
         {" "}
         About
       </div>
-
       <div
         className={menu.hamburger}
         onClick={() => {

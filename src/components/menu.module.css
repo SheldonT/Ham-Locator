@@ -3,12 +3,18 @@
 .menuBar {
   display: flex;
   flex-direction: row;
-  margin: auto 0 2rem auto;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: 10rem;
+  width: 100%;
 }
 
 .menuEl {
-  margin: auto 2rem 0 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
   font-size: 1.6rem;
+  padding-left: 4rem;
   text-decoration: underline;
   color: #f48c06;
   cursor: pointer;

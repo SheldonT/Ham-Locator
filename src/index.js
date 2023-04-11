@@ -31,7 +31,7 @@ function HamLocator() {
 
   useEffect(() => {
     if (!["-1", "0"].includes(isAuthenticated)) {
-      setHomeDataFromDB();
+      setHomeDataFromDB(home);
     }
   }, [isAuthenticated]);
 
@@ -46,7 +46,7 @@ function HamLocator() {
     <BrowserRouter>
       <Routes>
         <Route
-          path="/Ham-Locator/"
+          path="/"
           element={
             <Layout
               optionalFields={fields}
