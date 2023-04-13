@@ -189,7 +189,7 @@ function Location({ optionalFields, lines }) {
 
       <div className={location.controlBar}>
         <SaveLog data={infoList} />
-        <ClearTable reset={resetTable} count={infoList ? infoList.length : 0} />
+        {/*<ClearTable reset={resetTable} count={infoList ? infoList.length : 0} />*/}
       </div>
     </>
   );

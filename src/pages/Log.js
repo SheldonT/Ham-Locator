@@ -4,6 +4,7 @@ import { useState, useEffect, useContext } from "react";
 import InfoBar from "../components/InfoBar.js";
 import axios from "axios";
 import { UserContext } from "../contexts/UserContext.js";
+import SaveLog from "../components/SaveLog.js";
 import { SERVER_DOMAIN } from "../constants.js";
 
 const infoListStyle = {
