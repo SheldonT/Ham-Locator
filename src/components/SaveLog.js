@@ -83,7 +83,6 @@ function SaveLog({ data }) {
         name="Save Log"
         clickEvent={() => {
           setIsPopUpOpen(!isPopUpOpen);
-          console.log(data);
         }}
         disarmed={data.length === 0}
       />

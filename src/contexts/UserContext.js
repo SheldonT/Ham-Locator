@@ -73,7 +73,7 @@ function UserProvider({ children }) {
           sessionId: isAuthenticated,
         },
       });
-      console.log(response.data);
+
       if (response.data === true) {
         setIsAuthenticated("0");
         setAuthUserHome({});

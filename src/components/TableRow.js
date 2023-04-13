@@ -129,7 +129,7 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
       click(ci);
     }
   };
-  //console.log(info);
+
   return (
     <>
       <tr

@@ -89,7 +89,6 @@ function Register() {
     }
 
     if (validCall && validPasswd && validEmail && passwd === passwdCheck) {
-      console.log(newUserInfo);
       axios
         .post(`${SERVER_DOMAIN}/users/adduser`, {
           call: userName,
@@ -110,10 +109,6 @@ function Register() {
           }
         })
         .catch((e) => console.log(e));
-
-      //if (postNewUser.status === 200) {
-      //nav("/Ham-Locator");
-      //}
 
       setWarningCall(false);
       setWarningPasswd(false);

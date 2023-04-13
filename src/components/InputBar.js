@@ -56,7 +56,6 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
       callSignValue.length !== 0
     ) {
       if (!serialRcv || serialRcv.length === 0);
-      console.log("serialRcv");
 
       const ci = {
         contactCall: callSignValue.toUpperCase(),
