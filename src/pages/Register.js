@@ -64,7 +64,7 @@ function Register() {
     setWarningEmail(false);
     setPasswdMatchWarning(false);
 
-    nav("/Ham-Locator/");
+    nav("/");
   };
 
   const submit = () => {
@@ -105,7 +105,7 @@ function Register() {
         })
         .then((response) => {
           if (response.status === 200) {
-            nav("/Ham-Locator/");
+            nav("/");
           }
         })
         .catch((e) => console.log(e));
