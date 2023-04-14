@@ -5,5 +5,5 @@ export const getStageURL = (window) => {
   if (location.includes("localhost")) {
     return "http://localhost:3007";
   }
-  return "http://hamlocatorserver3-env.eba-2rhnj3me.ca-central-1.elasticbeanstalk.com/";
+  return "http://hamlocatorserver3-env.eba-2rhnj3me.ca-central-1.elasticbeanstalk.com";
 };
