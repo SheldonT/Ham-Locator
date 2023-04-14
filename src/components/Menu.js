@@ -32,7 +32,7 @@ function Menu() {
       <div
         className={menu.menuEl}
         onClick={() => {
-          setItemSelected("/");
+          setItemSelected("/Ham-Locator/");
         }}
       >
         {" "}
@@ -86,7 +86,7 @@ function Menu() {
           <div
             className={menu.hMenuEl}
             onClick={() => {
-              setItemSelected("/");
+              setItemSelected("/Ham-Locator/");
             }}
           >
             Home
