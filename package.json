@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "",
-  "homepage": "https://sheldont.github.io",
+  "homepage": "https://sheldont.github.io/Ham-Locator/",
   "dependencies": {
     "-": "^0.0.1",
     "@joergdietrich/leaflet.terminator": "^1.1.0",
