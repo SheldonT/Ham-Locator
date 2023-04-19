@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "",
-  "homepage": "http://hamlocator.ca",
+  "homepage": "/",
   "dependencies": {
     "-": "^0.0.1",
     "@joergdietrich/leaflet.terminator": "^1.1.0",
@@ -30,6 +30,7 @@
     "react-xml-parser": "^1.1.8",
     "save-dev": "^0.0.1-security",
     "update-browserslist-db": "^1.0.10",
+    "use-interval": "^1.4.0",
     "victory": "^36.6.8",
     "web-vitals": "^2.1.4"
   },

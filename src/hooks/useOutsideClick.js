@@ -1,6 +1,7 @@
 /** @format */
 
 import { useEffect, useRef } from "react";
+import "react-router-dom"; //would not build on AWS Elastic Beanstalk without this line.
 
 export default function useOutsideClick(handle) {
   const ref = useRef();
