@@ -24,7 +24,7 @@
   margin: 1rem 2rem 1rem 2rem;
   font-size: 1.6rem;
   text-decoration: underline;
-  color: #f48c06;
+
   cursor: pointer;
 }
 
@@ -35,9 +35,9 @@
 }
 
 .menuImg {
-  width: 3rem;
-  height: 3rem;
-  margin: auto 1rem -0.4rem 0;
+  width: 2.8rem;
+  height: 2.8rem;
+  margin: auto 1rem -0.8rem 1.5rem;
 }
 
 .menuImg:hover {
@@ -55,9 +55,15 @@
   z-index: 1100;
 }
 
-@media (max-width: 46rem) {
+@media (max-width: 54rem) {
   .hamburger {
-    display: block;
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 2rem;
+  }
+
+  .menuBar {
+    margin-left: auto;
   }
 
   .menuEl {
