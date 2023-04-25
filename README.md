@@ -21,15 +21,11 @@ Every ham radio operator should keep a log of all their radio contacts, and at t
 </ul>
 
 <h3>Installation</h3>
-<ol>
-  <li>Download and install Node.js.</li>
-  <li>Download the Ham Locator source code from github.com/SheldonT/Ham-Locator, or clone the repository using git. Decompress the .zip file if necessary.</li>
-  <li>On a command line, navigate to the directory containing the Ham Locator source files and run <i>npm start</i>. A development server will start, and Ham Locator will start the default browser.</li>
-</ol>
+At this point, not installation is required. Just visit the app at <a href="http://hamlocator.ca">hamlocator.ca</a>.
 
 <h3>Usage</h3>
 
-On initial start, you'll be prompted to enter your home information. If you're a radio amateur, enter your callsign, or enter <i>DEMO</i> if you're just testing. You can also select your preferred unit of measurement to be used throughout the app, but mainly to display to the distance between your home station and a contact. After clicking the <i>Submit</i> button, you'll be brought to Ham Locator's main screen, which has a world map, a field for entering new log records (contacts), and a table for displaying recent log entries. A red pin with a home icon will be placed on the map showing your home location.
+On your initial visit, you'll need to create a user account, which can be done from the link on the loging page. You'll be asked to enter a ham radio callsign, an email address, and a password. If you don't have a callsign, can use any ham radio callsign, such as the ones found in my log at <a href="https://www.qrz.com/db/VO1TWR">qrz.com</a> under the Logbook tab. You can also select your preferred unit of measurement to be used throughout the app, but mainly to display to the distance between your home station and a contact. There's also a field for entering a <a href="https://en.wikipedia.org/wiki/Maidenhead_Locator_System">Maidenhead Grid Square Locator</a>, but this is optional. After creating your account, you can login from the main login page, and you'll be brought to Ham Locator's main screen, which has a world map, a field for entering new log records (contacts), and a table for displaying recent log entries. A red pin with a home icon will be placed on the map showing your home location.
 
 <img src="https://user-images.githubusercontent.com/109766064/214266009-b7eea0aa-97bc-4ca2-a91c-3641caa82608.png" width="75%" />
 
