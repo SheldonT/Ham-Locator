@@ -1,91 +1,79 @@
-.infoBar{
-    position: relative;
-    border-radius: 0.5rem;
-    box-shadow: 0.2rem 0.2rem 0.5rem var(--shadowColor);
-    background-color: var(--infoBarColor);
-    width: 90%;
-    height: 20vh;
-    overflow: auto;
-    margin: 2rem auto 1rem auto;
-  }
+/** @format */
 
-  .callList{
-    border-collapse: collapse;
-    width: 100%;
-    margin: 0 0 0 0;
-  }
+.infoBar {
+  position: relative;
+  border-radius: 0.5rem;
+  box-shadow: 0.2rem 0.2rem 0.5rem var(--shadowColor);
+  background-color: var(--infoBarColor);
+  width: 90%;
+  height: 20vh;
+  overflow: auto;
+  margin: 2rem auto 1rem auto;
+}
 
+.callList {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0 0 0 0;
+}
+
+.infoHead {
+  position: sticky;
+  background-color: var(--infoHeaderColor);
+  border-style: none none solid none;
+  text-align: left;
+  padding: 1rem 1rem 1rem 4rem;
+  top: 0;
+  z-index: 1;
+}
+
+@media screen and (min-width: 32.1rem) and (max-width: 50rem) {
   .infoHead {
-    position: sticky;
-    background-color: var(--infoHeaderColor);
-    border-style: none none solid none;
-    text-align: left;
-    padding: 1rem 1rem 1rem 4rem;
-    top: 0;
-    z-index: 1;
+    font-size: 1.5rem;
+    padding: 1rem 1rem 1rem 1rem;
   }
-
-@media (min-width: 32.1rem) and (max-width: 50rem){
-
-    .infoHead {
-        font-size: 1.5rem;
-        padding: 1rem 1rem 1rem 1rem;
-    
-      }
 }
 
-@media (min-width: 29.1rem) and (max-width: 32rem){
-
-    .infoHead {
-        font-size: 1.3rem;
-        padding: 1rem 1rem 1rem 1rem;
-    
-      }
-}
-
-@media (min-width: 22.1rem) and (max-width: 29rem){
-
+@media screen and (min-width: 29.1rem) and (max-width: 32rem) {
   .infoHead {
-      font-size: 1.2rem;
-      padding: 1rem 0.5rem 1rem 0.5rem;
-  
-    }
+    font-size: 1.3rem;
+    padding: 1rem 1rem 1rem 1rem;
+  }
 }
 
-@media (min-width: 16.1rem) and (max-width: 22rem){
-
+@media screen and (min-width: 22.1rem) and (max-width: 29rem) {
   .infoHead {
-      font-size: 1.2rem;
-      padding: 1rem 0.3rem 1rem 0.3rem;
-  
-    }
+    font-size: 1.2rem;
+    padding: 1rem 0.5rem 1rem 0.5rem;
+  }
 }
 
-@media (max-width: 16rem){
-
-    .infoHead {
-        font-size: 1.1rem;
-        padding-left: 0.3rem;
-        padding-right: 0.3rem;
-    
-      }
+@media screen and (min-width: 16.1rem) and (max-width: 22rem) {
+  .infoHead {
+    font-size: 1.2rem;
+    padding: 1rem 0.3rem 1rem 0.3rem;
+  }
 }
 
-@media (min-height: 27.1rem) and (max-height: 34rem){
-
-    .infoHead {
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-    
-      }
+@media screen and (max-width: 16rem) {
+  .infoHead {
+    font-size: 1.1rem;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+  }
 }
 
-@media (max-height: 27rem){
+@media screen and (min-height: 27.1rem) and (max-height: 34rem) {
+  .infoHead {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
 
-    .infoHead {
-        font-size: 1.4rem;
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-    
-      }
+@media screen and (max-height: 27rem) {
+  .infoHead {
+    font-size: 1.4rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
 }

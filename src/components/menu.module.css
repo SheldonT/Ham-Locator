@@ -55,7 +55,7 @@
   z-index: 1100;
 }
 
-@media (max-width: 54rem) {
+@media screen and (max-width: 54rem) {
   .hamburger {
     display: flex;
     flex-direction: row;

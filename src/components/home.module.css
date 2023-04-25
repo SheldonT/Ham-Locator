@@ -83,7 +83,7 @@
   z-index: 1001;
 }
 
-@media (min-width: 43.1rem) and (max-width: 47rem) {
+@media screen and (min-width: 43.1rem) and (max-width: 47rem) {
   .inputAdapt {
     align-items: flex-start;
     flex-direction: column;
@@ -100,7 +100,7 @@
   }
 }
 
-@media (min-width: 41.1rem) and (max-width: 43rem) {
+@media screen and (min-width: 41.1rem) and (max-width: 43rem) {
   .inputAdapt {
     align-items: flex-start;
     flex-direction: column;
@@ -117,7 +117,7 @@
   }
 }
 
-@media (min-width: 39.1rem) and (max-width: 41rem) {
+@media screen and (min-width: 39.1rem) and (max-width: 41rem) {
   .inputAdapt {
     align-items: flex-start;
     flex-direction: column;
@@ -138,7 +138,7 @@
   }
 }
 
-@media (min-width: 33.1rem) and (max-width: 39rem) {
+@media screen and (min-width: 33.1rem) and (max-width: 39rem) {
   .inputAdapt {
     align-items: flex-start;
     flex-direction: column;
@@ -168,7 +168,7 @@
   }
 }
 
-@media (min-width: 29.5rem) and (max-width: 33rem) {
+@media screen and (min-width: 29.5rem) and (max-width: 33rem) {
   .inputAdapt {
     align-items: flex-start;
     flex-direction: column;
@@ -199,7 +199,7 @@
   }
 }
 
-@media (min-width: 23.8rem) and (max-width: 29.4rem) {
+@media screen and (min-width: 23.8rem) and (max-width: 29.4rem) {
   .inputAdapt {
     align-items: flex-start;
     flex-direction: column;
@@ -230,7 +230,7 @@
   }
 }
 
-@media (max-width: 23.7rem) {
+@media screen and (max-width: 23.7rem) {
   .inputAdapt {
     align-items: flex-start;
     flex-direction: column;
@@ -261,4 +261,4 @@
   }
 }
 
-/*@media (min-width: 32.1rem) and (max-width: 50rem){*/
+/*@media screen and (min-width: 32.1rem) and (max-width: 50rem){*/

@@ -11,17 +11,17 @@
   flex-direction: row;
 }
 
-@media (min-width: 42.1rem) and (max-width: 63rem) {
+@media screen and (min-width: 42.1rem) and (max-width: 63rem) {
 }
 
-@media (min-width: 29.1rem) and (max-width: 42rem) {
+@media screen and (min-width: 29.1rem) and (max-width: 42rem) {
 }
 
-@media (max-width: 29rem) {
+@media screen and (max-width: 29rem) {
 }
 
-@media (min-height: 27.1rem) and (max-height: 34rem) {
+@media screen and (min-height: 27.1rem) and (max-height: 34rem) {
 }
 
-@media (max-height: 27rem) {
+@media screen and (max-height: 27rem) {
 }

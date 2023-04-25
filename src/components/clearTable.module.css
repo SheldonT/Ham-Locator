@@ -31,13 +31,13 @@
   margin: 0 auto 1rem auto;
 }
 
-@media (min-width: 58.1rem) and (max-width: 63rem) {
+@media screen and (min-width: 58.1rem) and (max-width: 63rem) {
 }
 
-@media (min-width: 45.1rem) and (max-width: 58rem) {
+@media screen and (min-width: 45.1rem) and (max-width: 58rem) {
 }
 
-@media (min-width: 40.1rem) and (max-width: 45rem) {
+@media screen and (min-width: 40.1rem) and (max-width: 45rem) {
   .popUp {
     width: 20vw;
     bottom: 100%;
@@ -46,7 +46,7 @@
   }
 }
 
-@media (min-width: 26.1rem) and (max-width: 40rem) {
+@media screen and (min-width: 26.1rem) and (max-width: 40rem) {
   .popUp {
     width: 30vw;
     bottom: 100%;
@@ -55,7 +55,7 @@
   }
 }
 
-@media (min-width: 16.6rem) and (max-width: 26rem) {
+@media screen and (min-width: 16.6rem) and (max-width: 26rem) {
   .popUp {
     width: 40vw;
     bottom: 100%;
@@ -64,7 +64,7 @@
   }
 }
 
-@media (max-width: 16.5rem) {
+@media screen and (max-width: 16.5rem) {
   .popUp {
     width: 20vw;
     bottom: 100%;
@@ -73,8 +73,8 @@
   }
 }
 
-@media (min-height: 27.1rem) and (max-height: 34rem) {
+@media screen and (min-height: 27.1rem) and (max-height: 34rem) {
 }
 
-@media (max-height: 27rem) {
+@media screen and (max-height: 27rem) {
 }

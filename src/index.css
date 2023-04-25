@@ -103,45 +103,45 @@ a:visited {
   color: #f48c06;
 }
 
-@media (min-width: 42.1rem) and (max-width: 63rem) {
+@media screen and (min-width: 42.1rem) and (max-width: 63rem) {
   .logo {
     height: 4vh;
   }
 }
 
-@media (min-width: 29.1rem) and (max-width: 42rem) {
+@media screen and (min-width: 29.1rem) and (max-width: 42rem) {
   .logo {
     height: 4vh;
   }
 }
 
-@media (min-width: 16.1rem) and (max-width: 29rem) {
+@media screen and (min-width: 16.1rem) and (max-width: 29rem) {
   .logo {
     height: 4vh;
   }
 }
 
-@media (max-width: 16rem) {
+@media screen and (max-width: 16rem) {
   .logo {
     height: 4vh;
   }
 }
 
-@media (max-height: 27rem) {
+@media screen and (max-height: 27rem) {
   .logo {
     height: 10vh;
     margin: 1rem 0 2rem 0;
   }
 }
 
-/*@media (min-width: 42.1rem) and (max-width: 63rem){}
+/*@media screen and (min-width: 42.1rem) and (max-width: 63rem){}
 
-@media (min-width: 29.1rem) and (max-width: 42rem){}
+@media screen and (min-width: 29.1rem) and (max-width: 42rem){}
 
-@media (min-width: 16.1rem) and (max-width: 29rem){}
+@media screen and (min-width: 16.1rem) and (max-width: 29rem){}
 
-@media (max-width: 16rem){}
+@media screen and (max-width: 16rem){}
 
-@media (min-height: 27.1rem) and (max-height: 34rem){}
+@media screen and (min-height: 27.1rem) and (max-height: 34rem){}
 
-@media (max-height: 27rem){}*/
+@media screen and (max-height: 27rem){}*/
