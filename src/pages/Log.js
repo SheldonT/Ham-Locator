@@ -30,7 +30,7 @@ function Log({ optionalFields }) {
 
   const getLog = async () => {
     try {
-      const response = await axios.get(`${SERVER_DOMAIN}logs`, {
+      const response = await axios.get(`${SERVER_DOMAIN}/logs`, {
         params: { id: isAuthenticated, decend: true },
       });
 
@@ -67,7 +67,7 @@ function Log({ optionalFields }) {
     delete newRecord.id;
 
     try {
-      await axios.post(`${SERVER_DOMAIN}logs/editrecord`, newRecord);
+      await axios.post(`${SERVER_DOMAIN}/logs/editrecord`, newRecord);
     } catch (e) {
       alert(`Server did not respond. Please try again later. \n\n ${e}`);
     }
@@ -75,7 +75,7 @@ function Log({ optionalFields }) {
 
   const deleteRecord = async () => {
     try {
-      await axios.post(`${SERVER_DOMAIN}logs/deleterecord`, {
+      await axios.post(`${SERVER_DOMAIN}/logs/deleterecord`, {
         userId: isAuthenticated,
         recordId: record.recordId,
       });

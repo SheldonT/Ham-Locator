@@ -90,7 +90,7 @@ function Location({ optionalFields, lines }) {
       delete newRecord.anchor;
 
       try {
-        await axios.post(`${SERVER_DOMAIN}logs/addrecord`, newRecord);
+        await axios.post(`${SERVER_DOMAIN}/logs/addrecord`, newRecord);
       } catch (error) {
         console.log(error);
       }
@@ -138,7 +138,7 @@ function Location({ optionalFields, lines }) {
 
     const getLog = async () => {
       try {
-        const response = await axios.get(`${SERVER_DOMAIN}logs`, {
+        const response = await axios.get(`${SERVER_DOMAIN}/logs`, {
           params: { id: isAuthenticated, decend: true },
         });
 

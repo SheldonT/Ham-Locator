@@ -46,7 +46,7 @@ function UserProvider({ children }) {
 
   const setHomeDataFromDB = async () => {
     try {
-      const response = await axios.get(`${SERVER_DOMAIN}users/getuser`, {
+      const response = await axios.get(`${SERVER_DOMAIN}/users/getuser`, {
         params: { id: isAuthenticated },
       });
       const home = {
@@ -68,7 +68,7 @@ function UserProvider({ children }) {
 
   const logoutUser = async () => {
     try {
-      const response = await axios.get(`${SERVER_DOMAIN}users/logout`, {
+      const response = await axios.get(`${SERVER_DOMAIN}/users/logout`, {
         params: {
           sessionId: isAuthenticated,
         },

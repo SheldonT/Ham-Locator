@@ -71,7 +71,7 @@ function Stats() {
 
   const getLog = async () => {
     try {
-      const response = await axios.get(`${SERVER_DOMAIN}logs`, {
+      const response = await axios.get(`${SERVER_DOMAIN}/logs`, {
         params: { id: isAuthenticated, decend: true },
       });
 
