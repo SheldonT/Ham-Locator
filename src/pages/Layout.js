@@ -26,7 +26,7 @@ function Layout({
 
     navigate("/login");
   };
-  console.log(isAuthenticated);
+
   return (
     <>
       <div className="title" id="title">
