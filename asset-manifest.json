@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.a69d012a.css",
-    "main.js": "/static/js/main.aee66752.js",
-    "static/media/markerRed2.png": "/static/media/markerRed2.aa37951a5bc485daeb00.png",
-    "static/media/gear.png": "/static/media/gear.195e3d30b4eca44a20b3.png",
-    "static/media/hl-logo.svg": "/static/media/hl-logo.e244cc14486cebf5568762f2cff424d6.svg",
-    "static/media/attention.svg": "/static/media/attention.258cc26056722c07be12e453dbe6cce4.svg",
-    "static/media/hamburgerMenu.svg": "/static/media/hamburgerMenu.c32624d56afb7cabd49e9a1022dc6e06.svg",
-    "index.html": "/index.html",
-    "static/media/logoutIcon.svg": "/static/media/logoutIcon.094ab5970808b21116bec99ff16d5723.svg",
-    "static/media/save_black_24dp.svg": "/static/media/save_black_24dp.60e32a3f51d4e174b563e103aaa0f826.svg",
-    "static/media/clear_black_24dp.svg": "/static/media/clear_black_24dp.244b66874c46718f7e0607d3acebaccf.svg",
-    "static/media/delete_black_24dp.svg": "/static/media/delete_black_24dp.1129c53a10f3c716357028ea030e9d23.svg",
-    "main.a69d012a.css.map": "/static/css/main.a69d012a.css.map",
-    "main.aee66752.js.map": "/static/js/main.aee66752.js.map"
+    "main.css": "/Ham-Locator/static/css/main.570e5a41.css",
+    "main.js": "/Ham-Locator/static/js/main.d88d1815.js",
+    "static/media/markerRed2.png": "/Ham-Locator/static/media/markerRed2.aa37951a5bc485daeb00.png",
+    "static/media/gear.png": "/Ham-Locator/static/media/gear.195e3d30b4eca44a20b3.png",
+    "static/media/hl-logo.svg": "/Ham-Locator/static/media/hl-logo.e244cc14486cebf5568762f2cff424d6.svg",
+    "static/media/hamburgerMenu.svg": "/Ham-Locator/static/media/hamburgerMenu.d6df3da3f40a0f8623a9ecb5ac07faef.svg",
+    "static/media/attention.svg": "/Ham-Locator/static/media/attention.258cc26056722c07be12e453dbe6cce4.svg",
+    "index.html": "/Ham-Locator/index.html",
+    "static/media/logoutIcon.svg": "/Ham-Locator/static/media/logoutIcon.094ab5970808b21116bec99ff16d5723.svg",
+    "static/media/save_black_24dp.svg": "/Ham-Locator/static/media/save_black_24dp.60e32a3f51d4e174b563e103aaa0f826.svg",
+    "static/media/clear_black_24dp.svg": "/Ham-Locator/static/media/clear_black_24dp.244b66874c46718f7e0607d3acebaccf.svg",
+    "static/media/delete_black_24dp.svg": "/Ham-Locator/static/media/delete_black_24dp.1129c53a10f3c716357028ea030e9d23.svg",
+    "main.570e5a41.css.map": "/Ham-Locator/static/css/main.570e5a41.css.map",
+    "main.d88d1815.js.map": "/Ham-Locator/static/js/main.d88d1815.js.map"
   },
   "entrypoints": [
-    "static/css/main.a69d012a.css",
-    "static/js/main.aee66752.js"
+    "static/css/main.570e5a41.css",
+    "static/js/main.d88d1815.js"
   ]
 }
