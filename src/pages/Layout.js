@@ -30,7 +30,7 @@ function Layout({
   return (
     <>
       <div className="title" id="title">
-        <Link to="/Ham-Locator/">
+        <Link to="/">
           <img className="logo" src={logo} alt="" />{" "}
         </Link>
         <Menu />
