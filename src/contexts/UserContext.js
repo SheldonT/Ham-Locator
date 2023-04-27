@@ -18,7 +18,11 @@ function UserProvider({ children }) {
         `${SERVER_DOMAIN}/users/session`
       );
       if (response.data !== -1) {
+        console.log("Getting session id from cookie...");
         setIsAuthenticated(response.data.toString());
+      } else if (localStorage.getItem("sessionId")) {
+        console.log("Getting session id from local storage...");
+        setIsAuthenticated(JSON.parse(localStorage.getItem("sessionId")).id);
       }
     } catch (e) {
       console.log(e);
@@ -37,7 +41,13 @@ function UserProvider({ children }) {
           passwd: passwd,
         });
 
-        if (response.data) setIsAuthenticated(response.data.toString());
+        if (response.data) {
+          setIsAuthenticated(response.data.toString());
+          localStorage.setItem(
+            "sessionId",
+            JSON.stringify({ id: response.data })
+          );
+        }
       } catch (e) {
         alert(`Server did not respond. Please try again later. \n\n ${e}`);
       }
@@ -77,6 +87,7 @@ function UserProvider({ children }) {
       if (response.data === true) {
         setIsAuthenticated("0");
         setAuthUserHome({});
+        localStorage.removeItem("sessionId");
       }
     } catch (e) {
       console.log(e);
