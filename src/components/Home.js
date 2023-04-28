@@ -61,6 +61,8 @@ function Home({ setVis }) {
           }
         })
         .catch((e) => console.log(e));
+    } else {
+      setVis(false);
     }
   };
 

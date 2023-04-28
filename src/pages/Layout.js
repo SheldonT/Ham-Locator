@@ -1,6 +1,6 @@
 /** @format */
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Outlet, Link, useNavigate } from "react-router-dom";
 import logo from "../assets/hl-logo.svg";
 import logout from "../assets/logoutIcon.svg";
