@@ -14,6 +14,11 @@
   z-index: 1001;
 }
 
+.link {
+  color: #ffba08;
+  cursor: pointer;
+}
+
 .main {
   display: flex;
   flex-direction: column;

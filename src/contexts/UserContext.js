@@ -47,6 +47,13 @@ function UserProvider({ children }) {
             "sessionId",
             JSON.stringify({ id: response.data })
           );
+
+          if (userName === "DEMO") {
+            localStorage.setItem(
+              "sessionId",
+              JSON.stringify({ id: response.data, demo: true })
+            );
+          }
         }
       } catch (e) {
         alert(`Server did not respond. Please try again later. \n\n ${e}`);

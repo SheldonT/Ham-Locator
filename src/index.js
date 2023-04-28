@@ -42,7 +42,6 @@ function HamLocator() {
 
     return <Login />;
   };
-
   return (
     <BrowserRouter>
       <Routes>

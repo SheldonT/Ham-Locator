@@ -81,8 +81,13 @@ function Home({ setVis }) {
                   fieldContainerStyle={home.formFields}
                   value={callsign}
                   setValue={setCallsign}
-                  placeHolder="Callsign"
+                  placeHolder={
+                    authUserHome.call === "DEMO"
+                      ? "Callsign can't be changed"
+                      : "Callsign"
+                  }
                   isValid={true}
+                  disarm={authUserHome.call === "DEMO" ? true : false}
                   keyDown={(e) => {
                     if (e.key === "Enter") {
                       submit();
@@ -93,8 +98,13 @@ function Home({ setVis }) {
                   fieldContainerStyle={home.formFields}
                   value={email}
                   setValue={setEmail}
-                  placeHolder="E-Mail"
+                  placeHolder={
+                    authUserHome.call === "DEMO"
+                      ? "E-Mail can't be changed"
+                      : "E-Mail"
+                  }
                   isValid={true}
+                  disarm={authUserHome.call === "DEMO" ? true : false}
                   keyDown={(e) => {
                     if (e.key === "Enter") {
                       submit();

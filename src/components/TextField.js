@@ -22,6 +22,7 @@ function TextField({
   errMsg,
   errorPopupStyle,
   password,
+  disarm,
 }) {
   const [errorMsg, setErrorMsg] = useState(errMsg || "");
   const warningStyle = {
@@ -42,6 +43,7 @@ function TextField({
         type={password ? "password" : "text"}
         placeholder={placeHolder}
         value={value}
+        disabled={disarm ? true : false}
         onChange={(e) => {
           setValue(e.target.value.replace(exp, ""));
 

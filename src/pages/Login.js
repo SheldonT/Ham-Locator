@@ -17,6 +17,10 @@ function Login() {
     authenticate(userName, passwd);
   };
 
+  const guestLogin = () => {
+    authenticate("DEMO", "Dem01234");
+  };
+
   return (
     <div className={login.loginBG}>
       <div className={login.main}>
@@ -53,6 +57,13 @@ function Login() {
         <div className={login.newAccount}>
           <p>
             Not registered? <Link to="/register">Create an account.</Link>
+          </p>
+          <p>
+            or click{" "}
+            <a href="#" onClick={() => guestLogin()}>
+              here
+            </a>{" "}
+            to login as a guest.
           </p>
         </div>
       </div>

@@ -19,13 +19,34 @@ function Layout({
 }) {
   const navigate = useNavigate();
 
-  const { logoutUser, isAuthenticated } = useContext(UserContext);
+  const { authUserHome, logoutUser, isAuthenticated } = useContext(UserContext);
 
   const logoutAction = () => {
     logoutUser();
 
     navigate("/login");
   };
+
+  const handleBeforeUnload = (event) => {
+    const demoFlag =
+      JSON.parse(localStorage.getItem("sessionId")).demo || false;
+
+    if (demoFlag) {
+      // run your function here
+      logoutUser();
+      const message =
+        "Guest user will now logout. Any logs will be deleted. Do you want to close the tab?";
+      event.preventDefault(); // required to show a confirmation dialog
+      event.returnValue = message;
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  });
 
   return (
     <>

@@ -104,8 +104,12 @@ function Register() {
           password: passwd,
         })
         .then((response) => {
-          if (response.status === 200) {
+          if (response.data === "OK") {
             nav("/");
+          } else {
+            alert(
+              `User with callsign ${userName} or email address ${email} already exists`
+            );
           }
         })
         .catch((e) => console.log(e));
