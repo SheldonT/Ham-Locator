@@ -1,7 +1,7 @@
 <!-- @format -->
 
 <h1><a href="http://hamlocator.ca">Ham Locator</a></h1>
-
+<h3>Go <a href="https://www.loom.com/share/b920f56b108c47efb60675f31806721a" target="_blank">here</a> for a brief demo video.</h3>
 
 Every ham radio operator should keep a log of all their radio contacts, and at the least, each entry should include the other station's callsign, the frequency used, the transmission mode used (AM, FM, Digital, etc.), and a standard signal report sent and received (RSTs and RSTr). Most hams use apps rather than pencil and paper to create these logs, and as a new ham, I found most of these apps to be very complicated and difficult to set up. That's why I created Ham locator, which is a simple ham radio logging app intended for new and casual operators.
 
