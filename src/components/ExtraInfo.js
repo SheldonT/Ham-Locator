@@ -34,7 +34,7 @@ function ExtraInfo({ info, infoStyle }) {
     ) : null;
   }
 
-  if (!info.prefix && Object.keys(info).length !== 0) {
+  if (info && !info.prefix && Object.keys(info).length !== 0) {
     let dist = getDistance(
       { latitude: authUserHome.anchor[0], longitude: authUserHome.anchor[1] },
       { latitude: info.anchor[0], longitude: info.anchor[1] }
@@ -58,7 +58,7 @@ function ExtraInfo({ info, infoStyle }) {
   return (
     <div className={extraInfo.markerInfo} style={infoStyle ? infoStyle : null}>
       <div className={extraInfo.extraHeader}>
-        {callSign}
+        {callSign ? callSign : "Unknown Country"}
         <div className={extraInfo.flagIcon}>
           <Flag code={code} height={20} />
         </div>

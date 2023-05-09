@@ -96,7 +96,6 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
       cInfo = { ...cInfo, country: cInfo.area, contactCall: cInfo.area };
       delete cInfo.area;
     }
-
     return cInfo;
   };
 
