@@ -17,10 +17,10 @@ function Menu() {
 
   useEffect(() => {
     if (isAuthenticated !== "0") {
-      nav(itemSelected);
+      nav(`/Ham-Locator/${itemSelected}`);
     } else {
       setItemSelected("");
-      nav("login");
+      nav("/Ham-Locator/login");
     }
   }, [itemSelected, isAuthenticated]);
 
@@ -32,7 +32,7 @@ function Menu() {
       <div
         className={menu.menuEl}
         onClick={() => {
-          setItemSelected("/Ham-Locator/");
+          setItemSelected("");
         }}
       >
         {" "}

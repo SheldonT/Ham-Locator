@@ -24,7 +24,7 @@ function Layout({
   const logoutAction = () => {
     logoutUser();
 
-    navigate("/login");
+    navigate("/Ham-Locator/login");
   };
 
   const handleBeforeUnload = (event) => {
