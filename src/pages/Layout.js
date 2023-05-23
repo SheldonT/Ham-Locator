@@ -47,7 +47,7 @@ function Layout({
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   });
-  console.log(isAuthenticated);
+
   return (
     <>
       <div className="title" id="title">
