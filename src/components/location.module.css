@@ -11,6 +11,10 @@
   flex-direction: row;
 }
 
+.tutorial {
+  font-size: 1.4rem;
+}
+
 @media screen and (min-width: 42.1rem) and (max-width: 63rem) {
 }
 

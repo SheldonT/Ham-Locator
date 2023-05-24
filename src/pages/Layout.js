@@ -19,7 +19,7 @@ function Layout({
 }) {
   const navigate = useNavigate();
 
-  const { authUserHome, logoutUser, isAuthenticated } = useContext(UserContext);
+  const { logoutUser, isAuthenticated } = useContext(UserContext);
 
   const logoutAction = () => {
     logoutUser();
@@ -87,7 +87,11 @@ function Layout({
           SheldonT
         </a>{" "}
         (on{" "}
-        <a href="https://github.com/SheldonT/Ham-Locator" target="_blank">
+        <a
+          href="https://github.com/SheldonT/Ham-Locator"
+          target="_blank"
+          rel="noreferrer"
+        >
           GitHub
         </a>
         ). <br />

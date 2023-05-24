@@ -71,7 +71,7 @@ function Location({ optionalFields, lines }) {
 
   const jsonResp = useCallData(contactInfo.contactCall);
 
-  const { isAuthenticated } = useContext(UserContext);
+  const { isAuthenticated, authUserHome } = useContext(UserContext);
 
   const resetTable = () => {
     setId(1);
@@ -184,7 +184,22 @@ function Location({ optionalFields, lines }) {
           optionalFields={optionalFields}
         />
       </div>
-
+      <div
+        className={location.tutorial}
+        style={{
+          display: authUserHome.call === "DEMO" ? "block" : "none",
+        }}
+      >
+        Need help? Watch my{" "}
+        <a
+          href="https://www.loom.com/share/b920f56b108c47efb60675f31806721a"
+          target="_blank"
+          rel="noreferrer"
+        >
+          tutorial video
+        </a>
+        .
+      </div>
       <InfoBar info={infoList} click={setExtraInfo} editField={false} />
 
       <div className={location.controlBar}>
