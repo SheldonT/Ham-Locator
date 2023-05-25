@@ -23,7 +23,7 @@ function Home({ setVis }) {
 
   const submit = () => {
     if (Object.keys(homeResp).length !== 0) {
-      let home = {
+      /*let home = {
         call:
           callsign.length !== 0
             ? callsign.toUpperCase()
@@ -37,7 +37,7 @@ function Home({ setVis }) {
         utc: homeResp.utc,
       };
 
-      setHomeDataFromDB(home);
+      setHomeDataFromDB();*/
 
       let dbUpdate = {
         userId: isAuthenticated,
