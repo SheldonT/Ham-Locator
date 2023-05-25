@@ -42,7 +42,7 @@ function HamLocator() {
 
     return <Login />;
   };
-  console.log("[ #]....[|14.150| : * -]");
+  console.log("[ #]....[|14.150| : * - *]");
   return (
     <BrowserRouter>
       <Routes>
