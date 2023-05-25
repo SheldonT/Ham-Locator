@@ -42,7 +42,7 @@ function HamLocator() {
 
     return <Login />;
   };
-  console.log("Starting Ham Locator.......");
+  console.log("Starting Ham Locator...");
   return (
     <BrowserRouter>
       <Routes>
