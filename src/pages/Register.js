@@ -64,7 +64,7 @@ function Register() {
     setWarningEmail(false);
     setPasswdMatchWarning(false);
 
-    nav("/Ham-Locator/");
+    nav("/");
   };
 
   const submit = () => {
@@ -105,7 +105,7 @@ function Register() {
         })
         .then((response) => {
           if (response.data === "OK") {
-            nav("/Ham-Locator/");
+            nav("/");
           } else {
             alert(
               `User with callsign ${userName} or email address ${email} already exists`

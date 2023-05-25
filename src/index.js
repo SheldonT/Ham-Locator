@@ -47,7 +47,7 @@ function HamLocator() {
     <BrowserRouter>
       <Routes>
         <Route
-          path="/Ham-Locator/"
+          path="/"
           element={
             <Layout
               optionalFields={fields}

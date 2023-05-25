@@ -24,7 +24,7 @@ function Layout({
   const logoutAction = () => {
     logoutUser();
 
-    navigate("/Ham-Locator/login");
+    navigate("/login");
   };
 
   const handleBeforeUnload = (event) => {
@@ -51,7 +51,7 @@ function Layout({
   return (
     <>
       <div className="title" id="title">
-        <Link to="/Ham-Locator/">
+        <Link to="/">
           <img className="logo" src={logo} alt="" />{" "}
         </Link>
         <Menu />

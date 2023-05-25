@@ -56,8 +56,7 @@ function Login() {
         </div>
         <div className={login.newAccount}>
           <p>
-            Not registered?{" "}
-            <Link to="/Ham-Locator/register">Create an account.</Link>
+            Not registered? <Link to="/register">Create an account.</Link>
           </p>
           <p>
             or click{" "}
