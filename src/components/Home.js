@@ -23,22 +23,6 @@ function Home({ setVis }) {
 
   const submit = () => {
     if (Object.keys(homeResp).length !== 0) {
-      /*let home = {
-        call:
-          callsign.length !== 0
-            ? callsign.toUpperCase()
-            : authUserHome.call.toUpperCase(), //callsign.length !== 0 ? callsign.toUpperCase() : homeData.call,
-        gridloc: gridloc.length !== 0 ? gridloc : authUserHome.gridloc,
-        unit: unit.length !== 0 ? unit : authUserHome.unit,
-        country: homeResp.country,
-        anchor: homeResp.anchor,
-        details: homeResp.details,
-        itu: homeResp.itu,
-        utc: homeResp.utc,
-      };
-
-      setHomeDataFromDB();*/
-
       let dbUpdate = {
         userId: isAuthenticated,
         call: callsign.toUpperCase(),

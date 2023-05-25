@@ -17,6 +17,7 @@ function UserProvider({ children }) {
       const response = await serverInstance.get(
         `${SERVER_DOMAIN}/users/session`
       );
+
       if (response.data !== -1) {
         console.log("Getting session id from cookie...");
         setIsAuthenticated(response.data.toString());
@@ -77,7 +78,12 @@ function UserProvider({ children }) {
         utc: response.data.utc,
       };
 
-      setAuthUserHome(home);
+      if (response.data === "") {
+        setIsAuthenticated("0");
+        localStorage.removeItem("sessionId");
+      } else {
+        setAuthUserHome(home);
+      }
     } catch (e) {
       alert(`Server did not respond. Please try again later. \n\n ${e}`);
     }
