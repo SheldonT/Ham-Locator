@@ -31,7 +31,7 @@ function HamLocator() {
 
   useEffect(() => {
     if (!["-1", "0"].includes(isAuthenticated)) {
-      setHomeDataFromDB(home);
+      setHomeDataFromDB();
     }
   }, [isAuthenticated]);
 
@@ -42,6 +42,7 @@ function HamLocator() {
 
     return <Login />;
   };
+  console.log("Starting Ham Locator.......");
   return (
     <BrowserRouter>
       <Routes>
