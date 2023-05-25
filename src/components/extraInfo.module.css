@@ -24,7 +24,7 @@
 .extraHeader {
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   margin: 0 0 0.5rem 0;
   font-weight: bold;
   font-size: 1.5rem;
@@ -33,7 +33,7 @@
 .extraRow {
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   font-size: 1.2rem;
   margin: 0 0 0.5rem 0;
