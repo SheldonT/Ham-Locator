@@ -16,7 +16,11 @@ function Popup({
     ...inlineStyle,
   };
   return (
-    <div className={`${popUp.popUp} ${styleCSS}`} style={extraStyle}>
+    <div
+      className={`${popUp.popUp} ${styleCSS}`}
+      style={extraStyle}
+      data-testid="popUp"
+    >
       {icon ? <img className={popUp.icon} style={iconSize} src={icon} /> : null}
       {children}
     </div>

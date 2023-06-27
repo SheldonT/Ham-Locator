@@ -44,6 +44,7 @@ function TextField({
         placeholder={placeHolder}
         value={value}
         disabled={disarm ? true : false}
+        data-testid="inputField"
         onChange={(e) => {
           setValue(e.target.value.replace(exp, ""));
 
