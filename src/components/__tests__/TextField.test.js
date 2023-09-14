@@ -35,7 +35,22 @@ describe("Text Field Component", () => {
     expect(findField).toBeDisabled();
   });
 
-  test("Input checked against validation criteria", () => {
+  test("Checking invalid input warning", () => {
+    const validate = () => false;
+    const setValid = () => false;
+    const warning = false;
+
+    render(
+      <TextField validate={validate} setValid={setValid} warning={warning} />
+    );
+
+    const findTextField = screen.getByTestId("inputField");
+    const errorBorder = window.getComputedStyle(findTextField);
+
+    expect(errorBorder.borderColor).toBe("red");
+  });
+
+  test("Checking invalid input popup", () => {
     const validate = () => false;
     const setValid = () => false;
     const warning = true;
@@ -43,9 +58,10 @@ describe("Text Field Component", () => {
     render(
       <TextField validate={validate} setValid={setValid} warning={warning} />
     );
-    const findErrorPopUp = screen.getByTestId("popUp");
-    const errorPopUpDisplay = window.getComputedStyle(findErrorPopUp);
 
-    expect(errorPopUpDisplay.display).toBe("flex");
+    const findPopUp = screen.getByTestId("popUp");
+    const errorDisplay = window.getComputedStyle(findPopUp);
+
+    expect(errorDisplay.display).toBe("flex");
   });
 });

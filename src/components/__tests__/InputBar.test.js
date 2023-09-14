@@ -20,7 +20,7 @@ describe("Input Bar", () => {
   test("Checking input", async () => {
     render(<InputBar />);
 
-    const nameField = screen.queryByPlaceholderText("Callsi");
+    const nameField = screen.queryByPlaceholderText("Name");
 
     expect(nameField).toBeNull();
   });

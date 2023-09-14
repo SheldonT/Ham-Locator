@@ -130,6 +130,8 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
     }
   };
 
+  console.log(info);
+
   return (
     <>
       <tr
