@@ -112,23 +112,6 @@ function Location({ optionalFields, lines }) {
 
         setId(id + 1);
 
-        /*let listBuff = [...infoList];
-        const newData = {
-          id: id,
-          contactDate: utcDate,
-          contactTime: utcTime,
-          ...contactInfo,
-          ...jsonResp,
-        };
-
-        listBuff.push(newData);
-
-        listBuff = listBuff.sort((a, b) => {
-          return new Date(b.contactDate) - new Date(a.contactDate);
-        });
-
-        insertToDB(newData);*/
-
         setInfoList((previousInfo) => {
           const newData = {
             id: id,
@@ -140,10 +123,10 @@ function Location({ optionalFields, lines }) {
 
           insertToDB(newData);
 
-          const dataCollection = [newData, ...previousInfo];
+          let dataCollection = [newData, ...previousInfo];
 
           dataCollection.sort((a, b) => {
-            return new Date(b.contactDate) - new Date(a.contactDate);
+            return b.id - a.id;
           });
 
           //localStorage.setItem("list", JSON.stringify(dataCollection));
