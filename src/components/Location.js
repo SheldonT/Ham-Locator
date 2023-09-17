@@ -125,10 +125,6 @@ function Location({ optionalFields, lines }) {
 
           let dataCollection = [newData, ...previousInfo];
 
-          dataCollection.sort((a, b) => {
-            return new Date(b.contactDate) - new Date(a.contactDate);
-          });
-
           //localStorage.setItem("list", JSON.stringify(dataCollection));
 
           return dataCollection;
@@ -160,10 +156,6 @@ function Location({ optionalFields, lines }) {
             delete data[i].lng;
             delete data[i].userId;
           }
-
-          data.sort((a, b) => {
-            return new Date(b.contactDate) - new Date(a.contactDate);
-          });
 
           setInfoList(data);
         } else {
