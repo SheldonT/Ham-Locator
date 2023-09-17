@@ -47,6 +47,11 @@ function Log({ optionalFields }) {
           delete data[i].lng;
           delete data[i].userId;
         }
+
+        data.sort((a, b) => {
+          return new Date(b.contactDate) - new Date(a.contactDate);
+        });
+
         setInfoList(data);
       } else {
         console.log("No Log Found");
