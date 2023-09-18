@@ -112,6 +112,7 @@ function UserProvider({ children }) {
       value={{
         isAuthenticated,
         authenticate,
+        serverInstance,
         authUserHome,
         setHomeDataFromDB,
         logoutUser,

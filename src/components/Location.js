@@ -10,6 +10,7 @@ import SaveLog from "./SaveLog.js";
 import ClearTable from "./ClearTable.js";
 import location from "./location.module.css";
 import { UserContext } from "../contexts/UserContext.js";
+import { LogContext } from "../contexts/LogContext.js";
 import { SERVER_DOMAIN } from "../constants.js";
 
 function validateEntry(entry, currentList) {
@@ -65,17 +66,19 @@ export const formatDate = (date) => {
 
 function Location({ optionalFields, lines }) {
   const [contactInfo, setContactInfo] = useState({});
-  const [infoList, setInfoList] = useState([]);
+  //const [infoList, setInfoList] = useState([]);
   const [extraInfo, setExtraInfo] = useState({});
   const [id, setId] = useState(1);
 
   const jsonResp = useCallData(contactInfo.contactCall);
 
   const { isAuthenticated, authUserHome } = useContext(UserContext);
+  const { log, setLog } = useContext(LogContext);
 
   const resetTable = () => {
     setId(1);
-    setInfoList([]);
+    //setInfoList([]);
+    setLog([]);
   };
 
   useEffect(() => {
@@ -96,7 +99,7 @@ function Location({ optionalFields, lines }) {
       }
     };
 
-    if (validateEntry(jsonResp, infoList)) {
+    if (validateEntry(jsonResp, log /*infoList*/)) {
       console.log("An error occured. Please try again.");
     } else {
       if (jsonResp.anchor && contactInfo) {
@@ -112,7 +115,8 @@ function Location({ optionalFields, lines }) {
 
         setId(id + 1);
 
-        setInfoList((previousInfo) => {
+        //setInfoList
+        setLog((previousInfo) => {
           const newData = {
             id: id,
             contactDate: utcDate,
@@ -165,7 +169,8 @@ function Location({ optionalFields, lines }) {
             return new Date(b.contactDate) - new Date(a.contactDate);
           });
 
-          setInfoList(data);
+          //setInfoList(data);
+          setLog(data);
         } else {
           resetTable();
         }
@@ -173,14 +178,17 @@ function Location({ optionalFields, lines }) {
         alert(`Server did not respond. Please try again later. \n\n ${e}`);
       }
     };
+
     getLog();
   }, []);
+
+  console.log(log);
 
   return (
     <>
       <div className={location.map}>
         <CallMap
-          info={infoList}
+          info={log /*infoList*/}
           infoLastId={id}
           selectedInfo={extraInfo}
           click={setExtraInfo}
@@ -209,11 +217,10 @@ function Location({ optionalFields, lines }) {
         </a>
         .
       </div>
-      <InfoBar info={infoList} click={setExtraInfo} editField={false} />
+      <InfoBar info={/*infoList*/ log} click={setExtraInfo} editField={false} />
 
       <div className={location.controlBar}>
-        <SaveLog data={infoList} />
-        {/*<ClearTable reset={resetTable} count={infoList ? infoList.length : 0} />*/}
+        {/*<SaveLog>Save Log</SaveLog>*/}
       </div>
     </>
   );

@@ -1,12 +1,13 @@
 /** @format */
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { saveAs } from "file-saver";
 import { bandDef } from "../constants.js";
 import { utcHrs, utcMins, formatDate } from "./Location.js";
 import PopUp from "./PopUp.js";
 import Button from "./Button.js";
 import saveLog from "./saveLog.module.css";
+import { LogContext } from "../contexts/LogContext.js";
 
 function toADIF(d) {
   const currDate = new Date();
@@ -70,22 +71,24 @@ ${d[i].grid},${d[i].comment}
   return dataStr.toUpperCase();
 }
 
-function SaveLog({ data }) {
+function SaveLog({ children }) {
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
   const [fileType, setFileType] = useState("adi");
   const [fileName, setFileName] = useState("");
+
+  const { log } = useContext(LogContext);
 
   let blob;
 
   return (
     <div className={saveLog.saveFile}>
-      <Button
-        name="Save Log"
-        clickEvent={() => {
+      <div
+        onClick={() => {
           setIsPopUpOpen(!isPopUpOpen);
         }}
-        disarmed={data.length === 0}
-      />
+      >
+        {children}
+      </div>
       <PopUp styleCSS={saveLog.popUp} show={isPopUpOpen}>
         <span>Save File...</span>
 
@@ -125,7 +128,7 @@ function SaveLog({ data }) {
             onKeyPress={(e) => {
               if (e.key === "Enter") {
                 blob = new Blob(
-                  [fileType === "adi" ? toADIF(data || []) : toCSV(data || [])],
+                  [fileType === "adi" ? toADIF(log || []) : toCSV(log || [])],
                   { type: "text/plain" }
                 );
                 saveAs(blob, fileName + "." + fileType);
@@ -140,7 +143,7 @@ function SaveLog({ data }) {
             name="Save"
             clickEvent={() => {
               blob = new Blob(
-                [fileType === "adi" ? toADIF(data || []) : toCSV(data || [])],
+                [fileType === "adi" ? toADIF(log || []) : toCSV(log || [])],
                 { type: "text/plain" }
               );
               saveAs(blob, fileName + "." + fileType);

@@ -14,6 +14,7 @@ import Login from "./pages/Login.js";
 
 import Register from "./pages/Register.js";
 import UserProvider, { UserContext } from "./contexts/UserContext.js";
+import LogProvider from "./contexts/LogContext.js";
 
 import { SERVER_DOMAIN } from "./constants.js";
 
@@ -75,6 +76,8 @@ function HamLocator() {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <UserProvider>
-    <HamLocator />
+    <LogProvider>
+      <HamLocator />
+    </LogProvider>
   </UserProvider>
 );

@@ -6,6 +6,7 @@ import useOutsideClick from "../hooks/useOutsideClick.js";
 import Button from "./Button.js";
 import settings from "./settings.module.css";
 import PopUp from "./PopUp.js";
+import SaveLog from "./SaveLog.js";
 
 function Settings({
   optionalFields,
@@ -126,10 +127,14 @@ function Settings({
         >
           Change Home...
         </div>
+        <h4 className={settings.settingsHead}>File</h4>
+        <SaveLog>
+          <div className={settings.settingsLink}>Save Log...</div>
+        </SaveLog>
 
-        <div className={settings.settingsHead}>
+        {/*<div className={settings.settingsHead}>
           <Button name="Done" clickEvent={() => setOpenSettings(false)} />
-        </div>
+        </div>*/}
       </PopUp>
     </div>
   );
