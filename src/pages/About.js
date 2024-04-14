@@ -55,6 +55,9 @@ function About() {
         </a>
         .
       </p>
+      <p>
+        HamLocator backend is hosted on <a href="https://fly.io/">fly.io</a>
+      </p>
     </div>
   );
 }
