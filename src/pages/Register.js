@@ -91,16 +91,16 @@ function Register() {
     if (validCall && validPasswd && validEmail && passwd === passwdCheck) {
       axios
         .post(`${SERVER_DOMAIN}/users/adduser`, {
-          call: userName,
+          call: userName.toUpperCase(),
           email: email,
           country: newUserInfo.country,
-          lat: newUserInfo.anchor[0],
-          lng: newUserInfo.anchor[1],
+          lat: parseFloat(newUserInfo.anchor[0]),
+          lng: parseFloat(newUserInfo.anchor[1]),
           gridloc: grid,
           privilege: "user",
           units: unit,
-          itu: newUserInfo.itu,
-          utc: newUserInfo.utc,
+          itu: parseInt(newUserInfo.itu),
+          utc: parseFloat(newUserInfo.utc),
           password: passwd,
         })
         .then((response) => {
