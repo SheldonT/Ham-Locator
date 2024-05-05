@@ -30,6 +30,7 @@ function Log({ optionalFields }) {
 
   const getLog = async () => {
     try {
+      //TODO: Change this to post.
       const response = await axios.get(`${SERVER_DOMAIN}/logs`, {
         params: { id: isAuthenticated, decend: true },
       });
@@ -41,15 +42,17 @@ function Log({ optionalFields }) {
           data[i].anchor = [response.data[i].lat, response.data[i].lng];
           data[i].id = data.length - i;
 
-          data[i].contactDate = data[i].contactDate.slice(0, 10);
+          data[i].contact_date = data[i].contact_date.slice(0, 10);
 
           delete data[i].lat;
           delete data[i].lng;
-          delete data[i].userId;
+
+          //TODO: Remove userid in the back end.
+          delete data[i].user_id;
         }
 
         data.sort((a, b) => {
-          return new Date(b.contactDate) - new Date(a.contactDate);
+          return new Date(b.contact_date) - new Date(a.contact_date);
         });
 
         setInfoList(data);
@@ -82,7 +85,7 @@ function Log({ optionalFields }) {
     try {
       await axios.post(`${SERVER_DOMAIN}/logs/deleterecord`, {
         userId: isAuthenticated,
-        recordId: record.recordId,
+        recordId: record.record_id,
       });
     } catch (e) {
       alert(`Server did not respond. Please try again later. \n\n ${e}`);
@@ -90,14 +93,8 @@ function Log({ optionalFields }) {
   };
 
   useEffect(() => {
-    if (infoList.length === 0) {
-      getLog();
-    }
-
     if (Object.keys(record).length !== 0) {
-      if (record.hasOwnProperty("delete") === true) {
-        deleteRecord();
-      }
+      if (record.hasOwnProperty("delete") === true) deleteRecord();
 
       if (!record.hasOwnProperty("delete")) editRecord();
     }
@@ -105,11 +102,11 @@ function Log({ optionalFields }) {
     let info = [];
 
     for (let i = 0; i < infoList.length; i++) {
-      if (infoList[i].recordId !== record.recordId) {
+      if (infoList[i].record_id !== record.record_id) {
         info.push(infoList[i]);
       }
       if (
-        infoList[i].recordId === record.recordId &&
+        infoList[i].record_id === record.record_id &&
         record.hasOwnProperty("delete") === false
       ) {
         info.push(record);
@@ -117,6 +114,10 @@ function Log({ optionalFields }) {
     }
 
     setInfoList(info);
+
+    if (infoList.length === 0) {
+      getLog();
+    }
   }, [record]);
 
   return (

@@ -70,7 +70,7 @@ function Location({ optionalFields, lines }) {
   const [extraInfo, setExtraInfo] = useState({});
   const [id, setId] = useState(1);
 
-  const jsonResp = useCallData(contactInfo.contactCall);
+  const jsonResp = useCallData(contactInfo.contact_call);
 
   const { isAuthenticated, authUserHome } = useContext(UserContext);
   const { log, setLog } = useContext(LogContext);
@@ -85,9 +85,23 @@ function Location({ optionalFields, lines }) {
     const insertToDB = async (newData) => {
       const newRecord = {
         userId: isAuthenticated,
-        lat: newData.anchor[0],
-        lng: newData.anchor[1],
+        lat: parseFloat(newData.anchor[0]),
+        lng: parseFloat(newData.anchor[1]),
         ...newData,
+        freq: parseFloat(newData.freq),
+        sig_rep_sent: parseInt(
+          newData.sig_rep_sent === "" ? "0" : newData.sig_rep_sent
+        ),
+        sig_rep_recv: parseInt(
+          newData.sig_rep_recv === "" ? "0" : newData.sig_rep_recv
+        ),
+        serial_sent: parseInt(
+          newData.serial_sent === "" ? "0" : newData.serial_sent
+        ),
+        serial_recv: parseInt(
+          newData.serial_recv === "" ? "0" : newData.serial_recv
+        ),
+        utc: parseInt(newData.utc === "" ? "0" : newData.utc),
       };
 
       delete newRecord.anchor;
@@ -118,11 +132,11 @@ function Location({ optionalFields, lines }) {
         //setInfoList
         setLog((previousInfo) => {
           const newData = {
-            id: id,
-            contactDate: utcDate,
-            contactTime: utcTime,
             ...contactInfo,
             ...jsonResp,
+            id: id,
+            contact_date: utcDate,
+            contact_time: utcTime,
           };
 
           insertToDB(newData);
@@ -132,7 +146,7 @@ function Location({ optionalFields, lines }) {
           //localStorage.setItem("list", JSON.stringify(dataCollection));
 
           dataCollection.sort((a, b) => {
-            return new Date(b.contactDate) - new Date(a.contactDate);
+            return new Date(b.contact_date) - new Date(a.contact_date);
           });
 
           return dataCollection;
@@ -158,15 +172,15 @@ function Location({ optionalFields, lines }) {
             data[i].anchor = [response.data[i].lat, response.data[i].lng];
             data[i].id = data.length - i;
 
-            data[i].contactDate = data[i].contactDate.slice(0, 10);
+            data[i].contact_date = data[i].contact_date.slice(0, 10);
 
             delete data[i].lat;
             delete data[i].lng;
-            delete data[i].userId;
+            delete data[i].user_id;
           }
 
           data.sort((a, b) => {
-            return new Date(b.contactDate) - new Date(a.contactDate);
+            return new Date(b.contact_date) - new Date(a.contact_date);
           });
 
           //setInfoList(data);
@@ -181,8 +195,6 @@ function Location({ optionalFields, lines }) {
 
     getLog();
   }, []);
-
-  console.log(log);
 
   return (
     <>

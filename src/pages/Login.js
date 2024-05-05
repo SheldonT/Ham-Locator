@@ -14,7 +14,7 @@ function Login() {
   const { authenticate, isAuthenticated } = useContext(UserContext);
 
   const submitLogin = () => {
-    authenticate(userName, passwd);
+    authenticate(userName.toUpperCase(), passwd);
   };
 
   const guestLogin = () => {

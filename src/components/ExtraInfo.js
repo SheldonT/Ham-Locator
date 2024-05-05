@@ -22,7 +22,7 @@ function ExtraInfo({ info, infoStyle }) {
     if (countryInfo) code = countryInfo.countryCode;
 
     locDetails = info.details;
-    callSign = info.contactCall;
+    callSign = info.contact_call;
 
     if (info.call) callSign = info.call;
 

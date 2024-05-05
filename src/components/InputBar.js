@@ -58,15 +58,15 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
       if (!serialRcv || serialRcv.length === 0);
 
       const ci = {
-        contactCall: callSignValue.toUpperCase(),
+        contact_call: callSignValue.toUpperCase(),
         freq: freqValue,
         mode: document.getElementById("mode").value,
-        sigRepSent: sentRep,
-        sigRepRecv: recRep,
+        sig_rep_sent: sentRep,
+        sig_rep_recv: recRep,
         name: name,
         grid: grid,
-        serialSent: !serialSent || serialSent.length === 0 ? 0 : serialSent,
-        serialRecv: !serialRcv || serialRcv.length === 0 ? 0 : serialRcv,
+        serial_sent: !serialSent || serialSent.length === 0 ? 0 : serialSent,
+        serial_recv: !serialRcv || serialRcv.length === 0 ? 0 : serialRcv,
         comment: comment,
       };
 
@@ -93,11 +93,10 @@ function InputBar({ setInfo, resetExtra, optionalFields }) {
     let cInfo = callsign.getAmateurRadioInfoByCallsign(c);
 
     if (cInfo) {
-      cInfo = { ...cInfo, country: cInfo.area, contactCall: cInfo.area };
+      cInfo = { ...cInfo, country: cInfo.area, contact_call: cInfo.area };
       delete cInfo.area;
     }
 
-    console.log(cInfo);
     return cInfo;
   };
 

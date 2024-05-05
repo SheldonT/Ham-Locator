@@ -27,21 +27,21 @@ https://sheldont.github.io/Ham-Locator
     const band = bandDef.find(
       (defs) => d[i].freq >= defs.low && d[i].freq <= defs.high
     ).band;
-    const qsoDate = d[i].contactDate.replaceAll("-", "");
-    const qsoTime = d[i].contactTime.replaceAll(":", "");
+    const qsoDate = d[i].contact_date.replaceAll("-", "");
+    const qsoTime = d[i].contact_time.replaceAll(":", "");
 
     dataStr = `${dataStr}
 <qso_date:${qsoDate.length}>${qsoDate}\
 <time_on:${qsoTime.length}>${qsoTime}\
-<call:${d[i].contactCall.length}>${d[i].contactCall}\
+<call:${d[i].contact_call.length}>${d[i].contact_call}\
 <band:${band.length}>${band}\
 <freq:${d[i].freq.toString().length}>${d[i].freq}\
 <mode:${d[i].mode.length}>${d[i].mode}\
-<rst_sent:${d[i].sigRepSent.toString().length}>${d[i].sigRepSent}\
-<rst_rcvd:${d[i].sigRepRecv.toString().length}>${d[i].sigRepRecv}\
+<rst_sent:${d[i].sig_rep_sent.toString().length}>${d[i].sig_rep_sent}\
+<rst_rcvd:${d[i].sig_rep_recv.toString().length}>${d[i].sig_rep_recv}\
 <name:${d[i].name.length}>${d[i].name}\
-<stx:${d[i].serialSent.toString().length}>${d[i].serialSent}\
-<srx:${d[i].serialRecv.toString().length}>${d[i].serialRecv}\
+<stx:${d[i].serial_sent.toString().length}>${d[i].serial_sent}\
+<srx:${d[i].serial_recv.toString().length}>${d[i].serial_recv}\
 <gridsquare:${d[i].grid.length}>${d[i].grid}\
 <comment:${d[i].comment.length}>${d[i].comment} <eor>
 `;
@@ -58,12 +58,12 @@ function toCSV(d) {
     const band = bandDef.find(
       (defs) => d[i].freq >= defs.low && d[i].freq <= defs.high
     ).band;
-    const qsoDate = d[i].contactDate.replaceAll("-", "");
-    const qsoTime = d[i].contactTime.replaceAll(":", "");
+    const qsoDate = d[i].contact_date.replaceAll("-", "");
+    const qsoTime = d[i].contact_time.replaceAll(":", "");
 
-    dataStr = `${dataStr}${d[i].call},${band},${d[i].freq},\
-${d[i].mode},${qsoDate},${qsoTime},${d[i].sigRepSent},\
-${d[i].sigRepRecv},${d[i].name},${d[i].serialSent},${d[i].serialRecv},\
+    dataStr = `${dataStr}${d[i].contact_call},${band},${d[i].freq},\
+${d[i].mode},${qsoDate},${qsoTime},${d[i].sig_rep_sent},\
+${d[i].sig_rep_recv},${d[i].name},${d[i].serial_sent},${d[i].serial_recv},\
 ${d[i].grid},${d[i].comment}
 `;
   }

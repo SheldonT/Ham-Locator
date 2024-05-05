@@ -21,17 +21,17 @@ function restore(event, setValue, value) {
 }
 
 function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
-  const [callSignValue, setCallSignValue] = useState(info.contactCall);
+  const [callSignValue, setCallSignValue] = useState(info.contact_call);
   const [freqValue, setFreqValue] = useState(info.freq);
   const [mode, setMode] = useState(info.mode);
-  const [sentRep, setSentRep] = useState(info.sigRepSent);
-  const [recRep, setRecRep] = useState(info.sigRepRecv);
+  const [sentRep, setSentRep] = useState(info.sig_rep_sent);
+  const [recRep, setRecRep] = useState(info.sig_rep_recv);
   const [name, setName] = useState(info.name);
   const [grid, setGrid] = useState(info.grid);
-  const [serialSent, setSerialSent] = useState(info.serialSent);
-  const [serialRcv, setSerialRcv] = useState(info.serialRecv);
-  const [contactDate, setContactDate] = useState(info.contactDate);
-  const [contactTime, setContactTime] = useState(info.contactTime);
+  const [serialSent, setSerialSent] = useState(info.serial_sent);
+  const [serialRcv, setSerialRcv] = useState(info.serial_recv);
+  const [contactDate, setContactDate] = useState(info.contact_date);
+  const [contactTime, setContactTime] = useState(info.contact_time);
   const [comment, setComment] = useState(info.comment);
 
   const [edit, setEdit] = useState(false);
@@ -65,17 +65,17 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
           clickEvent={() => {
             setEdit(false);
 
-            setCallSignValue(info.contactCall);
+            setCallSignValue(info.contact_call);
             setFreqValue(info.freq);
             setMode(info.mode);
-            setSentRep(info.sigRepSent);
-            setRecRep(info.sigRepRecv);
+            setSentRep(info.sig_rep_sent);
+            setRecRep(info.sig_rep_recv);
             setName(info.name);
             setGrid(info.grid);
-            setSerialSent(info.serialSent);
-            setSerialRcv(info.serialRecv);
-            setContactDate(info.contactDate);
-            setContactTime(info.contactTime);
+            setSerialSent(info.serial_sent);
+            setSerialRcv(info.serial_recv);
+            setContactDate(info.contact_date);
+            setContactTime(info.contact_time);
             setComment(info.comment);
           }}
         >
@@ -113,17 +113,17 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
 
       const ci = {
         ...info,
-        contactCall: callSignValue.toUpperCase(),
+        contact_call: callSignValue.toUpperCase(),
         freq: freqValue,
         mode: mode,
-        sigRepSent: sentRep,
-        sigRepRecv: recRep,
-        contactDate: contactDate,
-        contactTime: contactTime,
+        sig_rep_sent: sentRep,
+        sig_rep_recv: recRep,
+        contact_date: contactDate,
+        contact_time: contactTime,
         name: name,
         grid: grid,
-        serialSent: serialSent,
-        serialRecv: serialRcv,
+        serial_sent: serialSent,
+        serial_recv: serialRcv,
         comment: comment,
       };
       click(ci);
@@ -156,7 +156,7 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
               validate={validateCall}
               value={callSignValue}
               setValue={setCallSignValue}
-              keyDown={(e) => restore(e, setCallSignValue, info.contactCall)}
+              keyDown={(e) => restore(e, setCallSignValue, info.contact_call)}
               placeHolder="Callsign"
               setValid={setValidCall}
               warning={warningCall}
@@ -166,7 +166,7 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
 
           {!edit && editField ? callSignValue.toUpperCase() : null}
 
-          {!edit && !editField ? info.contactCall.toUpperCase() : null}
+          {!edit && !editField ? info.contact_call.toUpperCase() : null}
         </td>
 
         <td className={tableRow.infoCells}>
@@ -224,7 +224,7 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
               fieldStyle={inputBar.sigRep}
               value={sentRep}
               setValue={setSentRep}
-              keyDown={(e) => restore(e, setSentRep, info.sigRepSent)}
+              keyDown={(e) => restore(e, setSentRep, info.sig_rep_sent)}
               exp={/[^\d]/g}
               placeHolder="RSTs"
               isValid={true}
@@ -233,7 +233,7 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
 
           {!edit && editField ? sentRep : null}
 
-          {!edit && !editField ? info.sigRepSent : null}
+          {!edit && !editField ? info.sig_rep_sent : null}
         </td>
         <td className={tableRow.infoCells}>
           <div
@@ -244,7 +244,7 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
               fieldStyle={inputBar.sigRep}
               value={recRep}
               setValue={setRecRep}
-              keyDown={(e) => restore(e, setRecRep, info.sigRepRecv)}
+              keyDown={(e) => restore(e, setRecRep, info.sig_rep_recv)}
               exp={/[^\d]/g}
               placeHolder="RSTr"
               isValid={true}
@@ -253,7 +253,7 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
 
           {!edit && editField ? recRep : null}
 
-          {!edit && !editField ? info.sigRepRecv : null}
+          {!edit && !editField ? info.sig_rep_recv : null}
         </td>
         <td className={tableRow.infoCells}>
           <div
@@ -267,13 +267,13 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
               onChange={(e) => {
                 setContactDate(e.target.value);
               }}
-              onKeyDown={(e) => restore(e, setContactDate, info.contactDate)}
+              onKeyDown={(e) => restore(e, setContactDate, info.contact_date)}
             />
           </div>
 
           {!edit && editField ? contactDate : null}
 
-          {!edit && !editField ? info.contactDate : null}
+          {!edit && !editField ? info.contact_date : null}
         </td>
         <td className={tableRow.infoCells}>
           <div
@@ -287,13 +287,13 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
               onChange={(e) => {
                 setContactTime(e.target.value);
               }}
-              onKeyDown={(e) => restore(e, setContactTime, info.contactTime)}
+              onKeyDown={(e) => restore(e, setContactTime, info.contact_time)}
             />
           </div>
 
           {!edit && editField ? contactTime : null}
 
-          {!edit && !editField ? info.contactTime : null}
+          {!edit && !editField ? info.contact_time : null}
         </td>
         <td
           style={{
@@ -357,7 +357,7 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
               fieldStyle={inputBar.freqField}
               value={serialSent}
               setValue={setSerialSent}
-              keyDown={(e) => restore(e, setSerialSent, info.serialSent)}
+              keyDown={(e) => restore(e, setSerialSent, info.serial_sent)}
               placeHolder="STX"
               isValid={true}
               exp={/[^\d]/g}
@@ -366,7 +366,7 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
 
           {!edit && editField ? serialSent : null}
 
-          {!edit && !editField ? info.serialSent : null}
+          {!edit && !editField ? info.serial_sent : null}
         </td>
         <td
           style={{
@@ -382,7 +382,7 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
               fieldStyle={inputBar.freqField}
               value={serialRcv}
               setValue={setSerialRcv}
-              keyDown={(e) => restore(e, setSerialRcv, info.serialRecv)}
+              keyDown={(e) => restore(e, setSerialRcv, info.serial_recv)}
               placeHolder="SRX"
               isValid={true}
               exp={/[^\d]/g}
@@ -391,7 +391,7 @@ function TableRow({ info, click, optionalFields, editField, hoverEffect }) {
 
           {!edit && editField ? serialRcv : null}
 
-          {!edit && !editField ? info.serialRecv : null}
+          {!edit && !editField ? info.serial_recv : null}
         </td>
         <td
           style={{
