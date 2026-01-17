@@ -4,6 +4,7 @@ import { useState, useEffect, useContext } from "react";
 import InfoBar from "../components/InfoBar.js";
 import axios from "axios";
 import { UserContext } from "../contexts/UserContext.js";
+import { SettingsContext } from "../contexts/SettingsContext.js";
 import SaveLog from "../components/SaveLog.js";
 import { SERVER_DOMAIN } from "../constants.js";
 
@@ -18,11 +19,12 @@ const infoListStyle = {
   margin: "0 auto 1rem auto",
 };
 
-function Log({ optionalFields }) {
+function Log() {
   const [record, setRecord] = useState({});
   const [infoList, setInfoList] = useState([]);
 
   const { isAuthenticated } = useContext(UserContext);
+  const { optionalFields } = useContext(SettingsContext);
 
   //const isAuth = JSON.parse(
   //  localStorage.getItem("authUser") || `{"authUser" : -1 }`

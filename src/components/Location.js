@@ -11,6 +11,7 @@ import ClearTable from "./ClearTable.js";
 import location from "./location.module.css";
 import { UserContext } from "../contexts/UserContext.js";
 import { LogContext } from "../contexts/LogContext.js";
+import { SettingsContext } from "../contexts/SettingsContext.js";
 import { SERVER_DOMAIN } from "../constants.js";
 
 function validateEntry(entry, currentList) {
@@ -64,7 +65,7 @@ export const formatDate = (date) => {
   return date.getUTCFullYear() + "-" + month + "-" + day;
 };
 
-function Location({ optionalFields, lines }) {
+function Location() {
   const [contactInfo, setContactInfo] = useState({});
   //const [infoList, setInfoList] = useState([]);
   const [extraInfo, setExtraInfo] = useState({});
@@ -73,6 +74,7 @@ function Location({ optionalFields, lines }) {
   const jsonResp = useCallData(contactInfo.contact_call);
 
   const { isAuthenticated, authUserHome } = useContext(UserContext);
+  const { optionalFields, lines } = useContext(SettingsContext);
   const { log, setLog } = useContext(LogContext);
 
   const resetTable = () => {

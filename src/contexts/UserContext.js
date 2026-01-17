@@ -1,18 +1,18 @@
 /** @format */
 
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { SERVER_DOMAIN } from "../constants.js";
 
 export const UserContext = createContext({});
 
+const serverInstance = axios.create({ withCredentials: true });
+
 function UserProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState("0");
   const [authUserHome, setAuthUserHome] = useState({});
 
-  const serverInstance = axios.create({ withCredentials: true });
-
-  const userSession = async () => {
+  const userSession = useCallback(async () => {
     try {
       const response = await serverInstance.get(
         `${SERVER_DOMAIN}/users/session`
@@ -28,13 +28,13 @@ function UserProvider({ children }) {
     } catch (e) {
       console.log(e);
     }
-  };
+  }, []);
 
   useEffect(() => {
     userSession();
   }, []);
 
-  const authenticate = async (userName, passwd) => {
+  const authenticate = useCallback(async (userName, passwd) => {
     if (userName !== "" && passwd !== "") {
       try {
         const response = await serverInstance.post(`${SERVER_DOMAIN}/users`, {
@@ -60,9 +60,9 @@ function UserProvider({ children }) {
         alert(`Server did not respond. Please try again later. \n\n ${e}`);
       }
     }
-  };
+  }, []);
 
-  const setHomeDataFromDB = async () => {
+  const setHomeDataFromDB = useCallback(async () => {
     try {
       const response = await axios.get(`${SERVER_DOMAIN}/users/getuser`, {
         params: { id: isAuthenticated },
@@ -87,9 +87,9 @@ function UserProvider({ children }) {
     } catch (e) {
       alert(`Server did not respond. Please try again later. \n\n ${e}`);
     }
-  };
+  }, [isAuthenticated]);
 
-  const logoutUser = async () => {
+  const logoutUser = useCallback(async () => {
     try {
       const response = await axios.get(`${SERVER_DOMAIN}/users/logout`, {
         params: {
@@ -105,7 +105,7 @@ function UserProvider({ children }) {
     } catch (e) {
       console.log(e);
     }
-  };
+  }, [isAuthenticated]);
 
   return (
     <UserContext.Provider

@@ -15,18 +15,14 @@ import Login from "./pages/Login.js";
 import Register from "./pages/Register.js";
 import UserProvider, { UserContext } from "./contexts/UserContext.js";
 import LogProvider from "./contexts/LogContext.js";
+import SettingsProvider from "./contexts/SettingsContext.js";
 
 import { SERVER_DOMAIN } from "./constants.js";
 
 import "./index.css";
 
 function HamLocator() {
-  const [fields, setFields] = useState(
-    JSON.parse(localStorage.getItem("fields" || "{}"))
-  );
-
   const [home, setHome] = useState(false);
-  const [lines, setLines] = useState(false);
 
   const { isAuthenticated, setHomeDataFromDB } = useContext(UserContext);
 
@@ -38,7 +34,7 @@ function HamLocator() {
 
   const IndexRoute = () => {
     if (isAuthenticated !== "0" && isAuthenticated !== "-1") {
-      return <Location optionalFields={fields} lines={lines} />;
+      return <Location />;
     }
 
     return <Login />;
@@ -51,12 +47,8 @@ function HamLocator() {
           path="/"
           element={
             <Layout
-              optionalFields={fields}
-              setOptionalFields={setFields}
               showHome={home}
               setHome={setHome}
-              lines={lines}
-              setLines={setLines}
             />
           }
         >
@@ -66,7 +58,7 @@ function HamLocator() {
           <Route path="instructions" element={<HowTo />} />
           <Route path="about" element={<About />} />
           <Route path="stats" element={<Stats />} />
-          <Route path="log" element={<Log optionalFields={fields} />} />
+          <Route path="log" element={<Log />} />
         </Route>
       </Routes>
     </BrowserRouter>
@@ -77,7 +69,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <UserProvider>
     <LogProvider>
-      <HamLocator />
+      <SettingsProvider>
+        <HamLocator />
+      </SettingsProvider>
     </LogProvider>
   </UserProvider>
 );

@@ -10,12 +10,8 @@ import Settings from "../components/Settings.js";
 import { UserContext } from "../contexts/UserContext.js";
 
 function Layout({
-  optionalFields,
-  setOptionalFields,
   showHome,
   setHome,
-  lines,
-  setLines,
 }) {
   const navigate = useNavigate();
 
@@ -59,13 +55,7 @@ function Layout({
           className="logoutBar"
           style={{ display: isAuthenticated !== "0" ? "flex" : "none" }}
         >
-          <Settings
-            optionalFields={optionalFields}
-            setOptionalFields={setOptionalFields}
-            lines={lines}
-            setLines={setLines}
-            setHomeVis={setHome}
-          />
+          <Settings setHomeVis={setHome} />
           <img
             className="logoutLogo"
             src={logout}
